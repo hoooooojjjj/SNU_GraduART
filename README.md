@@ -38,15 +38,86 @@
   - 코드(어디 파일에 어느 줄인지)
   - 뭐하다 안된 건지, 어떤 커밋부터 안됐는지 등 꼭 확인 후 알려주기
 
-### 코드 컨벤션
+### 코드 컨벤션 [<a href="https://velog.io/@bami/Javascript-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98">자바스크립트 코딩 컨벤션</a>, <a href="https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EC%BB%A8%EB%B2%A4%EC%85%98-%ED%8E%B8">자바스크립트 스타일 가이드 - 네이밍 컨벤션 편</a>]
 
-### 커밋 컨벤션
+#### 명명 규칙
+
+- 대문자와 소문자를 엄격하게 구분한다.
+- **_변수명과 함수명은 CamelCase를 따른다. (예. getReady(), colorOfCar)_**
+- **_변수의 이름은 명사로 표기한다.(예. count, number)_**
+- **_함수의 이름은 동사 또는 동사구문으로 표기한다.(예, findCamera(), getFoo())_**
+- 상수명은 대문자의 언더 스코어방식을 이용한다. (예. PI, MAX_VERTEX)
+- 이벤트 핸들러 함수는 on으로 시작한다. (예. onClick, onMove)
+- **_명명할 때 축약보다는 의미를 알기 쉽게 풀어쓴다._**
+
+#### 변수
+
+- 변수 선언에서 <code>var</code> 대신 <code>let</code> 과 <code>const</code> 를 사용한다.
+- **_코드가 실행될 때 재할당이 되어야 하는 변수가 아닌 이상
+  <code>const</code>를 사용한다._**
+
+### 커밋 컨벤션 [<a href="https://velog.io/@shin6403/Git-git-%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">Git | git 커밋 컨벤션 설정하기</a>]
+
+#### Commit 메시지 구조
+
+- 기본 적인 커밋 메시지 구조는 제목,본문,꼬리말 세가지 파트로 나누고, 각 파트는 빈줄을 두어 구분한다.
+
+```
+type : subject
+
+body
+
+footer
+```
+
+#### Commit Type
+
+- 타입은 태그와 제목으로 구성되고, 태그는 영어로 쓰되 첫 문자는 대문자로 한다.
+
+```
+Feat : 새로운 기능 추가
+Bug : 버그 발견
+Fix : 버그 수정
+Docs : 문서 수정
+Style : 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
+Refactor : 코드 리펙토링
+```
+
+#### Subject
+
+- 제목은 최대 50글자가 넘지 않도록 하고 마침표 및 특수기호는 사용하지 않는다.
+- 영문으로 표기하는 경우 동사(원형)를 가장 앞에 두고 첫 글자는 대문자로 표기한다.(과거 시제를 사용하지 않는다.)
+- 제목은 개조식 구문으로 작성한다. --> 완전한 서술형 문장이 아니라, 간결하고 요점적인 서술을 의미.
+
+```
+* Fixed --> Fix
+* Added --> Add
+* Modified --> Modify
+```
+
+#### Body
+
+- 본문은 한 줄 당 72자 내로 작성한다.
+- 본문 내용은 양에 구애받지 않고 최대한 상세히 작성한다.
+- 본문 내용은 어떻게 변경했는지 보다 무엇을 변경했는지 또는 왜 변경했는지를 설명한다.
+
+#### footer
+
+- 꼬리말은 optional이고 이슈 트래커 ID를 작성한다.
+- 꼬리말은 "유형: #이슈 번호" 형식으로 사용한다.
+- 여러 개의 이슈 번호를 적을 때는 쉼표(,)로 구분한다.
+- 이슈 트래커 유형은 다음 중 하나를 사용한다.
+  - Fixes: 이슈 수정중 (아직 해결되지 않은 경우)
+  - Resolves: 이슈를 해결했을 때 사용
+  - Ref: 참고할 이슈가 있을 때 사용
+  - Related to: 해당 커밋에 관련된 이슈번호 (아직 해결되지 않은 경우)
+  - (ex) Fixes: #45 Related to: #34, #23
 
 ### PR 컨벤션
 
 ### 브랜치 전략
 
-#### GitHub-flow 전략
+#### GitHub-flow 전략 [<a href="https://velog.io/@gmlstjq123/Git-Flow-VS-Github-Flow">Git Flow VS Github Flow</a>]
 
 - release 브랜치, main 브랜치와 feature 브랜치를 운용.
   - **release** 브랜치는 배포 단계에서만 사용하는 브랜치.
