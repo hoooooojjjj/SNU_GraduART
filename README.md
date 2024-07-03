@@ -118,7 +118,7 @@ Refactor : 코드 리펙토링
 - 추적 가능하게 유지해주기
 - 너무 많은 문제를 한 커밋에 담으면 추적하기 어렵다.
 
-#### CLI에서 커밋 메시지 여러 줄로 작성하는 방법
+#### CLI에서 커밋 메시지 여러 줄로 작성하는 방법
 
 <aside>
 ✅ **쌍따옴표를 닫지 말고 개행하며 작성 → 다 작성한 후에 쌍따옴표를 닫으면 작성 완료**
@@ -130,6 +130,7 @@ git commit -m "FEAT: 회원가입 기능 추가
 ```
 
 </aside>
+
 ### PR 컨벤션 [<a href="https://velog.io/@ye-ji/Git-PR-%EC%9E%98-%EC%93%B0%EB%8A%94-%EB%B0%A9%EB%B2%95">Commit Message / PR 잘 쓰는 방법</a>]
 
 ```
@@ -272,12 +273,12 @@ main에 병합된 변경 사항은 배포를 위한 release 브랜치로 이동�
 
 ## 1. 개발 환경
 
-- Front : HTML, Emotion(css), React
+- Front : HTML, JavaScript, React, Emotion(css)
 - Back-end : firebase
 - 버전 및 이슈관리 : Github, Github Issues, Github Project
 - 협업 툴 : 채널톡, Notion
 - 서비스 배포 환경 :
-- 디자인 : [Figma](<https://www.figma.com/file/fAisC2pEKzxTOzet9CfqML/README(oh-my-code)?node-id=39%3A1814>)
+- 디자인 : Figma , Mui
 
   <br>
 
