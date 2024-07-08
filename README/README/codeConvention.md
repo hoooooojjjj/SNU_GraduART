@@ -1,46 +1,5 @@
 # 개발 컨벤션
 
-## 개발 과정에서 지켜야 할 사항
-
-### 1. **_개발하기 전 항상_**
-
-<strong>직접 feature 브랜치를 파거나 파진 feature 브랜치에 작업을 하기 전에는
-
-<code>git pull origin {브랜치 이름}</code> 꼭 해주기!!</strong>
-
-- 직접 feature 브랜치를 팔 때는
-  <code>git pull origin main</code>
-
-- 이미 파진 feature 브랜치에 작업할 때는
-  <code>git pull origin {이미 파진 브랜치 이름}</code>
-
-### 2. <code>git pull</code> 이후
-
-- <strong>pull 하고 나서 꼭 <code>npm install</code> 기계적으로 해주기.</strong>
-  - Why?
-  - ⇒ 다른 사람이 개발하다가 설치한 npm 라이브러리는 push 할때 깃허브에 올라가지 않는다.(<code>.gitignore</code> 파일에 <code>node modules</code> 파일이 존재)
-  - ⇒ so, pull 할 때 나의 <code>node modules</code> 파일에 라이브러리가 안 들어온다.
-  - ⇒ then, <code>npm install</code>을 통해서 깃허브에서 pull을 통해 가져온 <a href="https://1000hg.tistory.com/m/47"><code>package.json</code></a>에 있는 라이브러리를 한번 더 쭉 설치해줘야 한다.
-  - ⇒ 그러면 다른 사람이 설치한 거 가져와진다.
-
-### 3. main 브랜치에 <code>git merge</code> 하기 전
-
-- <strong>절대 main 브랜치에서 작업하지 않도록 주의!!</strong> 주기적으로 로컬에서 브랜치 확인
-- <strong>새로운 기능 개발을 할 때에는 꼭 아래 브랜치 전략에 따라 feature 브랜치를 따로 파서 작업 하기 </strong>
-- <strong>개발할 때는 git commit을 자주 남기기! </strong>
-  - 기능 하나마다 하나의 commit은 절대 안됨
-  - commit 주기는 최소한 함수 하나 당 한번의 commit
-- <strong>개발이 끝나고 스스로 괜찮다고 느끼면 feature 브랜치에서 main 브랜치로 PR 보내기 </strong>
-- <strong>팀원 모두 코드리뷰를 남긴 후 merge </strong>
-
-### 4. <code>Error</code> 발생 및 해결 안될 시
-
-- 아래 사항 전부 포함해서 알리기
-  - 에러 뜬다고 바로 알리지 말고 충분히 고민한 흔적 알려주기. ~~ 부분이 문제인 것 같아서 ~~로 코드를 수정했는데 ~~한 에러가 난다 등.
-  - 에러 콘솔 캡쳐 이미지(이왕이면 에러 콘솔 다 보이게)
-  - 코드(어디 파일에 어느 줄인지)
-  - 뭐하다 안된 건지, 어떤 커밋부터 안됐는지 등 꼭 확인 후 알려주기
-
 ## 코드 컨벤션 [<a href="https://velog.io/@bami/Javascript-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98">자바스크립트 코딩 컨벤션</a>, <a href="https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EC%BB%A8%EB%B2%A4%EC%85%98-%ED%8E%B8">자바스크립트 스타일 가이드 - 네이밍 컨벤션 편</a>]
 
 ### 1. 명명 규칙
@@ -155,12 +114,13 @@ ex) 베이스 브랜치에 포함되기 위한 코드는 모두 정상적으로 
 
 ## 브랜치 전략
 
-### GitHub-flow 전략 [<a href="https://velog.io/@gmlstjq123/Git-Flow-VS-Github-Flow">Git Flow VS Github Flow</a>]
+### GitHub-flow(+Git Flow) 전략 [<a href="https://velog.io/@gmlstjq123/Git-Flow-VS-Github-Flow">Git Flow VS Github Flow</a>]
 
-- release 브랜치, main 브랜치와 feature 브랜치를 운용.
+- release 브랜치, main 브랜치와 feature 브랜치, feature-{기능} 브랜치를 운용.
   - **release** 브랜치는 배포 단계에서만 사용하는 브랜치.
   - **main** 브랜치는 개발 단계에서 main 역할을 하는 브랜치.
-  - **Feat** 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 merge 후 각 브랜치를 삭제.
+  - **Feat** 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 main에 merge 후 각 브랜치를 삭제.
+  - **Feat-{기능}** 브랜치는 feature 브랜치를 여러 명이 개발할 때 각자의 독립적 개발 및 충돌 방지를 위해 사용하고 feature 브랜치에 merge 후 각 브랜치를 삭제.
 
 ### dev flow
 
@@ -169,28 +129,37 @@ ex) 베이스 브랜치에 포함되기 위한 코드는 모두 정상적으로 
 새로운 기능이나 버그 수정 작업을 수행하기 위해 브랜치를 생성한다.
 이 브랜치는 작업의 컨텍스트를 제공하고, 기능의 독립성을 보장한다.
 
-- ② 로컬에서 Commit 작성
+- ② feature-{기능} Branch 생성
 
-로컬 feature Branch에서 변경 사항을 커밋으로 저장한다.
+feature Branch를 여러 명이 작업할 때 충돌 방지 및 독립적 개발을 위해 사용한다.
+
+- ③ 로컬에서 Commit 작성
+
+로컬 feature-{기능} Branch에서 변경 사항을 커밋으로 저장한다.
 커밋은 작업의 단위이며, 코드 변경 내용을 기록한다.
 
-- ③ main Branch로 Pull Request
+- ④ feature Branch로 Pull Request
 
-변경 사항을 본래 브랜치로 병합하기 위해 풀 리퀘스트를 생성한다.
+변경 사항을 feature Branch로 병합하기 위해 풀 리퀘스트를 생성한다.
 이를 통해 코드 검토, 토론, 테스트 등을 수행할 수 있다.
 
-- ④ 리뷰 및 피드백
+- ⑤ 리뷰 및 피드백
 
 풀 리퀘스트를 생성한 후 다른 개발자들이 코드를 검토하고 피드백을 제공한다.
 이를 통해 코드 품질을 높이고 버그를 발견하고 수정할 수 있다.
 
-- ⑤ 병합
+- ⑥ feature Branch로 병합
 
-풀 리퀘스트가 승인되면 변경 사항을 main 브랜치로 병합한다.
+풀 리퀘스트가 승인되면 변경 사항을 feature Branch로 병합한다.
 이를 통해 작업한 내용이 제품의 다른 부분과 통합된다.
+이후 feature-{기능} Branch는 삭제한다.
+
+- ⑦ main Branch로 병합
+
+feature Branch 병합이 완료되면 main Branch로 Pull Request를 보내고 리뷰 및 피드백 후 병합한다.
 이후 feature Branch는 삭제한다.
 
-- ⑥ 배포
+- ⑧ 배포
 
 main에 병합된 변경 사항은 배포를 위한 release 브랜치로 이동하고, 자동 또는 수동으로 배포 프로세스를 시작한다.
 배포 단계에서 테스트, 빌드, 배포 작업 등이 수행된다.
