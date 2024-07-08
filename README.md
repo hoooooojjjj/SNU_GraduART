@@ -7,6 +7,10 @@
 
 <br>
 
+## 개발 시 주의사항
+
+### [👉 개발 규칙 링크](./README/README/DevRule.md)
+
 ## 개발 컨벤션
 
 ### [👉 개발 컨벤션 링크](./README/README/codeConvention.md)
