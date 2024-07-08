@@ -11,6 +11,18 @@
 
 ### 개발 과정에서 지켜야 할 사항
 
+#### <code>개발하기 전 항상</code>
+
+<strong>직접 feature 브랜치를 파거나 파진 feature 브랜치에 작업을 하기 전에는
+
+<code>git pull origin {브랜치 이름}</code> 꼭 해주기!!</strong>
+
+- 직접 feature 브랜치를 팔 때는
+  <code>git pull origin main</code>
+
+- 이미 파진 feature 브랜치에 작업할 때는
+  <code>git pull origin {이미 파진 브랜치 이름}</code>
+
 #### <code>git pull</code> 이후
 
 - <strong>pull 하고 나서 꼭 <code>npm install</code> 기계적으로 해주기.</strong>
