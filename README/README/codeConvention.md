@@ -116,28 +116,28 @@ ex) 베이스 브랜치에 포함되기 위한 코드는 모두 정상적으로 
 
 ## 브랜치 전략
 
-### GitHub-flow(+Git Flow) 전략 [<a href="https://velog.io/@gmlstjq123/Git-Flow-VS-Github-Flow">Git Flow VS Github Flow</a>]
+### GitHub-flow 전략 [<a href="https://velog.io/@gmlstjq123/Git-Flow-VS-Github-Flow">Git Flow VS Github Flow</a>]
 
-- release 브랜치, main 브랜치와 feature 브랜치, feature-{기능} 브랜치를 운용.
-  - **release** 브랜치는 배포 단계에서만 사용하는 브랜치.
-  - **main** 브랜치는 개발 단계에서 main 역할을 하는 브랜치.
-  - **Feat** 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 main에 merge 후 각 브랜치를 삭제.
-  - **Feat-{기능}** 브랜치는 feature 브랜치를 여러 명이 개발할 때 각자의 독립적 개발 및 충돌 방지를 위해 사용하고 feature 브랜치에 merge 후 각 브랜치를 삭제.
+### ✅ 브랜치 종류 : main 브랜치와 feature 브랜치, feature-feat 브랜치를 운용.
 
-### dev flow
+- **main** 브랜치는 개발 단계에서 main 역할을 하는 브랜치.
+- **feature** 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 main에 merge 후 각 브랜치를 삭제.
+- **feature-feat** 브랜치는 feature 브랜치를 여러 명이 개발할 때 각자의 독립적 개발 및 충돌 방지를 위해 사용하고 feature 브랜치에 merge 후 각 브랜치를 삭제.
+
+### 개발 프로세스 :
 
 - ① feature Branch 생성
 
 새로운 기능이나 버그 수정 작업을 수행하기 위해 브랜치를 생성한다.
 이 브랜치는 작업의 컨텍스트를 제공하고, 기능의 독립성을 보장한다.
 
-- ② feature-{기능} Branch 생성
+- ② feature-feat Branch 생성
 
 feature Branch를 여러 명이 작업할 때 충돌 방지 및 독립적 개발을 위해 사용한다.
 
 - ③ 로컬에서 Commit 작성
 
-로컬 feature-{기능} Branch에서 변경 사항을 커밋으로 저장한다.
+로컬 feature-feat Branch에서 변경 사항을 커밋으로 저장한다.
 커밋은 작업의 단위이며, 코드 변경 내용을 기록한다.
 
 - ④ feature Branch로 Pull Request
@@ -154,7 +154,7 @@ feature Branch를 여러 명이 작업할 때 충돌 방지 및 독립적 개발
 
 풀 리퀘스트가 승인되면 변경 사항을 feature Branch로 병합한다.
 이를 통해 작업한 내용이 제품의 다른 부분과 통합된다.
-이후 feature-{기능} Branch는 삭제한다.
+이후 feature-feat Branch는 삭제한다.
 
 - ⑦ main Branch로 병합
 
@@ -163,5 +163,5 @@ feature Branch 병합이 완료되면 main Branch로 Pull Request를 보내고 �
 
 - ⑧ 배포
 
-main에 병합된 변경 사항은 배포를 위한 release 브랜치로 이동하고, 자동 또는 수동으로 배포 프로세스를 시작한다.
+main에 병합된 변경 사항은 자동 또는 수동으로 배포 프로세스를 시작한다.
 배포 단계에서 테스트, 빌드, 배포 작업 등이 수행된다.
