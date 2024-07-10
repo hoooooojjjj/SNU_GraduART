@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import {Link, NavLink} from "react-router-dom";
 export const Head = styled.header`
-    background-color: transparent;
+    background-color: darkgrey;  //랜딩페이지에 붙일 때는 transparent;
     padding: 10px;
     color: lightgray;
 `
@@ -12,7 +12,7 @@ export const List = styled.ul`
     flex-direction: row;
     justify-content: end;
     align-items: center;
-    gap: 2%;
+    gap: 2dvw;
     margin: 0 20px 0 0;
 `
 
@@ -22,20 +22,16 @@ export const HeaderIcons = styled.li`
 `
 
 export const NavBar = styled.nav`
-    margin-top: 10px;
-`
-
-export const ListItem = styled.li`
-
+    margin-top: 1dvh;
 `
 
 export const Seperator = styled.div`
-    margin-right: 1%;
+    margin-right: 1dvw;
 `
 export const StyledNavLink = styled(NavLink)`
   color: lightgray;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 1dvh 1dvw;
     font-weight: normal;
     font-size: medium;
 
@@ -45,3 +41,11 @@ export const StyledNavLink = styled(NavLink)`
       text-decoration: underline;
   }
 `;
+
+export const HomeStyledNavLink = styled(NavLink)((props)=>({
+    color : "lightgray",
+    textDecoration : "none",
+    fontWeight : "normal",
+    padding : props.padding,
+    visibility : props.visible
+}))

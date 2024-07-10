@@ -1,13 +1,13 @@
 import React from 'react';
-import {Head, List, HeaderIcons, NavBar, ListItem, Seperator, StyledNavLink} from "./Header.js";
-import {NavLink} from "react-router-dom";
+import {Head, List, HeaderIcons, NavBar, Seperator, StyledNavLink, HomeStyledNavLink} from "./Header.js";
 
 const Header = () => {
     return(
         <Head>
             <NavBar>
                 <List>
-                    <StyledNavLink to={"/oriental"} activeClassName={"active"}>동양화과</StyledNavLink>
+                    <HomeStyledNavLink padding={"1dvw"} to={"/"}> <img alt={"Graduart Logo"} src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`} height={"14dvw"}></img></HomeStyledNavLink>
+                    <StyledNavLink to={"/oriental"} activeclassname={"active"}>동양화과</StyledNavLink>
                     <StyledNavLink to={"/western"} activeClassName={"active"}>서양화과</StyledNavLink>
                     <StyledNavLink to={"/sculpture"} activeClassName={"active"}>조소과</StyledNavLink>
                     <StyledNavLink to={"/craft"} activeClassName={"active"}>공예과</StyledNavLink>
@@ -22,7 +22,7 @@ const Header = () => {
                                   fill="lightgray"/>
                         </svg>
                     </HeaderIcons>
-                    <HeaderIcons>
+                    <StyledNavLink to={"/login"}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none">
                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -32,8 +32,8 @@ const Header = () => {
                                     d="M8.49044 13.9256C7.21377 13.9256 5.98939 14.4328 5.08665 15.3355C4.18391 16.2383 3.67676 17.4627 3.67676 18.7393V20.6648C3.67676 21.1965 4.10779 21.6275 4.6395 21.6275C5.1712 21.6275 5.60223 21.1965 5.60223 20.6648V18.7393C5.60223 17.9733 5.90652 17.2387 6.44817 16.6971C6.98981 16.1554 7.72444 15.8511 8.49044 15.8511H16.1923C16.9583 15.8511 17.693 16.1554 18.2346 16.6971C18.7763 17.2387 19.0806 17.9733 19.0806 18.7393V20.6648C19.0806 21.1965 19.5116 21.6275 20.0433 21.6275C20.575 21.6275 21.006 21.1965 21.006 20.6648V18.7393C21.006 17.4627 20.4989 16.2383 19.5961 15.3355C18.6934 14.4328 17.469 13.9256 16.1923 13.9256H8.49044Z"
                                     fill="lightgray"/>
                         </svg>
-                    </HeaderIcons>
-                    <HeaderIcons>
+                    </StyledNavLink>
+                    <StyledNavLink to={"/cart"}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="none">
                             <g clipPath="url(#clip0_149_87863)">
@@ -54,8 +54,8 @@ const Header = () => {
                                 </clipPath>
                             </defs>
                         </svg>
-                    </HeaderIcons>
-                    <HeaderIcons>
+                    </StyledNavLink>
+                    <StyledNavLink to={"/purchased"}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="lightgray">
                             <path fillRule="evenodd" clipRule="evenodd"
@@ -68,7 +68,7 @@ const Header = () => {
                                   d="M12 3C11.0054 3 10.0516 3.39509 9.34835 4.09835C8.64509 4.80161 8.25 5.75544 8.25 6.75V8.25C8.25 8.66421 7.91421 9 7.5 9C7.08579 9 6.75 8.66421 6.75 8.25V6.75C6.75 5.35761 7.30312 4.02226 8.28769 3.03769C9.27226 2.05312 10.6076 1.5 12 1.5C13.3924 1.5 14.7277 2.05312 15.7123 3.03769C16.6969 4.02226 17.25 5.35761 17.25 6.75V8.25C17.25 8.66421 16.9142 9 16.5 9C16.0858 9 15.75 8.66421 15.75 8.25V6.75C15.75 5.75544 15.3549 4.80161 14.6517 4.09835C13.9484 3.39509 12.9946 3 12 3Z"
                                   fill="lightgray"/>
                         </svg>
-                    </HeaderIcons>
+                    </StyledNavLink>
                     <Seperator></Seperator>
                 </List>
             </NavBar>
