@@ -29,6 +29,14 @@
 6. 수시로 커밋
 7. DepartmentDetailpage 브랜치로 PR(팀원 모두 Reviewers,Assignees 설정)
 
+### 3️⃣ **깃허브에서 "만들어진 브랜치"** 를 내 로컬 git과 연동하고 싶다면?(ex. DepartmentDetailpage)
+
+1. <code>git fetch</code>
+2. <code>git git branch -r</code> 로 원격 저장소에 있는 브랜치를 확인
+3. <code>git checkout -b DepartmentDetailpage origin/DepartmentDetailpage</code> 로 원격 브랜치를 로컬로 체크아웃
+
+- 여기서 `DepartmentDetailpage`는 내 로컬에 브랜치를 DepartmentDetailpage로 만들고 👉 `origin/DepartmentDetailpage`는 깃허브에 있는 DepartmentDetailpage를 내 로컬 DepartmentDetailpage브랜치에 연결한다는 의미!
+
 ## 2. <code>git pull</code> 이후 npm install?
 
 - <strong>pull 하고 나서 꼭 <code>npm install</code> 기계적으로 해주기.</strong>
