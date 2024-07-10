@@ -52,33 +52,67 @@ export const DescriptionContainer = styled.div`
 /* ArtWorkList ---------------------------------------------- */
 
 export const ArtWorkListContainer = styled.div({
+  width: "100%",
   height: "100dvh",
-  backgroundColor: "red",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-evenly",
   alignItems: "center",
 });
 
-// export const ArtWorkListWrap = styled.div({
-//   width: "90%",
-//   height: "85%",
-//   backgroundColor: "blue",
-// });
-
 export const ArtWorkListWrap = styled.div({
   width: "90%",
   height: "85%",
-  backgroundColor: "blue",
   display: "grid",
   gap: "40px",
   gridTemplateRows: "repeat(2, 1fr)",
   gridTemplateColumns: "repeat(3, 1fr)",
 });
-export const ArtWorkGrid = styled.div`
-  width: 100%;
-  background-color: green;
+
+export const ArtWorkGridItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 자식 요소를 수평 중앙 정렬 */
 `;
+
+export const ArtWorkImgWrap = styled.div`
+  width: 100%;
+  height: 75%;
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: center; /* 자식 요소를 수평 중앙 정렬 */
+  align-items: center; /* 자식 요소를 수직 중앙 정렬 */
+`;
+
+export const ArtWorkImg = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${(props) =>
+    `url(${import.meta.env.VITE_PUBLIC_URL}/assets/${props.imgNum}.jpg)`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; /* 배경 이미지 중앙 정렬 */
+`;
+
+export const ArtWorkTitle = styled.div({
+  width: "100%",
+  height: "10%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "20px",
+  fontWeight: "bold",
+});
+
+export const ArtWorkDescription = styled.div({
+  width: "100%",
+  height: "10%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "15px",
+});
+
 export const Paginations = styled(Pagination)({
   flexDirection: "column",
   justifyContent: "center",

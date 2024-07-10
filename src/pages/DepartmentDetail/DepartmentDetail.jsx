@@ -11,8 +11,14 @@ import {
   ArtWorkListContainer,
   ArtWorkListWrap,
   Paginations,
-  ArtWorkGrid,
+  ArtWorkGridItem,
+  ArtWorkImg,
+  ArtWorkTitle,
+  ArtWorkDescription,
+  ArtWorkImgWrap,
 } from "./DepartmentDetailStyle.js";
+
+const ArtWorkList = ["1", "2", "3", "4", "5", "6"];
 
 function DepartmentDetail() {
   return (
@@ -42,12 +48,17 @@ function DepartmentDetail() {
       </DescriptionContainer>
       <ArtWorkListContainer>
         <ArtWorkListWrap>
-          <ArtWorkGrid></ArtWorkGrid>
-          <ArtWorkGrid></ArtWorkGrid>
-          <ArtWorkGrid></ArtWorkGrid>
-          <ArtWorkGrid></ArtWorkGrid>
-          <ArtWorkGrid></ArtWorkGrid>
-          <ArtWorkGrid></ArtWorkGrid>
+          {ArtWorkList.map((item, index) => {
+            return (
+              <ArtWorkGridItem key={index}>
+                <ArtWorkImgWrap>
+                  <ArtWorkImg imgNum={item}></ArtWorkImg>
+                </ArtWorkImgWrap>
+                <ArtWorkTitle>ArtWork Title</ArtWorkTitle>
+                <ArtWorkDescription>ArtWork Description</ArtWorkDescription>
+              </ArtWorkGridItem>
+            );
+          })}
         </ArtWorkListWrap>
         <Paginations count={10} shape="rounded" />
       </ArtWorkListContainer>
