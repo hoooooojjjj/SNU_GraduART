@@ -32,7 +32,7 @@
 ### 3️⃣ **깃허브에서 "만들어진 브랜치"** 를 내 로컬 git과 연동하고 싶다면?(ex. DepartmentDetailpage)
 
 1. <code>git fetch</code>
-2. <code>git git branch -r</code> 로 원격 저장소에 있는 브랜치를 확인
+2. <code>git branch -r</code> 로 원격 저장소에 있는 브랜치를 확인
 3. <code>git checkout -b DepartmentDetailpage origin/DepartmentDetailpage</code> 로 원격 브랜치를 로컬로 체크아웃
 
 - 여기서 `DepartmentDetailpage`는 내 로컬에 브랜치를 DepartmentDetailpage로 만들고 👉 `origin/DepartmentDetailpage`는 깃허브에 있는 DepartmentDetailpage를 내 로컬 DepartmentDetailpage브랜치에 연결한다는 의미!
