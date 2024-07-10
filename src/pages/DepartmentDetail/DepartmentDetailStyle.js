@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
+import { border, height } from "@mui/system";
 
 export const Contaioner = styled.div`
   width: 100dvw;
   height: auto;
 `;
+
 export const Intro = styled.div`
   width: 100%;
   height: 100dvh;
@@ -45,3 +47,10 @@ export const DescriptionContainer = styled.div`
   width: 100dvw;
   height: 61dvh;
 `;
+
+/* ArtWorkList ---------------------------------------------- */
+
+export const ArtWorkListContainer = styled.div({
+  height: "100dvh",
+  backgroundColor: "red",
+});

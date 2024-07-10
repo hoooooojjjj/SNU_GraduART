@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import {
   Contaioner,
   Intro,
@@ -9,6 +8,7 @@ import {
   DescriptionContainer,
   DescriptionExtra,
   DescriptionText,
+  ArtWorkListContainer,
 } from "./DepartmentDetailStyle.js";
 
 function DepartmentDetail() {
@@ -37,6 +37,7 @@ function DepartmentDetail() {
           이론 수업을 전 학년에 걸쳐 수강할 수 있습니다.
         </DescriptionText>
       </DescriptionContainer>
+      <ArtWorkListContainer></ArtWorkListContainer>
     </Contaioner>
   );
 }
