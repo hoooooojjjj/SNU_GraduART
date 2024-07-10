@@ -6,7 +6,7 @@ const Header = () => {
         <Head>
             <NavBar>
                 <List>
-                    <HomeStyledNavLink padding={"1dvw"} to={"/"}> <img alt={"Graduart Logo"} src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`} height={"14dvw"}></img></HomeStyledNavLink>
+                    <HomeStyledNavLink margin={"10dvw"} to={"/"}> <img alt={"Graduart Logo"} src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`} height={"15dvw"}></img></HomeStyledNavLink>
                     <StyledNavLink to={"/oriental"} activeclassname={"active"}>동양화과</StyledNavLink>
                     <StyledNavLink to={"/western"} activeClassName={"active"}>서양화과</StyledNavLink>
                     <StyledNavLink to={"/sculpture"} activeClassName={"active"}>조소과</StyledNavLink>

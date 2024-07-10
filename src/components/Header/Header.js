@@ -13,7 +13,7 @@ export const List = styled.ul`
     justify-content: end;
     align-items: center;
     gap: 2dvw;
-    margin: 0 20px 0 0;
+    margin: 0 1dvh 0 0;
 `
 
 export const HeaderIcons = styled.li`
@@ -22,7 +22,8 @@ export const HeaderIcons = styled.li`
 `
 
 export const NavBar = styled.nav`
-    margin-top: 1dvh;
+    margin-top: 1.2dvh;
+    margin-bottom: 1.2dvh;
 `
 
 export const Seperator = styled.div`
@@ -31,7 +32,8 @@ export const Seperator = styled.div`
 export const StyledNavLink = styled(NavLink)`
   color: lightgray;
   text-decoration: none;
-  padding: 1dvh 1dvw;
+    padding-right: 0.75dvw;
+    padding-left: 0.75dvw;
     font-weight: normal;
     font-size: medium;
 
@@ -46,6 +48,6 @@ export const HomeStyledNavLink = styled(NavLink)((props)=>({
     color : "lightgray",
     textDecoration : "none",
     fontWeight : "normal",
-    padding : props.padding,
+    marginRight : props.margin,
     visibility : props.visible
 }))
