@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Contaioner,
   Intro,
@@ -18,9 +18,31 @@ import {
   ArtWorkImgWrap,
 } from "./DepartmentDetailStyle.js";
 
-const ArtWorkList = ["1", "2", "3", "4", "5", "6"];
+// 미술작품 더미 데이터
+const ArtWorkList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 function DepartmentDetail() {
+  // 한 페이지에 보여줄 미술작품 리스트
+  const [ArtWorksInOnePage, setArtWorksInOnePage] = useState([]);
+
+  // 현재 페이지네이션 페이지
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    // ArtWorkList 리스트에서 6개씩 끊어서 페이지네이션을 구현하는 함수
+    const PaginateArtWorks = () => {
+      const paginatedArtWorks = ArtWorkList.filter(
+        // 미술작품 데이터에서 현재 페이지에 해당하는 데이터만 필터링
+        (ArtWork, i) => i >= 0 + page * 6 && i < 6 + page * 6
+      );
+
+      // 한 페이지에 보여줄 미술작품 리스트에 필터링된 데이터를 저장
+      setArtWorksInOnePage(paginatedArtWorks);
+    };
+
+    PaginateArtWorks();
+  }, [page]);
+
   return (
     <Contaioner>
       <Intro>
@@ -48,19 +70,35 @@ function DepartmentDetail() {
       </DescriptionContainer>
       <ArtWorkListContainer>
         <ArtWorkListWrap>
-          {ArtWorkList.map((item, index) => {
-            return (
-              <ArtWorkGridItem key={index}>
-                <ArtWorkImgWrap>
-                  <ArtWorkImg imgNum={item}></ArtWorkImg>
-                </ArtWorkImgWrap>
-                <ArtWorkTitle>ArtWork Title</ArtWorkTitle>
-                <ArtWorkDescription>ArtWork Description</ArtWorkDescription>
-              </ArtWorkGridItem>
-            );
-          })}
+          {/* ArtWorksInOnePage에 데이터가 할당된다면 */}
+          {ArtWorksInOnePage.length > 0 ? (
+            // ArtWorksInOnePage의 데이터를 순회하며 한 페이지의 ArtWorkGridItem을 생성
+            ArtWorksInOnePage.map((item, index) => {
+              return (
+                <ArtWorkGridItem key={index}>
+                  <ArtWorkImgWrap>
+                    <ArtWorkImg imgNum={item}></ArtWorkImg>
+                  </ArtWorkImgWrap>
+                  <ArtWorkTitle>ArtWork Title</ArtWorkTitle>
+                  <ArtWorkDescription>ArtWork Description</ArtWorkDescription>
+                </ArtWorkGridItem>
+              );
+            })
+          ) : (
+            <></>
+          )}
         </ArtWorkListWrap>
-        <Paginations count={10} shape="rounded" />
+        {/* 페이지네이션 */}
+        <Paginations
+          // 페이지네이션 페이지 수 => 미술작품 리스트의 길이를 6으로 나눈 값의 올림
+          count={Math.ceil(ArtWorkList.length / 6)}
+          siblingCount={3}
+          // 페이지네이션 페이지 변경 시 페이지 상태 변경
+          onChange={(event, page) => {
+            setPage(page - 1);
+          }}
+          shape="rounded"
+        />
       </ArtWorkListContainer>
     </Contaioner>
   );
