@@ -1,50 +1,46 @@
 import React from "react";
 import styled from "@emotion/styled";
 
+const Contaioner = styled.div`
+  width: 100dvw;
+  height: auto;
+`;
+const Intro = styled.div`
+  width: 100%;
+  height: 100dvh;
+`;
 const TitleBackground = styled.div`
   background-color: #ee5397;
-  width: 1440px;
-  height: 231px;
+  width: 100%;
+  height: 29%;
 `;
-
 const TitleText = styled.div`
-  position: fixed;
   font-family: "Pretendard-ExtraBold", Helvetica;
   font-weight: 800;
   color: #ffffff;
   font-size: 70px;
-  letter-spacing: 0;
-  line-height: 70px;
-  padding: 55px 818px 106px 45px;
+  position: relative;
+  top: 24%;
+  left: 3%;
 `;
-
-const ImageBack = styled.div`
-  height: 577px;
-  width: 1440px;
-`;
-
-const Img = styled.div`
-  height: 577px;
-  object-fit: cover;
-  width: 1440px;
-  position: fixed;
+const Img = styled.img`
+  width: 100%;
+  height: 71%;
+  background-size: cover;
 `;
 
 function DepartmentDetail() {
   return (
-    <>
-      <TitleBackground>
-        <TitleText>Western Painting</TitleText>
-      </TitleBackground>
-      <ImageBack>
-        <Img>
-          <img
-            src={`${import.meta.env.VITE_PUBLIC_URL}/assets/westerntitle.jpeg`}
-          ></img>
-        </Img>
-      </ImageBack>
-    </>
+    <Contaioner>
+      <Intro>
+        <TitleBackground>
+          <TitleText>Western Painting</TitleText>
+        </TitleBackground>
+        <Img
+          src={`${import.meta.env.VITE_PUBLIC_URL}/assets/westerntitle.jpeg`}
+        ></Img>
+      </Intro>
+    </Contaioner>
   );
 }
-
 export default DepartmentDetail;
