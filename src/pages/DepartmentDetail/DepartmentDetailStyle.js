@@ -80,8 +80,8 @@ export const ArtWorkImgWrap = styled.div`
   height: 75%;
   margin-bottom: 5%;
   display: flex;
-  justify-content: center; /* 자식 요소를 수평 중앙 정렬 */
-  align-items: center; /* 자식 요소를 수직 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ArtWorkImg = styled.div`
@@ -91,7 +91,8 @@ export const ArtWorkImg = styled.div`
     `url(${import.meta.env.VITE_PUBLIC_URL}/assets/${props.imgNum}.jpg)`};
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center; /* 배경 이미지 중앙 정렬 */
+  background-position: center;
+  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
 `;
 
 export const ArtWorkTitle = styled.div({
