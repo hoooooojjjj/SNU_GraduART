@@ -18,12 +18,31 @@ const TitleText = styled.div`
   padding: 55px 818px 106px 45px;
 `;
 
+const ImageBack = styled.div`
+  height: 577px;
+  width: 1440px;
+`;
+
+const Img = styled.div`
+  height: 577px;
+  object-fit: cover;
+  width: 1440px;
+  position: fixed;
+`;
+
 function DepartmentDetail() {
   return (
     <>
       <TitleBackground>
         <TitleText>Western Painting</TitleText>
       </TitleBackground>
+      <ImageBack>
+        <Img>
+          <img
+            src={`${import.meta.env.VITE_PUBLIC_URL}/assets/westerntitle.jpeg`}
+          ></img>
+        </Img>
+      </ImageBack>
     </>
   );
 }
