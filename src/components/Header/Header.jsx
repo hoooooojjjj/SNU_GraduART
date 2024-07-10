@@ -1,17 +1,18 @@
 import React from 'react';
-import {Head, List, HeaderIcons, NavBar, ListItem, Seperator} from "./Header.js";
+import {Head, List, HeaderIcons, NavBar, ListItem, Seperator, StyledNavLink} from "./Header.js";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     return(
         <Head>
             <NavBar>
                 <List>
-                    <ListItem>동양화과</ListItem>
-                    <ListItem>서양화과</ListItem>
-                    <ListItem>조소과</ListItem>
-                    <ListItem>공예과</ListItem>
-                    <ListItem>디자인과</ListItem>
-                    <ListItem>영상매체예술</ListItem>
+                    <StyledNavLink to={"/oriental"} activeClassName={"active"}>동양화과</StyledNavLink>
+                    <StyledNavLink to={"/western"} activeClassName={"active"}>서양화과</StyledNavLink>
+                    <StyledNavLink to={"/sculpture"} activeClassName={"active"}>조소과</StyledNavLink>
+                    <StyledNavLink to={"/craft"} activeClassName={"active"}>공예과</StyledNavLink>
+                    <StyledNavLink to={"/design"} activeClassName={"active"}>디자인과</StyledNavLink>
+                    <StyledNavLink to={"/media"} activeClassName={"active"}>영상매체예술</StyledNavLink>
                     <Seperator></Seperator>
                     <HeaderIcons>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
