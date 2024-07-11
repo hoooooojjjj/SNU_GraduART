@@ -24,10 +24,10 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
 );
 
-// 미술작품 더미 데이터
-const ArtWorkList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
 function DepartmentDetail() {
+  // 현재 라우트에 해당하는 과 미술작품
+  const [ArtWorkList, setArtWorkList] = useState([]);
+
   // 한 페이지에 보여줄 미술작품 리스트
   const [ArtWorksInOnePage, setArtWorksInOnePage] = useState([]);
 
@@ -46,8 +46,13 @@ function DepartmentDetail() {
         // 현재 라우트에 해당하는 과 미술작품만 필터링
         .eq("department", "Western Painting");
 
-      // 콘솔창 출력
-      console.log(items);
+      // 에러 없고 데이터가 있다면
+      if (!error && items) {
+        // 미술작품 데이터를 ArtWorkList 상태에 저장
+        setArtWorkList(items);
+      } else {
+        console.log(error);
+      }
     };
 
     getArtWorksByDepartment();
@@ -102,10 +107,12 @@ function DepartmentDetail() {
               return (
                 <ArtWorkGridItem key={index}>
                   <ArtWorkImgWrap>
-                    <ArtWorkImg imgNum={item}></ArtWorkImg>
+                    <ArtWorkImg ImgUrl={item.imagePath}></ArtWorkImg>
                   </ArtWorkImgWrap>
-                  <ArtWorkTitle>ArtWork Title</ArtWorkTitle>
-                  <ArtWorkDescription>ArtWork Description</ArtWorkDescription>
+                  <ArtWorkTitle>{item.title}</ArtWorkTitle>
+                  <ArtWorkDescription>
+                    {item.created_at.slice(0, 4)} | {item.descriptions}
+                  </ArtWorkDescription>
                 </ArtWorkGridItem>
               );
             })
