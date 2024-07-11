@@ -18,6 +18,7 @@ const MainPicture = styled.section`
   height: 100dvh;
   background-image: url(${(props) => props.path});
   background-size: cover;
+  background-position-y: 50%;
 `;
 
 // GraduART Text
@@ -98,10 +99,60 @@ const OrientalPaintingKorText = styled.div`
 const OrientalPaintingImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "auto",
+  backgroundPosition: "50% 55%",
+  width: "70%",
+  height: "100%",
+}));
+
+// WesternContainer
+const WesternContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+// WesternPaintingImg
+const WesternPaintingImg = styled.div((props) => ({
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
   backgroundPosition: "center",
   width: "70%",
   height: "100%",
 }));
+
+// WesternPaintingBlock
+const WesternPaintingBlock = styled.div((props) => ({
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
+}));
+
+// OrientalPaintingEngText
+const WesternPaintingEngText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 200%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 45px */
+`;
+
+// OrientalPaintingKorText
+const WesternPaintingKorText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 150%;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 100%; /* 35px */
+`;
 
 function Main() {
   return (
@@ -123,6 +174,15 @@ function Main() {
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/orientalImg.webp`}
         ></OrientalPaintingImg>
       </OrientalContainer>
+      <WesternContainer>
+        <WesternPaintingImg
+          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/westernImg.jpeg`}
+        ></WesternPaintingImg>
+        <WesternPaintingBlock color={"#EE5397"}>
+          <WesternPaintingEngText>Western Painting</WesternPaintingEngText>
+          <WesternPaintingKorText>: 서양화과</WesternPaintingKorText>
+        </WesternPaintingBlock>
+      </WesternContainer>
     </ContentContainer>
   );
 }
