@@ -51,6 +51,7 @@ export const DescriptionContainer = styled.div`
   justify-content: center;
   display: flex;
   position: relative;
+  box-shadow: 5px 5px 20px gray;
 `;
 
 export const MiddleContainer = styled.div`
