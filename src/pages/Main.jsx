@@ -1,10 +1,130 @@
 import React from "react";
+import styled from "@emotion/styled";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient("https://wjoocdnkngzyrprnnytm.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4");
+const supabase = createClient(
+  "https://wjoocdnkngzyrprnnytm.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
+);
+
+// ContentContainer
+const ContentContainer = styled.div`
+  width: 100dvw;
+`;
+
+// MainPicture
+const MainPicture = styled.section`
+  width: 100%;
+  height: 100dvh;
+  background-image: url(${(props) => props.path});
+  background-size: cover;
+`;
+
+// GraduART Text
+const MainText = styled.div`
+  color: #ffffff;
+  font-family: "DM Serif Display";
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 290%; /* 278.4px */
+  position: absolute;
+  left: -165px;
+  top: 130px;
+  transform: rotate(90deg);
+`;
+
+// 서울대학교 미술대학 졸업전시 Text
+const SubText = styled.div`
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 110%; /* 105.6px */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+`;
+
+// DepartmentBanner
+// OrientalContainer
+const OrientalContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+// OrientalPaintingBlock
+const OrientalPaintingBlock = styled.div((props) => ({
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
+}));
+
+// OrientalPaintingEngText
+const OrientalPaintingEngText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 200%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 45px */
+`;
+
+// OrientalPaintingKorText
+const OrientalPaintingKorText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 150%;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 100%; /* 35px */
+`;
+
+// OrientalPaintingImg
+const OrientalPaintingImg = styled.div((props) => ({
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "auto",
+  backgroundPosition: "center",
+  width: "70%",
+  height: "100%",
+}));
 
 function Main() {
-  return <div>메인페이지 입니다.</div>;
+  return (
+    <ContentContainer>
+      <MainPicture
+        path={`${import.meta.env.VITE_PUBLIC_URL}/assets/mainImg.png`}
+      >
+        <MainText>GraduART</MainText>
+        <SubText>
+          서울대학교 미술대학 <br></br> 졸업전시
+        </SubText>
+      </MainPicture>
+      <OrientalContainer>
+        <OrientalPaintingBlock color={"#FF983B"}>
+          <OrientalPaintingEngText>Oriental Painting</OrientalPaintingEngText>
+          <OrientalPaintingKorText>: 동양화과</OrientalPaintingKorText>
+        </OrientalPaintingBlock>
+        <OrientalPaintingImg
+          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/orientalImg.webp`}
+        ></OrientalPaintingImg>
+      </OrientalContainer>
+    </ContentContainer>
+  );
 }
 
 export default Main;
