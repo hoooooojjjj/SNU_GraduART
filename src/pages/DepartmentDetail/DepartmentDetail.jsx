@@ -11,9 +11,13 @@ import {
   MiddleContainer,
   DescriptionContainer,
   DescriptionExtra,
+  ExtraTitle,
+  ExtraLink,
   DescriptionText,
   DescriptionBox,
+  Insta,
 } from "./DepartmentDetailStyle.js";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 function DepartmentDetail() {
   return (
@@ -30,7 +34,22 @@ function DepartmentDetail() {
         </Intro>
         <DescriptionContainer>
           <MiddleContainer>
-            <DescriptionExtra>ddd</DescriptionExtra>
+            <DescriptionExtra>
+              <ExtraTitle>서울대학교 서양화과</ExtraTitle>
+              <ExtraLink>
+                <Insta>
+                  <InstagramIcon size="30" />
+                  <a href="https://www.instagram.com/snufa2023/"> snufa2023</a>
+                </Insta>
+                <a href="https://art.snu.ac.kr/artexhibition/?cate%5B0%5D=20211&amp;cate%5B1%5D=painting&amp;cate%5B2%5D=&amp;cate%5B3%5D=&amp;cate%5B4%5D=">
+                  2021 졸업작품 컬렉션
+                </a>
+                <br />
+                <a href="https://art.snu.ac.kr/category/painting/">
+                  서양화과 홈페이지
+                </a>
+              </ExtraLink>
+            </DescriptionExtra>
             <DescriptionBox>
               <DescriptionText>
                 <span style={{ fontWeight: "bold" }}>서양화과에는 </span>

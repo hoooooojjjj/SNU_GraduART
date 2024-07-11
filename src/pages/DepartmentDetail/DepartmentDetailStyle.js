@@ -70,6 +70,26 @@ export const DescriptionExtra = styled.div`
   color: #000000;
 `;
 
+export const ExtraTitle = styled.h2`
+  width: 100%;
+  color: #000000;
+  font-family: "Pretendard-ExtraBold", Helvetica;
+  font-size: 40px;
+  font-weight: 800;
+`;
+
+export const Insta = styled.div`
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+`;
+
+export const ExtraLink = styled.a`
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+`;
+
 export const DescriptionBox = styled.div`
   height: 291px;
   width: 58%;
@@ -77,7 +97,7 @@ export const DescriptionBox = styled.div`
   position: relative;
 `;
 
-export const DescriptionText = styled.div`
+export const DescriptionText = styled.p`
   position: absolute;
   top: 9%;
   width: 100%;
