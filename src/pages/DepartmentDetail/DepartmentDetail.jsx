@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  Contaioner,
+  Container,
   Intro,
   TitleBackground,
   TitleText,
@@ -71,10 +71,10 @@ function DepartmentDetail() {
     };
 
     PaginateArtWorks();
-  }, [page]);
+  }, [ArtWorkList, page]);
 
   return (
-    <Contaioner>
+    <Container>
       <Intro>
         <TitleBackground>
           <TitleText>Western Painting</TitleText>
@@ -132,7 +132,7 @@ function DepartmentDetail() {
           shape="rounded"
         />
       </ArtWorkListContainer>
-    </Contaioner>
+    </Container>
   );
 }
 export default DepartmentDetail;

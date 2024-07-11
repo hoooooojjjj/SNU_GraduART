@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Pagination from "@mui/material/Pagination";
 
-export const Contaioner = styled.div`
+export const Container = styled.div`
   width: 100dvw;
   height: auto;
 `;
