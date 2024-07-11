@@ -111,7 +111,8 @@ function DepartmentDetail() {
                   </ArtWorkImgWrap>
                   <ArtWorkTitle>{item.title}</ArtWorkTitle>
                   <ArtWorkDescription>
-                    {item.created_at.slice(0, 4)} | {item.descriptions}
+                    {item.artist} | {item.made_at.slice(0, 4)},{" "}
+                    {item.descriptions}
                   </ArtWorkDescription>
                 </ArtWorkGridItem>
               );
