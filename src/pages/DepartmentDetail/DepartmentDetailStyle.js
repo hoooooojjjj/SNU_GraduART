@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 export const Container = styled.div`
   width: 100dvw;
@@ -79,18 +80,36 @@ export const ExtraTitle = styled.h2`
   font-weight: 800;
 `;
 
-export const Insta = styled.div`
-  align-items: center;
-  display: flex;
-  font-size: 20px;
-`;
-
-export const ExtraLink = styled.a`
+export const LinkContainer = styled.div`
   font-size: 20px;
   font-weight: 400;
   color: #000000;
+  text-decoration: none;
 `;
 
+export const Insta = styled.div`
+  align-items: flex-start;
+  display: flex;
+  font-size: 20px;
+  text-decoration: none;
+`;
+
+export const InstaIcon = styled(InstagramIcon)`
+  align-items: center;
+  display: flex;
+`;
+
+export const Link = styled.a`
+  display: flex;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 9px;
+  text-decoration: none;
+  &:hover {
+    color: #66a5ef; // 호버 상태일 때 색상을 오렌지로 변경
+    text-decoration: underline; // 호버 상태일 때 밑줄 추가
+  }
+`;
 export const DescriptionBox = styled.div`
   height: 291px;
   width: 58%;
