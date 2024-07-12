@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { createClient } from "@supabase/supabase-js";
+import Footer from "../components/Footer/Footer.jsx";
+import Header from "../components/Header/Header.jsx";
 
 const supabase = createClient(
   "https://wjoocdnkngzyrprnnytm.supabase.co",
@@ -373,6 +375,7 @@ const SearchBox = styled.div`
 function Main() {
   return (
     <ContentContainer>
+    <Header></Header>
       <MainPicture
         path={`${import.meta.env.VITE_PUBLIC_URL}/assets/mainImg.png`}
       >
@@ -436,8 +439,9 @@ function Main() {
         </MediaArtsBlock>
       </MediaArtsContainer>
       <SearchBox></SearchBox>
+          <Footer></Footer>
     </ContentContainer>
-  );
+  )
 }
 
 export default Main;
