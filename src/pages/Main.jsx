@@ -304,6 +304,56 @@ const DesignImg = styled.div((props) => ({
   height: "100%",
 }));
 
+// MediaArtsContainer
+const MediaArtsContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+// MediaArtsImg
+const MediaArtsImg = styled.div((props) => ({
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 60%",
+  width: "70%",
+  height: "100%",
+}));
+
+// MediaArtsBlock
+const MediaArtsBlock = styled.div((props) => ({
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
+}));
+
+// MediaArtsEngText
+const MediaArtsEngText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 200%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 45px */
+`;
+
+// MediaArtsKorText
+const MediaArtsKorText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 150%;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 100%; /* 35px */
+`;
+
 function Main() {
   return (
     <ContentContainer>
@@ -360,6 +410,15 @@ function Main() {
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/designImg.avif`}
         ></DesignImg>
       </DesignContainer>
+      <MediaArtsContainer>
+        <MediaArtsImg
+          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/mediaartsImg.jpeg`}
+        ></MediaArtsImg>
+        <MediaArtsBlock color={"#DBEB57"}>
+          <MediaArtsEngText>MediaArts</MediaArtsEngText>
+          <MediaArtsKorText>: 영상매체예술</MediaArtsKorText>
+        </MediaArtsBlock>
+      </MediaArtsContainer>
     </ContentContainer>
   );
 }
