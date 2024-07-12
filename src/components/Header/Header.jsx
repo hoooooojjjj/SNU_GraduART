@@ -1,35 +1,61 @@
 import React from 'react';
-import {Head, List, HeaderIcons, NavBar, Seperator, StyledNavLink, HomeStyledNavLink} from "./Header.js";
+import {Head, List, NavBar, Seperator, StyledNavLink, HomeStyledNavLink} from "./Header.js";
+import styled from "@emotion/styled";
+
+const StyledScrollButton = styled.div(() => ({
+    width: `23px`,
+    height: `23px`,
+    color: `white`,
+    marginRight:`1%`
+}));
+
+const scrollToBottom = () => {
+    window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+    });
+};
+const ScrollButton = () => {
+    return (
+        <>
+            <StyledScrollButton onClick={scrollToBottom}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                     fill="none">
+                    <path fillRule="evenodd" clipRule="evenodd"
+                          d="M4.53375 11.0374C4.53375 7.3155 7.55098 4.29828 11.2729 4.29828C14.9948 4.29828 18.0121 7.3155 18.0121 11.0374C18.0121 12.8528 17.2943 14.5005 16.1271 15.7122C16.0939 15.7377 16.0619 15.7657 16.0315 15.796C16.0011 15.8264 15.9732 15.8584 15.9477 15.8916C14.736 17.0588 13.0883 17.7766 11.2729 17.7766C7.55098 17.7766 4.53375 14.7594 4.53375 11.0374ZM16.6813 17.8073C15.199 18.993 13.3187 19.7021 11.2729 19.7021C6.48757 19.7021 2.60828 15.8228 2.60828 11.0374C2.60828 6.25209 6.48757 2.3728 11.2729 2.3728C16.0583 2.3728 19.9375 6.25209 19.9375 11.0374C19.9375 13.0833 19.2285 14.9635 18.0428 16.4458L21.5809 19.984C21.9569 20.3599 21.9569 20.9695 21.5809 21.3455C21.205 21.7214 20.5954 21.7214 20.2194 21.3455L16.6813 17.8073Z"
+                          fill="lightgray"/>
+                </svg>
+            </StyledScrollButton>
+        </>
+    );
+};
 
 const Header = () => {
-    return(
+    return (
         <Head>
             <NavBar>
-                <HomeStyledNavLink margin={"10dvw"} to={"/"}> <img alt={"Graduart Logo"} src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`} height={"15dvw"}></img></HomeStyledNavLink>
+                <HomeStyledNavLink margin={"10dvw"} to={"/"}> <img alt={"Graduart Logo"}
+                                                                   src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`}
+                                                                   height={"15dvw"}></img></HomeStyledNavLink>
                 <List>
-                    <StyledNavLink to={"/oriental"} activeclassname={"active"}>동양화과</StyledNavLink>
-                    <StyledNavLink to={"/western"} activeClassName={"active"}>서양화과</StyledNavLink>
-                    <StyledNavLink to={"/sculpture"} activeClassName={"active"}>조소과</StyledNavLink>
-                    <StyledNavLink to={"/craft"} activeClassName={"active"}>공예과</StyledNavLink>
-                    <StyledNavLink to={"/design"} activeClassName={"active"}>디자인과</StyledNavLink>
-                    <StyledNavLink to={"/media"} activeClassName={"active"}>영상매체예술</StyledNavLink>
+                    <StyledNavLink to={"/Oriental Painting"} activeclassname={"active"}>동양화과</StyledNavLink>
+                    <StyledNavLink to={"/Western Painting"} activeClassName={"active"}>서양화과</StyledNavLink>
+                    <StyledNavLink to={"/Sculpture"} activeClassName={"active"}>조소과</StyledNavLink>
+                    <StyledNavLink to={"/Craft"} activeClassName={"active"}>공예과</StyledNavLink>
+                    <StyledNavLink to={"/Design"} activeClassName={"active"}>디자인과</StyledNavLink>
+                    <StyledNavLink to={"/MediaArts"} activeClassName={"active"}>영상매체예술</StyledNavLink>
                     <Seperator></Seperator>
-                    <HeaderIcons>
+                    <ScrollButton>
+
+                    </ScrollButton>
+                    <StyledNavLink to={"/login"}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="none">
                             <path fillRule="evenodd" clipRule="evenodd"
-                                  d="M4.53375 11.0374C4.53375 7.3155 7.55098 4.29828 11.2729 4.29828C14.9948 4.29828 18.0121 7.3155 18.0121 11.0374C18.0121 12.8528 17.2943 14.5005 16.1271 15.7122C16.0939 15.7377 16.0619 15.7657 16.0315 15.796C16.0011 15.8264 15.9732 15.8584 15.9477 15.8916C14.736 17.0588 13.0883 17.7766 11.2729 17.7766C7.55098 17.7766 4.53375 14.7594 4.53375 11.0374ZM16.6813 17.8073C15.199 18.993 13.3187 19.7021 11.2729 19.7021C6.48757 19.7021 2.60828 15.8228 2.60828 11.0374C2.60828 6.25209 6.48757 2.3728 11.2729 2.3728C16.0583 2.3728 19.9375 6.25209 19.9375 11.0374C19.9375 13.0833 19.2285 14.9635 18.0428 16.4458L21.5809 19.984C21.9569 20.3599 21.9569 20.9695 21.5809 21.3455C21.205 21.7214 20.5954 21.7214 20.2194 21.3455L16.6813 17.8073Z"
+                                  d="M12.3414 2.3728C9.68287 2.3728 7.52771 4.52796 7.52771 7.18649C7.52771 9.84501 9.68287 12.0002 12.3414 12.0002C14.9999 12.0002 17.1551 9.84501 17.1551 7.18649C17.1551 4.52796 14.9999 2.3728 12.3414 2.3728ZM9.45318 7.18649C9.45318 5.59137 10.7463 4.29828 12.3414 4.29828C13.9365 4.29828 15.2296 5.59137 15.2296 7.18649C15.2296 8.7816 13.9365 10.0747 12.3414 10.0747C10.7463 10.0747 9.45318 8.7816 9.45318 7.18649Z"
                                   fill="lightgray"/>
-                        </svg>
-                    </HeaderIcons>
-                    <StyledNavLink to={"/login"}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none">
-                                <path fillRule="evenodd" clipRule="evenodd"
-                                      d="M12.3414 2.3728C9.68287 2.3728 7.52771 4.52796 7.52771 7.18649C7.52771 9.84501 9.68287 12.0002 12.3414 12.0002C14.9999 12.0002 17.1551 9.84501 17.1551 7.18649C17.1551 4.52796 14.9999 2.3728 12.3414 2.3728ZM9.45318 7.18649C9.45318 5.59137 10.7463 4.29828 12.3414 4.29828C13.9365 4.29828 15.2296 5.59137 15.2296 7.18649C15.2296 8.7816 13.9365 10.0747 12.3414 10.0747C10.7463 10.0747 9.45318 8.7816 9.45318 7.18649Z"
-                                      fill="lightgray"/>
-                                <path
-                                    d="M8.49044 13.9256C7.21377 13.9256 5.98939 14.4328 5.08665 15.3355C4.18391 16.2383 3.67676 17.4627 3.67676 18.7393V20.6648C3.67676 21.1965 4.10779 21.6275 4.6395 21.6275C5.1712 21.6275 5.60223 21.1965 5.60223 20.6648V18.7393C5.60223 17.9733 5.90652 17.2387 6.44817 16.6971C6.98981 16.1554 7.72444 15.8511 8.49044 15.8511H16.1923C16.9583 15.8511 17.693 16.1554 18.2346 16.6971C18.7763 17.2387 19.0806 17.9733 19.0806 18.7393V20.6648C19.0806 21.1965 19.5116 21.6275 20.0433 21.6275C20.575 21.6275 21.006 21.1965 21.006 20.6648V18.7393C21.006 17.4627 20.4989 16.2383 19.5961 15.3355C18.6934 14.4328 17.469 13.9256 16.1923 13.9256H8.49044Z"
+                            <path
+                                d="M8.49044 13.9256C7.21377 13.9256 5.98939 14.4328 5.08665 15.3355C4.18391 16.2383 3.67676 17.4627 3.67676 18.7393V20.6648C3.67676 21.1965 4.10779 21.6275 4.6395 21.6275C5.1712 21.6275 5.60223 21.1965 5.60223 20.6648V18.7393C5.60223 17.9733 5.90652 17.2387 6.44817 16.6971C6.98981 16.1554 7.72444 15.8511 8.49044 15.8511H16.1923C16.9583 15.8511 17.693 16.1554 18.2346 16.6971C18.7763 17.2387 19.0806 17.9733 19.0806 18.7393V20.6648C19.0806 21.1965 19.5116 21.6275 20.0433 21.6275C20.575 21.6275 21.006 21.1965 21.006 20.6648V18.7393C21.006 17.4627 20.4989 16.2383 19.5961 15.3355C18.6934 14.4328 17.469 13.9256 16.1923 13.9256H8.49044Z"
                                     fill="lightgray"/>
                         </svg>
                     </StyledNavLink>

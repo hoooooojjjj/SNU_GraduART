@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import {Link, NavLink} from "react-router-dom";
+import React from "react";
 export const Head = styled.header`
     background-color: darkgrey;  //랜딩페이지에 붙일 때는 transparent;
     padding: 10px;
@@ -16,11 +17,6 @@ export const List = styled.ul`
     margin: 0 1dvh 0 0;
 `
 
-export const HeaderIcons = styled.li`
-    width : 23px;
-    height : 23px;
-`
-
 export const NavBar = styled.nav`
     margin-top: 1.2dvh;
     margin-bottom: 1.2dvh;
@@ -28,6 +24,8 @@ export const NavBar = styled.nav`
     flex-direction: row;
     justify-content: center;
 `
+
+
 
 export const Seperator = styled.div`
     margin-right: 1dvw;
