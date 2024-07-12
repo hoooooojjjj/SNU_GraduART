@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { createClient } from "@supabase/supabase-js";
-import Footer from "../components/Footer/Footer.jsx";
-import Header from "../components/Header/Header.jsx";
+import React from "react"
+import styled from "@emotion/styled"
+import {NavLink} from "react-router-dom";
+import { createClient } from "@supabase/supabase-js"
+import Footer from "../components/Footer/Footer.jsx"
+import Header from "../components/Header/Header.jsx"
 
-const supabase = createClient(
-  "https://wjoocdnkngzyrprnnytm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
-);
+// const supabase = createClient(
+//   "https://wjoocdnkngzyrprnnytm.supabase.co",
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
+// );
 
 // ContentContainer
 const ContentContainer = styled.div`
@@ -58,6 +59,12 @@ const SubText = styled.div`
 // DepartmentBanner
 // OrientalContainer
 const OrientalContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+const SectionContainer = styled(NavLink)`
   width: 100%;
   height: 50dvh;
   display: flex;
@@ -384,7 +391,7 @@ function Main() {
           서울대학교 미술대학 <br></br> 졸업전시
         </SubText>
       </MainPicture>
-      <OrientalContainer>
+      <SectionContainer to={"/Oriental Painting"}>
         <OrientalPaintingBlock color={"#FF983B"}>
           <OrientalPaintingEngText>Oriental Painting</OrientalPaintingEngText>
           <OrientalPaintingKorText>: 동양화과</OrientalPaintingKorText>
@@ -392,8 +399,8 @@ function Main() {
         <OrientalPaintingImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/orientalImg.webp`}
         ></OrientalPaintingImg>
-      </OrientalContainer>
-      <WesternContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Western Painting"}>
         <WesternPaintingImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/westernImg.jpeg`}
         ></WesternPaintingImg>
@@ -401,8 +408,8 @@ function Main() {
           <WesternPaintingEngText>Western Painting</WesternPaintingEngText>
           <WesternPaintingKorText>: 서양화과</WesternPaintingKorText>
         </WesternPaintingBlock>
-      </WesternContainer>
-      <SculptureContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Sculpture"}>
         <SculptureBlock color={"#FE4E4E"}>
           <SculptureEngText>Sculpture</SculptureEngText>
           <SculptureKorText>: 조소과</SculptureKorText>
@@ -410,8 +417,8 @@ function Main() {
         <SculptureImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/sculptureImg.jpeg`}
         ></SculptureImg>
-      </SculptureContainer>
-      <CraftContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Craft"}>
         <CraftImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/craftImg.heic`}
         ></CraftImg>
@@ -419,8 +426,8 @@ function Main() {
           <CraftEngText>Craft</CraftEngText>
           <CraftKorText>: 공예과</CraftKorText>
         </CraftBlock>
-      </CraftContainer>
-      <DesignContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Design"}>
         <DesignBlock color={"#3466A5"}>
           <DesignEngText>Design</DesignEngText>
           <DesignKorText>: 디자인과</DesignKorText>
@@ -428,8 +435,8 @@ function Main() {
         <DesignImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/designImg.avif`}
         ></DesignImg>
-      </DesignContainer>
-      <MediaArtsContainer>
+      </SectionContainer>
+      <SectionContainer to={"/MediaArts"}>
         <MediaArtsImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/mediaartsImg.jpeg`}
         ></MediaArtsImg>
@@ -437,7 +444,7 @@ function Main() {
           <MediaArtsEngText>MediaArts</MediaArtsEngText>
           <MediaArtsKorText>: 영상매체예술</MediaArtsKorText>
         </MediaArtsBlock>
-      </MediaArtsContainer>
+      </SectionContainer>
       <SearchBox></SearchBox>
           <Footer></Footer>
     </ContentContainer>
