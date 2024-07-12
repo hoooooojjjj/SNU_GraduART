@@ -1,11 +1,15 @@
-import styled from "@emotion/styled";
-import { Link, NavLink } from "react-router-dom";
+import styled from '@emotion/styled'
+import {NavLink} from "react-router-dom";
+import React from "react";
 export const Head = styled.header`
-  height: 6vh;
-  background-color: darkgrey; //랜딩페이지에 붙일 때는 transparent;
-  padding: 10px;
-  color: lightgray;
-`;
+    position: absolute;
+    margin-top: 0.5dvw;
+    margin-left: 15dvw;
+    background: transparent;
+    color: white;
+    z-index: 10; //꼭대기에 올리기
+`
+
 export const List = styled.ul`
   list-style-type: none;
   padding: 0;
@@ -15,11 +19,6 @@ export const List = styled.ul`
   align-items: center;
   gap: 2dvw;
   margin: 0 1dvh 0 0;
-`;
-
-export const HeaderIcons = styled.li`
-  width: 23px;
-  height: 23px;
 `;
 
 export const NavBar = styled.nav`

@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { createClient } from "@supabase/supabase-js";
-import Footer from "../components/Footer/Footer.jsx";
-import Header from "../components/Header/Header.jsx";
+import React from "react"
+import styled from "@emotion/styled"
+import {NavLink} from "react-router-dom";
+import { createClient } from "@supabase/supabase-js"
+import Footer from "../components/Footer/Footer.jsx"
+import Header from "../components/Header/Header.jsx"
 
-const supabase = createClient(
-  "https://wjoocdnkngzyrprnnytm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
-);
+// const supabase = createClient(
+//   "https://wjoocdnkngzyrprnnytm.supabase.co",
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
+// );
 
 // ContentContainer
 const ContentContainer = styled.div`
@@ -58,6 +59,12 @@ const SubText = styled.div`
 // DepartmentBanner
 // OrientalContainer
 const OrientalContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+const SectionContainer = styled(NavLink)`
   width: 100%;
   height: 50dvh;
   display: flex;
@@ -356,15 +363,113 @@ const MediaArtsKorText = styled.div`
   line-height: 100%; /* 35px */
 `;
 
-// SearchBox
+// 검색 전체 컨테이너
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3%;
+`;
+
+// 검색창
 const SearchBox = styled.div`
-  width: 70%;
-  margin: 0 auto;
+  width: 60%;
+  margin: 10dvh auto;
   height: 5%;
   padding: 1% 1%;
   border-radius: 50px;
-  border: 7px solid #818181;
+  border: 2px solid #818181;
   background: #ffffff;
+`;
+
+// 작가, 작품명 전체 컨테이너
+const SearchResultContainer = styled.div`
+  width: 70%;
+  margin-bottom: 10%;
+`;
+
+// 작가 컨테이너
+// "작가" 텍스트
+const ArtistText = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  margin-top: 5%;
+`;
+
+// 작가 검색결과 컨테이너
+const ArtistResultContainer = styled.div`
+  background: white;
+  width: 70dvw;
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
+// 작가 검색결과 컨테이너 속 작품명 텍스트
+const ArtistResultTitle = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+`;
+
+// 작가 검색결과 컨테이너 속 작가 및 설명
+const ArtistResultExp = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 3% 0;
+  border-bottom: solid #818181;
+`;
+
+// 작품명 컨테이너
+// "작품명" 텍스트
+const TitleText = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  margin-top: 10%;
+`;
+
+// 작품명 검색결과 컨테이너
+const TitleResultContainer = styled.div`
+  background: white;
+  width: 70dvw;
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
+// 작품명 검색결과 컨테이너 속 작품명 텍스트
+const TitleResultTitle = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+`;
+
+// 작품명 검색결과 컨테이너 속 작가 및 설명
+const TitleResultExp = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 3% 0;
+  border-bottom: solid #818181;
 `;
 
 function Main() {
@@ -379,7 +484,7 @@ function Main() {
           서울대학교 미술대학 <br></br> 졸업전시
         </SubText>
       </MainPicture>
-      <OrientalContainer>
+      <SectionContainer to={"/Oriental Painting"}>
         <OrientalPaintingBlock color={"#FF983B"}>
           <OrientalPaintingEngText>Oriental Painting</OrientalPaintingEngText>
           <OrientalPaintingKorText>: 동양화과</OrientalPaintingKorText>
@@ -387,8 +492,8 @@ function Main() {
         <OrientalPaintingImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/orientalImg.webp`}
         ></OrientalPaintingImg>
-      </OrientalContainer>
-      <WesternContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Western Painting"}>
         <WesternPaintingImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/westernImg.jpeg`}
         ></WesternPaintingImg>
@@ -396,8 +501,8 @@ function Main() {
           <WesternPaintingEngText>Western Painting</WesternPaintingEngText>
           <WesternPaintingKorText>: 서양화과</WesternPaintingKorText>
         </WesternPaintingBlock>
-      </WesternContainer>
-      <SculptureContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Sculpture"}>
         <SculptureBlock color={"#FE4E4E"}>
           <SculptureEngText>Sculpture</SculptureEngText>
           <SculptureKorText>: 조소과</SculptureKorText>
@@ -405,8 +510,8 @@ function Main() {
         <SculptureImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/sculptureImg.jpeg`}
         ></SculptureImg>
-      </SculptureContainer>
-      <CraftContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Craft"}>
         <CraftImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/craftImg.heic`}
         ></CraftImg>
@@ -414,8 +519,8 @@ function Main() {
           <CraftEngText>Craft</CraftEngText>
           <CraftKorText>: 공예과</CraftKorText>
         </CraftBlock>
-      </CraftContainer>
-      <DesignContainer>
+      </SectionContainer>
+      <SectionContainer to={"/Design"}>
         <DesignBlock color={"#3466A5"}>
           <DesignEngText>Design</DesignEngText>
           <DesignKorText>: 디자인과</DesignKorText>
@@ -423,8 +528,8 @@ function Main() {
         <DesignImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/designImg.avif`}
         ></DesignImg>
-      </DesignContainer>
-      <MediaArtsContainer>
+      </SectionContainer>
+      <SectionContainer to={"/MediaArts"}>
         <MediaArtsImg
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/mediaartsImg.jpeg`}
         ></MediaArtsImg>
@@ -432,9 +537,9 @@ function Main() {
           <MediaArtsEngText>MediaArts</MediaArtsEngText>
           <MediaArtsKorText>: 영상매체예술</MediaArtsKorText>
         </MediaArtsBlock>
-      </MediaArtsContainer>
+      </SectionContainer>
       <SearchBox></SearchBox>
-      <Footer></Footer>
+          <Footer></Footer>
     </ContentContainer>
   );
 }
