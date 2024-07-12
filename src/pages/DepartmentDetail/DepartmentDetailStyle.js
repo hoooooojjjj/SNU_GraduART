@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Pagination from "@mui/material/Pagination";
-
 export const Container = styled.div`
   width: 100dvw;
   height: auto;
@@ -127,11 +126,6 @@ export const DescriptionText = styled.p`
   font-family: "Pretendard-Regular", Helvetica;
   font-size: 24px;
   font-weight: 400;
-`;
-
-export const DescriptionContainer = styled.div`
-  width: 100dvw;
-  height: 61dvh;
 `;
 
 /* ArtWorkList ---------------------------------------------- */

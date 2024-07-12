@@ -83,7 +83,7 @@ function DepartmentDetail() {
   }, [ArtWorkList, page]);
 
   return (
-    <Contaioner>
+    <Container>
       <IntroContainer>
         <Intro>
           <Header></Header>
