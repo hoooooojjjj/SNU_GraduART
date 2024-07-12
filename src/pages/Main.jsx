@@ -254,6 +254,56 @@ const CraftKorText = styled.div`
   line-height: 100%; /* 35px */
 `;
 
+// DesignContainer
+const DesignContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+// DesignBlock
+const DesignBlock = styled.div((props) => ({
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
+}));
+
+// DesignEngText
+const DesignEngText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 200%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 45px */
+`;
+
+// DesignKorText
+const DesignKorText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 150%;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 100%; /* 35px */
+`;
+
+// DesignImg
+const DesignImg = styled.div((props) => ({
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 50%",
+  width: "70%",
+  height: "100%",
+}));
+
 function Main() {
   return (
     <ContentContainer>
@@ -301,6 +351,15 @@ function Main() {
           <CraftKorText>: 공예과</CraftKorText>
         </CraftBlock>
       </CraftContainer>
+      <DesignContainer>
+        <DesignBlock color={"#3466A5"}>
+          <DesignEngText>Design</DesignEngText>
+          <DesignKorText>: 디자인과</DesignKorText>
+        </DesignBlock>
+        <DesignImg
+          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/designImg.avif`}
+        ></DesignImg>
+      </DesignContainer>
     </ContentContainer>
   );
 }
