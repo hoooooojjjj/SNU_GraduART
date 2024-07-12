@@ -112,11 +112,7 @@ function DepartmentDetail() {
           <TitleBackground color={departmentInfo.titleColor}>
             <TitleText>{department}</TitleText>
           </TitleBackground>
-          <Img
-            src={`${import.meta.env.VITE_PUBLIC_URL}/assets/${
-              departmentInfo.imgPath
-            }`}
-          ></Img>
+          <Img src={`/assets/${departmentInfo.imgPath}`}></Img>
         </Intro>
         <DescriptionContainer>
           <MiddleContainer>

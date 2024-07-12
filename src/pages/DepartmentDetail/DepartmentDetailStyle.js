@@ -23,12 +23,6 @@ export const Intro = styled.div`
   height: 100dvh;
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 10dvh;
-  background-color: #ffffff;
-`;
-
 export const TitleBackground = styled.div`
   background-color: ${(props) => `${props.color}`};
   width: 100%;
@@ -38,17 +32,17 @@ export const TitleBackground = styled.div`
 export const Img = styled.img`
   width: 100%;
   height: 65dvh;
-  background-size: cover;
+  object-fit: cover;
 `;
 
 export const TitleText = styled.div`
   font-family: "Pretendard-ExtraBold", Helvetica;
   font-weight: 800;
   color: #ffffff;
-  font-size: 70px;
+  font-size: 60px;
   width: 97%;
   position: relative;
-  top: 24%;
+  top: 30%;
   left: 3%;
 `;
 

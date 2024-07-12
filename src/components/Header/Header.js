@@ -1,14 +1,11 @@
-import styled from '@emotion/styled'
-import {NavLink} from "react-router-dom";
+import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 import React from "react";
 export const Head = styled.header`
-    position: absolute;
-    margin-top: 0.5dvw;
-    margin-left: 15dvw;
-    background: transparent;
-    color: white;
-    z-index: 10; //꼭대기에 올리기
-`
+  padding: 1.5dvh 0;
+  width: 100dvw;
+  z-index: 10; //꼭대기에 올리기
+`;
 
 export const List = styled.ul`
   list-style-type: none;
@@ -33,7 +30,7 @@ export const Seperator = styled.div`
   margin-right: 1dvw;
 `;
 export const StyledNavLink = styled(NavLink)`
-  color: lightgray;
+  color: gray;
   text-decoration: none;
   padding-right: 0.75dvw;
   padding-left: 0.75dvw;
@@ -43,7 +40,6 @@ export const StyledNavLink = styled(NavLink)`
   &.active {
     color: black;
     font-weight: bold;
-    text-decoration: underline;
   }
 `;
 

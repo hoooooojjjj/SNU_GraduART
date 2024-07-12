@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "@emotion/styled"
-import {NavLink} from "react-router-dom";
-import { createClient } from "@supabase/supabase-js"
-import Footer from "../components/Footer/Footer.jsx"
-import Header from "../components/Header/Header.jsx"
+import React from "react";
+import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
+import Footer from "../components/Footer/Footer.jsx";
+import Header from "../components/Header/Header.jsx";
 
 // const supabase = createClient(
 //   "https://wjoocdnkngzyrprnnytm.supabase.co",
@@ -476,9 +476,7 @@ function Main() {
   return (
     <ContentContainer>
       <Header></Header>
-      <MainPicture
-        path={`${import.meta.env.VITE_PUBLIC_URL}/assets/mainImg.png`}
-      >
+      <MainPicture path={`/assets/mainImg.png`}>
         <MainText>GraduART</MainText>
         <SubText>
           서울대학교 미술대학 <br></br> 졸업전시
@@ -490,12 +488,12 @@ function Main() {
           <OrientalPaintingKorText>: 동양화과</OrientalPaintingKorText>
         </OrientalPaintingBlock>
         <OrientalPaintingImg
-          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/orientalImg.webp`}
+          img={`/assets/orientalImg.webp`}
         ></OrientalPaintingImg>
       </SectionContainer>
       <SectionContainer to={"/Western Painting"}>
         <WesternPaintingImg
-          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/westernImg.jpeg`}
+          img={`/assets/westernImg.jpeg`}
         ></WesternPaintingImg>
         <WesternPaintingBlock color={"#EE5397"}>
           <WesternPaintingEngText>Western Painting</WesternPaintingEngText>
@@ -507,14 +505,10 @@ function Main() {
           <SculptureEngText>Sculpture</SculptureEngText>
           <SculptureKorText>: 조소과</SculptureKorText>
         </SculptureBlock>
-        <SculptureImg
-          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/sculptureImg.jpeg`}
-        ></SculptureImg>
+        <SculptureImg img={`/assets/sculptureImg.jpeg`}></SculptureImg>
       </SectionContainer>
       <SectionContainer to={"/Craft"}>
-        <CraftImg
-          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/craftImg.heic`}
-        ></CraftImg>
+        <CraftImg img={`/assets/craftImg.heic`}></CraftImg>
         <CraftBlock color={"#00C4D4"}>
           <CraftEngText>Craft</CraftEngText>
           <CraftKorText>: 공예과</CraftKorText>
@@ -525,21 +519,17 @@ function Main() {
           <DesignEngText>Design</DesignEngText>
           <DesignKorText>: 디자인과</DesignKorText>
         </DesignBlock>
-        <DesignImg
-          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/designImg.avif`}
-        ></DesignImg>
+        <DesignImg img={`/assets/designImg.avif`}></DesignImg>
       </SectionContainer>
       <SectionContainer to={"/MediaArts"}>
-        <MediaArtsImg
-          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/mediaartsImg.jpeg`}
-        ></MediaArtsImg>
+        <MediaArtsImg img={`/assets/mediaartsImg.jpeg`}></MediaArtsImg>
         <MediaArtsBlock color={"#DBEB57"}>
           <MediaArtsEngText>MediaArts</MediaArtsEngText>
           <MediaArtsKorText>: 영상매체예술</MediaArtsKorText>
         </MediaArtsBlock>
       </SectionContainer>
       <SearchBox></SearchBox>
-          <Footer></Footer>
+      <Footer></Footer>
     </ContentContainer>
   );
 }

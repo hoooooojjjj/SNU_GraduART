@@ -16,7 +16,7 @@ const Footer = () => {
         <img
           style={{ margin: "0 auto" }}
           width={`60%`}
-          src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`}
+          src={`/assets/textLogo_LowRes.png`}
           alt="Graduart Logo"
         />
       </Column>
@@ -47,7 +47,7 @@ const Footer = () => {
           <img
             style={{ margin: "0 auto" }}
             width={`60%`}
-            src={`${import.meta.env.VITE_PUBLIC_URL}/assets/likeLion.png`}
+            src={`/assets/likeLion.png`}
             alt="LikeLion Logo"
           />
           <Title>Join Us</Title>
