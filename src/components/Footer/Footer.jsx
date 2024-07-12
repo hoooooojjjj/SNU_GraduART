@@ -13,7 +13,7 @@ const Footer = () => {
     return (
         <FooterContainer>
             <Column>
-                <Title>SNU GraduART</Title>
+                <img width={`20%`} src={`${import.meta.env.VITE_PUBLIC_URL}/assets/textLogo_LowRes.png`} alt="Graduart Logo"/>
             </Column>
             <FooterContent>
                 <Column>
