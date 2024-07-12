@@ -18,7 +18,7 @@ const ContentContainer = styled.div`
 // MainPicture
 const MainPicture = styled.section`
   width: 100%;
-  height: 100dvh;
+  height: 94dvh;
   background-image: url(${(props) => props.path});
   background-size: cover;
   background-position-y: 50%;
@@ -34,7 +34,7 @@ const MainText = styled.div`
   line-height: 290%; /* 278.4px */
   position: absolute;
   left: -165px;
-  top: 130px;
+  top: 150px;
   transform: rotate(90deg);
 `;
 
@@ -107,8 +107,8 @@ const OrientalPaintingKorText = styled.div`
 // OrientalPaintingImg
 const OrientalPaintingImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
-  backgroundSize: "auto",
-  backgroundPosition: "50% 55%",
+  backgroundSize: "cover",
+  backgroundPosition: "70% 55%",
   width: "70%",
   height: "100%",
 }));
@@ -363,26 +363,119 @@ const MediaArtsKorText = styled.div`
   line-height: 100%; /* 35px */
 `;
 
-// SearchBox
-const SearchBox = styled.div`
-  position: absolute;
+// 검색 전체 컨테이너
+const SearchContainer = styled.div`
+  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 70%;
+  flex-direction: column;
+  margin-top: 3%;
+`;
+
+// 검색창
+const SearchBox = styled.div`
+  width: 60%;
+  margin: 10dvh auto;
   height: 5%;
   padding: 1% 1%;
-  margin-top: 10%;
-  margin-left: 12%;
-  margin-bottom: 10%;
   border-radius: 50px;
-  border: 7px solid #818181;
+  border: 2px solid #818181;
   background: #ffffff;
+`;
+
+// 작가, 작품명 전체 컨테이너
+const SearchResultContainer = styled.div`
+  width: 70%;
+  margin-bottom: 10%;
+`;
+
+// 작가 컨테이너
+// "작가" 텍스트
+const ArtistText = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  margin-top: 5%;
+`;
+
+// 작가 검색결과 컨테이너
+const ArtistResultContainer = styled.div`
+  background: white;
+  width: 70dvw;
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
+// 작가 검색결과 컨테이너 속 작품명 텍스트
+const ArtistResultTitle = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+`;
+
+// 작가 검색결과 컨테이너 속 작가 및 설명
+const ArtistResultExp = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 3% 0;
+  border-bottom: solid #818181;
+`;
+
+// 작품명 컨테이너
+// "작품명" 텍스트
+const TitleText = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  margin-top: 10%;
+`;
+
+// 작품명 검색결과 컨테이너
+const TitleResultContainer = styled.div`
+  background: white;
+  width: 70dvw;
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
+// 작품명 검색결과 컨테이너 속 작품명 텍스트
+const TitleResultTitle = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+`;
+
+// 작품명 검색결과 컨테이너 속 작가 및 설명
+const TitleResultExp = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 3% 0;
+  border-bottom: solid #818181;
 `;
 
 function Main() {
   return (
     <ContentContainer>
-    <Header></Header>
+      <Header></Header>
       <MainPicture
         path={`${import.meta.env.VITE_PUBLIC_URL}/assets/mainImg.png`}
       >
@@ -448,7 +541,7 @@ function Main() {
       <SearchBox></SearchBox>
           <Footer></Footer>
     </ContentContainer>
-  )
+  );
 }
 
 export default Main;
