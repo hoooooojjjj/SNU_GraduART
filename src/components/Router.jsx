@@ -10,7 +10,7 @@ function Router() {
       <Routes>
         <Route path="*" element={<NotFound />}></Route>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/:id" element={<DepartmentDetail />}></Route>
+        <Route path="/:department" element={<DepartmentDetail />}></Route>
       </Routes>
     </BrowserRouter>
   );

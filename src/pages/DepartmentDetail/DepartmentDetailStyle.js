@@ -30,7 +30,7 @@ export const Header = styled.div`
 `;
 
 export const TitleBackground = styled.div`
-  background-color: #ee5397;
+  background-color: ${(props) => `${props.color}`};
   width: 100%;
   height: 25dvh;
 `;
@@ -67,7 +67,7 @@ export const MiddleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 88%;
-  height: 75%;
+  height: 90%;
 `;
 
 export const DescriptionExtra = styled.div`
@@ -130,7 +130,7 @@ export const DescriptionText = styled.p`
   width: 100%;
   color: #000000;
   font-family: "Pretendard-Regular", Helvetica;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
 `;
 
