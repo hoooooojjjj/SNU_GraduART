@@ -333,7 +333,7 @@ const MediaArtsEngText = styled.div`
   position: absolute;
   left: 10%;
   top: 15%;
-  color: #ffffff;
+  color: #000000;
   font-family: Pretendard;
   font-size: 200%;
   font-style: normal;
@@ -346,12 +346,28 @@ const MediaArtsKorText = styled.div`
   position: absolute;
   left: 10%;
   top: 25%;
-  color: #ffffff;
+  color: #000000;
   font-family: Pretendard;
   font-size: 150%;
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+`;
+
+// SearchBox
+const SearchBox = styled.div`
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 5%;
+  padding: 1% 1%;
+  margin-top: 10%;
+  margin-left: 12%;
+  margin-bottom: 10%;
+  border-radius: 50px;
+  border: 7px solid #818181;
+  background: #ffffff;
 `;
 
 function Main() {
@@ -419,6 +435,7 @@ function Main() {
           <MediaArtsKorText>: 영상매체예술</MediaArtsKorText>
         </MediaArtsBlock>
       </MediaArtsContainer>
+      <SearchBox></SearchBox>
     </ContentContainer>
   );
 }
