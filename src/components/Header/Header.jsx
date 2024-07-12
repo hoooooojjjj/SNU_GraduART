@@ -6,7 +6,7 @@ const StyledScrollButton = styled.div(() => ({
     width: `23px`,
     height: `23px`,
     color: `white`,
-    marginRight:`1%`
+    marginRight:`5px`
 }));
 
 const scrollToBottom = () => {
@@ -39,15 +39,13 @@ const Header = () => {
                                                                    height={"15dvw"}></img></HomeStyledNavLink>
                 <List>
                     <StyledNavLink to={"/Oriental Painting"} activeclassname={"active"}>동양화과</StyledNavLink>
-                    <StyledNavLink to={"/Western Painting"} activeClassName={"active"}>서양화과</StyledNavLink>
-                    <StyledNavLink to={"/Sculpture"} activeClassName={"active"}>조소과</StyledNavLink>
-                    <StyledNavLink to={"/Craft"} activeClassName={"active"}>공예과</StyledNavLink>
-                    <StyledNavLink to={"/Design"} activeClassName={"active"}>디자인과</StyledNavLink>
-                    <StyledNavLink to={"/MediaArts"} activeClassName={"active"}>영상매체예술</StyledNavLink>
+                    <StyledNavLink to={"/Western Painting"} activeclassName={"active"}>서양화과</StyledNavLink>
+                    <StyledNavLink to={"/Sculpture"} activeclassName={"active"}>조소과</StyledNavLink>
+                    <StyledNavLink to={"/Craft"} activeclassName={"active"}>공예과</StyledNavLink>
+                    <StyledNavLink to={"/Design"} activeclassName={"active"}>디자인과</StyledNavLink>
+                    <StyledNavLink to={"/MediaArts"} activeclassName={"active"}>영상매체예술</StyledNavLink>
                     <Seperator></Seperator>
-                    <ScrollButton>
-
-                    </ScrollButton>
+                    <ScrollButton></ScrollButton>
                     <StyledNavLink to={"/login"}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              fill="none">

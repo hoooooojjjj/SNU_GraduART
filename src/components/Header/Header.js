@@ -25,8 +25,6 @@ export const NavBar = styled.nav`
     justify-content: center;
 `
 
-
-
 export const Seperator = styled.div`
     margin-right: 1dvw;
 `
