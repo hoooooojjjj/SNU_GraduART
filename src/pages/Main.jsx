@@ -128,7 +128,7 @@ const WesternPaintingBlock = styled.div((props) => ({
   height: "100%",
 }));
 
-// OrientalPaintingEngText
+// WesternPaintingEngText
 const WesternPaintingEngText = styled.div`
   position: absolute;
   left: 10%;
@@ -141,7 +141,7 @@ const WesternPaintingEngText = styled.div`
   line-height: 100%; /* 45px */
 `;
 
-// OrientalPaintingKorText
+// WesternPaintingKorText
 const WesternPaintingKorText = styled.div`
   position: absolute;
   left: 10%;
@@ -153,6 +153,56 @@ const WesternPaintingKorText = styled.div`
   font-weight: 350;
   line-height: 100%; /* 35px */
 `;
+
+// SculptureContainer
+const SculptureContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+// SculptureBlock
+const SculptureBlock = styled.div((props) => ({
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
+}));
+
+// SculptureEngText
+const SculptureEngText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 200%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 45px */
+`;
+
+// SculptureKorText
+const SculptureKorText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 150%;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 100%; /* 35px */
+`;
+
+// SculptureImg
+const SculptureImg = styled.div((props) => ({
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 50%",
+  width: "70%",
+  height: "100%",
+}));
 
 function Main() {
   return (
@@ -183,6 +233,15 @@ function Main() {
           <WesternPaintingKorText>: 서양화과</WesternPaintingKorText>
         </WesternPaintingBlock>
       </WesternContainer>
+      <SculptureContainer>
+        <SculptureBlock color={"#FE4E4E"}>
+          <SculptureEngText>Sculpture</SculptureEngText>
+          <SculptureKorText>: 조소과</SculptureKorText>
+        </SculptureBlock>
+        <SculptureImg
+          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/sculptureImg.jpeg`}
+        ></SculptureImg>
+      </SculptureContainer>
     </ContentContainer>
   );
 }
