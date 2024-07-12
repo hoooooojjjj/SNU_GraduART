@@ -172,8 +172,7 @@ export const ArtWorkImgWrap = styled.div`
 export const ArtWorkImg = styled.div`
   width: 100%;
   height: 100%;
-  background: ${(props) =>
-    `url(${import.meta.env.VITE_PUBLIC_URL}/assets/${props.imgNum}.jpg)`};
+  background: ${(props) => `url(${props.ImgUrl})`};
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

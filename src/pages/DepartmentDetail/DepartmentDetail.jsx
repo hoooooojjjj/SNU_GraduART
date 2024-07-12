@@ -26,16 +26,46 @@ import {
   ArtWorkDescription,
   ArtWorkImgWrap,
 } from "./DepartmentDetailStyle.js";
+import { createClient } from "@supabase/supabase-js";
 
-// 미술작품 더미 데이터
-const ArtWorkList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const supabase = createClient(
+  "https://wjoocdnkngzyrprnnytm.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
+);
 
 function DepartmentDetail() {
+  // 현재 라우트에 해당하는 과 미술작품
+  const [ArtWorkList, setArtWorkList] = useState([]);
+
   // 한 페이지에 보여줄 미술작품 리스트
   const [ArtWorksInOnePage, setArtWorksInOnePage] = useState([]);
 
   // 현재 페이지네이션 페이지
   const [page, setPage] = useState(0);
+
+  // 현재 라우트에 해당하는 과 미술작품만 필터링해서 가져오기
+  useEffect(() => {
+    // 미술작품 가져오기
+    const getArtWorksByDepartment = async () => {
+      let { data: items, error } = await supabase
+        // items 테이블에서
+        .from("items")
+        // 모든 column 선택
+        .select("*")
+        // 현재 라우트에 해당하는 과 미술작품만 필터링
+        .eq("department", "Western Painting");
+
+      // 에러 없고 데이터가 있다면
+      if (!error && items) {
+        // 미술작품 데이터를 ArtWorkList 상태에 저장
+        setArtWorkList(items);
+      } else {
+        console.log(error);
+      }
+    };
+
+    getArtWorksByDepartment();
+  }, []);
 
   useEffect(() => {
     // ArtWorkList 리스트에서 6개씩 끊어서 페이지네이션을 구현하는 함수
@@ -50,7 +80,7 @@ function DepartmentDetail() {
     };
 
     PaginateArtWorks();
-  }, [page]);
+  }, [ArtWorkList, page]);
 
   return (
     <Contaioner>
@@ -114,10 +144,13 @@ function DepartmentDetail() {
               return (
                 <ArtWorkGridItem key={index}>
                   <ArtWorkImgWrap>
-                    <ArtWorkImg imgNum={item}></ArtWorkImg>
+                    <ArtWorkImg ImgUrl={item.imagePath}></ArtWorkImg>
                   </ArtWorkImgWrap>
-                  <ArtWorkTitle>ArtWork Title</ArtWorkTitle>
-                  <ArtWorkDescription>ArtWork Description</ArtWorkDescription>
+                  <ArtWorkTitle>{item.title}</ArtWorkTitle>
+                  <ArtWorkDescription>
+                    {item.artist} | {item.made_at.slice(0, 4)},{" "}
+                    {item.descriptions}
+                  </ArtWorkDescription>
                 </ArtWorkGridItem>
               );
             })
@@ -137,7 +170,7 @@ function DepartmentDetail() {
           shape="rounded"
         />
       </ArtWorkListContainer>
-    </Contaioner>
+    </Container>
   );
 }
 export default DepartmentDetail;
