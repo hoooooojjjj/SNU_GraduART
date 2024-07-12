@@ -24,6 +24,9 @@ export const HeaderIcons = styled.li`
 export const NavBar = styled.nav`
     margin-top: 1.2dvh;
     margin-bottom: 1.2dvh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 `
 
 export const Seperator = styled.div`
@@ -48,6 +51,7 @@ export const HomeStyledNavLink = styled(NavLink)((props)=>({
     color : "lightgray",
     textDecoration : "none",
     fontWeight : "normal",
+    paddingTop : "0.5dvh",
     marginRight : props.margin,
     visibility : props.visible
 }))
