@@ -1,15 +1,21 @@
 import styled from "@emotion/styled";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Pagination from "@mui/material/Pagination";
-export const Container = styled.div`
-  width: 100dvw;
-  height: auto;
-  background-color: #ffffff;
-`;
+
+export const Container = styled.div({
+  width: "100dvw",
+  height: "100dvh",
+  backgroundColor: "#ffffff",
+  overflowY: "scroll",
+  msOverflowStyle: "none" /* Internet Explorer */,
+  scrollbarWidth: "none" /* Firefox */,
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+});
 
 export const IntroContainer = styled.div`
-  width: 100dvw;
-  height: auto;
+  width: 100%;
 `;
 
 export const Intro = styled.div`
