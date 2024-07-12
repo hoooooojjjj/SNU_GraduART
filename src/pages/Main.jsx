@@ -204,6 +204,56 @@ const SculptureImg = styled.div((props) => ({
   height: "100%",
 }));
 
+// CraftContainer
+const CraftContainer = styled.div`
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+`;
+
+// CraftImg
+const CraftImg = styled.div((props) => ({
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 60%",
+  width: "70%",
+  height: "100%",
+}));
+
+// CraftBlock
+const CraftBlock = styled.div((props) => ({
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
+}));
+
+// CraftEngText
+const CraftEngText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 200%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 45px */
+`;
+
+// CraftKorText
+const CraftKorText = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 150%;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 100%; /* 35px */
+`;
+
 function Main() {
   return (
     <ContentContainer>
@@ -242,6 +292,15 @@ function Main() {
           img={`${import.meta.env.VITE_PUBLIC_URL}/assets/sculptureImg.jpeg`}
         ></SculptureImg>
       </SculptureContainer>
+      <CraftContainer>
+        <CraftImg
+          img={`${import.meta.env.VITE_PUBLIC_URL}/assets/craftImg.heic`}
+        ></CraftImg>
+        <CraftBlock color={"#00C4D4"}>
+          <CraftEngText>Craft</CraftEngText>
+          <CraftKorText>: 공예과</CraftKorText>
+        </CraftBlock>
+      </CraftContainer>
     </ContentContainer>
   );
 }
