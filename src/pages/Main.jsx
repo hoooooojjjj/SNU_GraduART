@@ -17,7 +17,7 @@ const ContentContainer = styled.div`
 // MainPicture
 const MainPicture = styled.section`
   width: 100%;
-  height: 100dvh;
+  height: 94dvh;
   background-image: url(${(props) => props.path});
   background-size: cover;
   background-position-y: 50%;
@@ -33,7 +33,7 @@ const MainText = styled.div`
   line-height: 290%; /* 278.4px */
   position: absolute;
   left: -165px;
-  top: 130px;
+  top: 150px;
   transform: rotate(90deg);
 `;
 
@@ -100,8 +100,8 @@ const OrientalPaintingKorText = styled.div`
 // OrientalPaintingImg
 const OrientalPaintingImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
-  backgroundSize: "auto",
-  backgroundPosition: "50% 55%",
+  backgroundSize: "cover",
+  backgroundPosition: "70% 55%",
   width: "70%",
   height: "100%",
 }));
@@ -358,15 +358,10 @@ const MediaArtsKorText = styled.div`
 
 // SearchBox
 const SearchBox = styled.div`
-  position: absolute;
-  align-items: center;
-  justify-content: center;
   width: 70%;
+  margin: 0 auto;
   height: 5%;
   padding: 1% 1%;
-  margin-top: 10%;
-  margin-left: 12%;
-  margin-bottom: 10%;
   border-radius: 50px;
   border: 7px solid #818181;
   background: #ffffff;
@@ -375,7 +370,7 @@ const SearchBox = styled.div`
 function Main() {
   return (
     <ContentContainer>
-    <Header></Header>
+      <Header></Header>
       <MainPicture
         path={`${import.meta.env.VITE_PUBLIC_URL}/assets/mainImg.png`}
       >
@@ -439,9 +434,9 @@ function Main() {
         </MediaArtsBlock>
       </MediaArtsContainer>
       <SearchBox></SearchBox>
-          <Footer></Footer>
+      <Footer></Footer>
     </ContentContainer>
-  )
+  );
 }
 
 export default Main;
