@@ -8,9 +8,9 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<NotFound />}></Route>
         <Route path="/" element={<Main />}></Route>
         <Route path="/:department" element={<DepartmentDetail />}></Route>
+        <Route path="/*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
   );
