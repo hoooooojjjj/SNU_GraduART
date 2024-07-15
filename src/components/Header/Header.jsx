@@ -50,7 +50,6 @@ const Header = () => {
     <Head>
       <NavBar>
         <HomeStyledNavLink margin={"10dvw"} to={"/"}>
-          {" "}
           <img
             alt={"Graduart Logo"}
             src={`/assets/textLogo_LowRes.png`}
