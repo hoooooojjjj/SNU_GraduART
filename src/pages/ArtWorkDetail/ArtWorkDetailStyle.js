@@ -6,7 +6,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 export const Container = styled.div`
   width: 100dvw;
   height: 100dvh;
-  background-color: "#E7E6E4";
+  background-color: #e7e6e4;
   ${({ isPurchased }) =>
     isPurchased &&
     ` background: linear-gradient(180deg, #E7E6E4 90.5%, #C6C5C3 98%, #BCBCBC 100%);
