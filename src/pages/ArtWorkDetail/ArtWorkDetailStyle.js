@@ -189,7 +189,7 @@ export const Price = styled.div`
 `;
 
 export const BuyInfo = styled.div`
-  color: #121619;
+  color: ${(props) => (props.isSale ? "#121619" : "gray")};
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

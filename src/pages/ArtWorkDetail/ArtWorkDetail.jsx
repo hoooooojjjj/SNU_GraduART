@@ -99,7 +99,7 @@ function ArtWorkDetail() {
   };
 
   const HandlePurchaseClick = () => {
-    setIsPurchased(!isPurchased);
+    setIsPurchased(true);
   };
 
   const handleMainContainerClick = () => {
@@ -152,7 +152,9 @@ function ArtWorkDetail() {
           ) : (
             <AlternateText>
               <Price>{artWork.price}</Price>
-              <BuyInfo>장바구니 담기</BuyInfo>
+              <BuyInfo isSale={artWork.onSale}>
+                {artWork.onSale ? "장바구니 담기" : "판매 완료"}
+              </BuyInfo>
             </AlternateText>
           )}
         </PurchaseMiddle>
