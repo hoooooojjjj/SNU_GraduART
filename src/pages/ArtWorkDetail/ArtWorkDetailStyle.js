@@ -31,18 +31,31 @@ export const MainContainer = styled.div`
   flex-direction: row;
 `;
 
-export const ImageContainer = styled.div`
+export const ImageWrap = styled.div`
   height: 100%;
   width: 50%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
-export const Image = styled.img`
+export const ImageContainer = styled.div`
+  height: 90%;
   width: 100%;
-  height: 67dvh;
-  object-fit: cover;
-  box-shadow: 11px 15px 20px 5px rgba(48, 48, 47, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Image = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${(props) => `url(${props.url})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
 `;
 
 export const LeftContainer = styled.div`
@@ -59,6 +72,7 @@ export const LeftContainer = styled.div`
 `;
 
 export const LeftArrow = styled(ArrowBackIosIcon)`
+  cursor: pointer;
   font-size: 60px;
   color: #c0c2c8;
   padding-left: 40%;
@@ -87,6 +101,7 @@ export const RightArrowContainer = styled.div`
 export const RightArrow = styled(ArrowForwardIosIcon)`
   font-size: 60px;
   color: #c0c2c8;
+  cursor: pointer;
 `;
 
 export const RightMiddle = styled.div`
@@ -152,6 +167,7 @@ export const DownArrow = styled(KeyboardArrowDownIcon)`
 `;
 
 export const PurchaseInformation = styled.div`
+  cursor: pointer;
   color: #2c2c2c;
   font-size: 15px;
   font-style: normal;
@@ -173,7 +189,8 @@ export const Price = styled.div`
 `;
 
 export const BuyInfo = styled.div`
-  color: #121619;
+  cursor: pointer;
+  color: ${(props) => (props.isSale ? "#121619" : "gray")};
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

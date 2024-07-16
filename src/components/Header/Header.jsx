@@ -61,19 +61,19 @@ const Header = () => {
           <StyledNavLink to={"/Oriental Painting"} activeclassname={"active"}>
             동양화과
           </StyledNavLink>
-          <StyledNavLink to={"/Western Painting"} activeclassName={"active"}>
+          <StyledNavLink to={"/Western Painting"} activeclassname={"active"}>
             서양화과
           </StyledNavLink>
-          <StyledNavLink to={"/Sculpture"} activeclassName={"active"}>
+          <StyledNavLink to={"/Sculpture"} activeclassname={"active"}>
             조소과
           </StyledNavLink>
-          <StyledNavLink to={"/Craft"} activeclassName={"active"}>
+          <StyledNavLink to={"/Craft"} activeclassname={"active"}>
             공예과
           </StyledNavLink>
-          <StyledNavLink to={"/Design"} activeclassName={"active"}>
+          <StyledNavLink to={"/Design"} activeclassname={"active"}>
             디자인과
           </StyledNavLink>
-          <StyledNavLink to={"/MediaArts"} activeclassName={"active"}>
+          <StyledNavLink to={"/MediaArts"} activeclassname={"active"}>
             영상매체예술
           </StyledNavLink>
           <Seperator></Seperator>
