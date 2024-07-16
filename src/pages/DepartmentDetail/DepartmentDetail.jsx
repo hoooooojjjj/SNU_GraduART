@@ -109,7 +109,6 @@ function DepartmentDetail() {
 
   // 작품 클릭하면 작품 상세페이지로 이동하는 함수
   const onClickArtWork = (itemID) => {
-    console.log(itemID);
     nav(`/${department}/${itemID}`);
   };
 

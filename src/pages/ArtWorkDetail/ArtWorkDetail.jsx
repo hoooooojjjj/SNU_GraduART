@@ -23,6 +23,7 @@ import {
   AlternateText,
   Price,
   BuyInfo,
+  ImageWrap,
 } from "./ArtWorkDetailStyle.js";
 import { useParams } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
@@ -84,9 +85,14 @@ function ArtWorkDetail() {
         <LeftContainer>
           <LeftArrow></LeftArrow>
         </LeftContainer>
-        <ImageContainer>
-          <Image src={artWork && artWork.imagePath}></Image>
-        </ImageContainer>
+        <ImageWrap>
+          <ImageContainer>
+            <Image
+              url={artWork.imagePath}
+              alt={`${artWork.artist}님의 작품`}
+            ></Image>
+          </ImageContainer>
+        </ImageWrap>
         <RightContainer>
           <RightArrowContainer>
             <RightArrow></RightArrow>
