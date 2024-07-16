@@ -12,11 +12,9 @@ export const Container = styled.div`
     ` background: linear-gradient(180deg, #E7E6E4 90.5%, #C6C5C3 98%, #BCBCBC 100%);
       backdrop-filter: blur(5px);
     `}
-
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer */
   scrollbar-width: none; /* Firefox */
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -157,6 +155,27 @@ export const DownArrow = styled(KeyboardArrowDownIcon)`
 export const PurchaseInformation = styled.div`
   color: #2c2c2c;
   font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+`;
+
+export const AlternateText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 40dvw;
+`;
+
+export const Price = styled.div`
+  color: #121619;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+`;
+
+export const BuyInfo = styled.div`
+  color: #121619;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
 `;

@@ -20,6 +20,9 @@ import {
   DownArrow,
   PurchaseInformation,
   PurchaseMiddle,
+  AlternateText,
+  Price,
+  BuyInfo,
 } from "./ArtWorkDetailStyle.js";
 
 function ArtWorkDetail() {
@@ -28,12 +31,19 @@ function ArtWorkDetail() {
   const HandlePurchaseClick = () => {
     setIsPurchased(!isPurchased);
   };
+
+  const handleMainContainerClick = () => {
+    if (isPurchased) {
+      setIsPurchased(false);
+    }
+  };
+
   return (
     <Container isPurchased={isPurchased}>
       <IntroContainer>
         <Header></Header>
       </IntroContainer>
-      <MainContainer>
+      <MainContainer onClick={handleMainContainerClick}>
         <LeftContainer>
           <LeftArrow></LeftArrow>
         </LeftContainer>
@@ -60,11 +70,18 @@ function ArtWorkDetail() {
         </RightContainer>
       </MainContainer>
       <PurchaseContainer>
-        <PurchaseMiddle>
-          <DownArrow></DownArrow>
-          <PurchaseInformation onClick={HandlePurchaseClick}>
-            구매 정보
-          </PurchaseInformation>
+        <PurchaseMiddle onClick={HandlePurchaseClick}>
+          {!isPurchased ? (
+            <>
+              <DownArrow />
+              <PurchaseInformation>구매 정보</PurchaseInformation>
+            </>
+          ) : (
+            <AlternateText>
+              <Price>600,000원</Price>
+              <BuyInfo>장바구니 담기</BuyInfo>
+            </AlternateText>
+          )}
         </PurchaseMiddle>
       </PurchaseContainer>
     </Container>
