@@ -151,7 +151,7 @@ function ArtWorkDetail() {
             </>
           ) : (
             <AlternateText>
-              <Price>{artWork.price}</Price>
+              <Price>{artWork.price.toLocaleString()}</Price>
               <BuyInfo isSale={artWork.onSale}>
                 {artWork.onSale ? "장바구니 담기" : "판매 완료"}
               </BuyInfo>

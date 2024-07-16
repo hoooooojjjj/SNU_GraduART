@@ -168,6 +168,7 @@ export const DownArrow = styled(KeyboardArrowDownIcon)`
 `;
 
 export const PurchaseInformation = styled.div`
+  cursor: pointer;
   color: #2c2c2c;
   font-size: 15px;
   font-style: normal;
@@ -189,6 +190,7 @@ export const Price = styled.div`
 `;
 
 export const BuyInfo = styled.div`
+  cursor: pointer;
   color: ${(props) => (props.isSale ? "#121619" : "gray")};
   font-size: 16px;
   font-style: normal;
