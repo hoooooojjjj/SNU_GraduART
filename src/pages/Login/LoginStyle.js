@@ -20,7 +20,7 @@ export const LoginContainer = styled.div({
   left: "25%",
 });
 
-// "로그인" 텍스트 
+// "로그인" 텍스트
 export const LoginText = styled.div({
   color: "black",
   fontFamily: "Pretendard",
@@ -44,6 +44,7 @@ export const GoogleLogin = styled.div`
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `;
 
 // 구글로그인 이미지 하단 회색 선

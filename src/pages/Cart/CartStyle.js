@@ -4,13 +4,14 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 // 페이지 전체 컨테이너
 export const Container = styled.div({
   width: "100dvw",
+  height: "100dvh",
   backgroundColor: "#FFFFFF",
+  overflow: "auto",
 });
 
 // 헤더 제외한 나머지 중앙정렬시키기 위한 컨테이너
 export const ContentContainer = styled.div({
   width: "100dvw",
-  height: "100dvh",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -28,7 +29,7 @@ export const CartText = styled.div({
   justifyContent: "center",
   alignItems: "center",
   paddingBottom: "5%",
-  marginTop: "3%",
+  marginTop: "5%",
   width: "80%",
 });
 
@@ -48,10 +49,18 @@ export const ListText = styled.div({
   borderBottom: "solid #818181",
 });
 
+// 장바구니 모든 항목 포함하는 리스트
+export const CartItemList = styled.div({
+  width: "80%",
+  height: "auto",
+  borderBottom: "solid",
+  borderBottomColor: "grey",
+});
+
 // 장바구니에 있는 항목 1개
 export const CartItem = styled.div({
-  width: "80%",
-  height: "20%",
+  width: "100%",
+  height: "50%",
   marginBottom: "3%",
   display: "flex",
   flexDirection: "row",
@@ -62,13 +71,14 @@ export const CartItem = styled.div({
 export const CheckBoxIcon = styled(CheckBoxOutlineBlankIcon)`
   align-items: center;
   display: flex;
-  margin: 2%;
+  margin: 3%;
+  margin-right: 5%;
 `;
 
 // 장바구니 항목 사진
 export const CartItemImg = styled.img`
-  width: 30%;
-  height: 90%;
+  width: 15%;
+  height: 125px;
   background-image: url(${(props) => props.path});
   background-size: cover;
   background-repeat: no-repeat;
@@ -78,6 +88,8 @@ export const CartItemImg = styled.img`
 
 // 장바구니 항목 텍스트
 export const CartItemText = styled.div({
+  fontFamily: "pretendard",
+  fontWeight: "350",
   width: "70%",
   display: "flex",
   flexDirection: "column",
@@ -88,11 +100,11 @@ export const CartItemText = styled.div({
 });
 
 // 장바구니 항목 내 "삭제하기" 텍스트
-export const CartItemDelete = styled.div({
+export const CartItemDelete = styled.button({
   color: "black",
   textAlign: "center",
   fontFamily: "pretendard",
-  fontSize: "18px",
+  fontSize: "15px",
   fontStyle: "normal",
   fontWeight: "500",
   width: "10%",
@@ -100,14 +112,48 @@ export const CartItemDelete = styled.div({
   marginRight: "3%",
 });
 
-// 아래 회색 선
-
 // 전체 금액 컨테이너
+export const PriceContainer = styled.div({
+  width: "80%",
+  marginTop: "2%",
+  marginBottom: "2%",
+  display: "inline-flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+});
 
-// "전체 금액" 텍스트
-
-// "n원" 텍스트
+// "전체 금액", "n원"을 쓸 텍스트
+export const PriceText = styled.div({
+  fontFamily: "pretendard",
+  fontSize: "18px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "100%",
+  letterSpacing: "0.5px",
+  paddingLeft: "3%",
+  paddingRight: "3%",
+});
 
 // 주문 버튼 컨테이너
+export const OrderContainer = styled.div({
+  width: "80%",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-evenly",
+  marginTop: "1%",
+});
 
-// 주문 버튼
+// 선택 상품 주문, 전체 상품 주문에 사용될 주문 버튼
+export const OrderButton = styled.button({
+  display: "flex",
+  width: "40%",
+  height: "10%",
+  padding: "16px 12px",
+  justifyContent: "center",
+  alignItems: "center",
+  flexShrink: "0",
+  fontFamily: "pretendard",
+  fontSize: "16px",
+  fontWeight: "350",
+  letterSpacing: "1px",
+});
