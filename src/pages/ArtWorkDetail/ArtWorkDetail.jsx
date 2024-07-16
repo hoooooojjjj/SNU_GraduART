@@ -1,42 +1,72 @@
+import { useState } from "react";
 import Header from "../../components/Header/Header.jsx";
 import {
   Container,
   IntroContainer,
   MainContainer,
-  LeftArrowContainer,
+  LeftContainer,
   ImageContainer,
   Image,
   LeftArrow,
   RightArrow,
+  RightContainer,
   RightArrowContainer,
   RightMiddle,
   DescriptionContainer,
+  DescriptionMiddle,
+  Title,
+  Description,
   PurchaseContainer,
+  DownArrow,
+  PurchaseInformation,
+  PurchaseMiddle,
 } from "./ArtWorkDetailStyle.js";
 
 function ArtWorkDetail() {
+  const [isPurchased, setIsPurchased] = useState(false);
+
+  const HandlePurchaseClick = () => {
+    setIsPurchased(!isPurchased);
+  };
   return (
-    <Container>
+    <Container isPurchased={isPurchased}>
       <IntroContainer>
         <Header></Header>
       </IntroContainer>
       <MainContainer>
-        <LeftArrowContainer>
+        <LeftContainer>
           <LeftArrow></LeftArrow>
-        </LeftArrowContainer>
+        </LeftContainer>
         <ImageContainer>
           <Image
             src={`${import.meta.env.VITE_PUBLIC_URL}/assets/forest.png`}
           ></Image>
         </ImageContainer>
-        <RightArrowContainer>
-          <RightMiddle>
+        <RightContainer>
+          <RightArrowContainer>
             <RightArrow></RightArrow>
-            <DescriptionContainer>ㅁㅁ</DescriptionContainer>
+          </RightArrowContainer>
+          <RightMiddle>
+            <DescriptionContainer>
+              <DescriptionMiddle>
+                <Title>Roll Series Chair </Title>
+                <Description>
+                  작가 | 2023 <br />
+                  43x66x82 cm
+                </Description>
+              </DescriptionMiddle>
+            </DescriptionContainer>
           </RightMiddle>
-        </RightArrowContainer>
+        </RightContainer>
       </MainContainer>
-      <PurchaseContainer></PurchaseContainer>
+      <PurchaseContainer>
+        <PurchaseMiddle>
+          <DownArrow></DownArrow>
+          <PurchaseInformation onClick={HandlePurchaseClick}>
+            구매 정보
+          </PurchaseInformation>
+        </PurchaseMiddle>
+      </PurchaseContainer>
     </Container>
   );
 }
