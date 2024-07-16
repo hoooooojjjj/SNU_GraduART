@@ -56,6 +56,48 @@ function ArtWorkDetail() {
     setArtWork(curartWork[0]);
   }, [itemID]);
 
+  // 오른쪽 화살표를 누르면 다음 작품 상세 페이지로 이동
+  const onRightArrowClick = () => {
+    // 현재 작품보다 오래된 작품 중 제일 첫번째 작품 필터링
+    const nextArtWork = artWorkList.filter(
+      (artworks) =>
+        new Date(artWork.created_at) > new Date(artworks.created_at) &&
+        artWork.itemID !== artworks.itemID
+    );
+    // 현재 작품보다 오랜된 작품이 없으면 가장 최신 작품으로 이동
+    if (nextArtWork.length === 0) {
+      nav(`/${artWorkList[0].department}/${artWorkList[0].itemID}`, {
+        state: artWorkList,
+      });
+      // 현재 작품보다 오래된 작품이 있으면 그 작품으로 이동
+    } else {
+      nav(`/${nextArtWork[0].department}/${nextArtWork[0].itemID}`, {
+        state: artWorkList,
+      });
+    }
+  };
+
+  // 왼쪽 화살표를 누르면 이전 작품 상세 페이지로 이동
+  const onLeftArrowClick = () => {
+    // 현재 작품보다 최신인 작품 중 제일 마지막 작품 필터링
+    const prevArtWork = artWorkList.filter(
+      (artworks) =>
+        new Date(artWork.created_at) < new Date(artworks.created_at) &&
+        artWork.itemID !== artworks.itemID
+    );
+    // 현재 작품보다 최신인 작품이 없으면 가장 오래된 작품으로 이동
+    if (prevArtWork.length === 0) {
+      nav(`/${artWorkList.at(-1).department}/${artWorkList.at(-1).itemID}`, {
+        state: artWorkList,
+      });
+      // 현재 작품보다 최신인 작품이 있으면 그 작품으로 이동
+    } else {
+      nav(`/${prevArtWork.at(-1).department}/${prevArtWork.at(-1).itemID}`, {
+        state: artWorkList,
+      });
+    }
+  };
+
   const HandlePurchaseClick = () => {
     setIsPurchased(!isPurchased);
   };
@@ -73,7 +115,7 @@ function ArtWorkDetail() {
       </IntroContainer>
       <MainContainer onClick={handleMainContainerClick}>
         <LeftContainer>
-          <LeftArrow></LeftArrow>
+          <LeftArrow onClick={onLeftArrowClick}></LeftArrow>
         </LeftContainer>
         <ImageWrap>
           <ImageContainer>
@@ -85,7 +127,7 @@ function ArtWorkDetail() {
         </ImageWrap>
         <RightContainer>
           <RightArrowContainer>
-            <RightArrow></RightArrow>
+            <RightArrow onClick={onRightArrowClick}></RightArrow>
           </RightArrowContainer>
           <RightMiddle>
             <DescriptionContainer>

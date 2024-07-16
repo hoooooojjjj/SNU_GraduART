@@ -78,7 +78,9 @@ function DepartmentDetail() {
         // 모든 column 선택
         .select("*")
         // 현재 라우트에 해당하는 과 미술작품만 필터링
-        .eq("department", department);
+        .eq("department", department)
+        // 최신순으로 정렬
+        .order("created_at", { ascending: false });
 
       // 에러 없고 데이터가 있다면
       if (!error && items) {
