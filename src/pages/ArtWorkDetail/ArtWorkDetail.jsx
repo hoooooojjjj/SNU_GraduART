@@ -53,9 +53,6 @@ function ArtWorkDetail() {
           ></Image>
         </ImageContainer>
         <RightContainer>
-          <RightArrowContainer>
-            <RightArrow></RightArrow>
-          </RightArrowContainer>
           <RightMiddle>
             <DescriptionContainer>
               <DescriptionMiddle>
@@ -67,6 +64,9 @@ function ArtWorkDetail() {
               </DescriptionMiddle>
             </DescriptionContainer>
           </RightMiddle>
+          <RightArrowContainer>
+            <RightArrow></RightArrow>
+          </RightArrowContainer>
         </RightContainer>
       </MainContainer>
       <PurchaseContainer>
