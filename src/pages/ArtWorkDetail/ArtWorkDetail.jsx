@@ -108,6 +108,23 @@ function ArtWorkDetail() {
     }
   };
 
+  // 장바구비 담기 클릭 시 cart_item 테이블에 데이터 추가
+  const onInsertCart = async () => {
+    const { data, error } = await supabase
+      .from("cart_item")
+      .insert([
+        {
+          id: 1,
+          user_id: 1,
+          item_id: artWork.itemID,
+        },
+      ])
+      .select();
+    if (error) {
+      console.log(error);
+    }
+  };
+
   return artWork ? (
     <Container isPurchased={isPurchased}>
       <IntroContainer>
@@ -152,7 +169,7 @@ function ArtWorkDetail() {
           ) : (
             <AlternateText>
               <Price>{artWork.price.toLocaleString()}</Price>
-              <BuyInfo isSale={artWork.onSale}>
+              <BuyInfo onClick={onInsertCart} isSale={artWork.onSale}>
                 {artWork.onSale ? "장바구니 담기" : "판매 완료"}
               </BuyInfo>
             </AlternateText>
