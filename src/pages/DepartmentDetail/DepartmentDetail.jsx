@@ -108,8 +108,9 @@ function DepartmentDetail() {
   }, [department, ArtWorkList, page]);
 
   // 작품 클릭하면 작품 상세페이지로 이동하는 함수
+  // 라우팅할 때 ArtWorkList도 props로 전달
   const onClickArtWork = (itemID) => {
-    nav(`/${department}/${itemID}`);
+    nav(`/${department}/${itemID}`, { state: ArtWorkList });
   };
 
   return (

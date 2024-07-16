@@ -72,6 +72,7 @@ export const LeftContainer = styled.div`
 `;
 
 export const LeftArrow = styled(ArrowBackIosIcon)`
+  cursor: pointer;
   font-size: 60px;
   color: #c0c2c8;
   padding-right: 10%;
@@ -101,6 +102,7 @@ export const RightArrowContainer = styled.div`
 export const RightArrow = styled(ArrowForwardIosIcon)`
   font-size: 60px;
   color: #c0c2c8;
+  cursor: pointer;
 `;
 
 export const RightMiddle = styled.div`

@@ -25,7 +25,7 @@ import {
   BuyInfo,
   ImageWrap,
 } from "./ArtWorkDetailStyle.js";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -34,37 +34,27 @@ const supabase = createClient(
 );
 
 function ArtWorkDetail() {
-  // URL로 현재 작품의 ID 가져오기
+  const nav = useNavigate();
+
+  // 현재 라우트에 해당하는 작품 ID
   const { itemID } = useParams();
 
-  // 작품 정보
+  // 현재 라우트에 해당하는 작품
   const [artWork, setArtWork] = useState(null);
 
-  // 현재 라우트에 해당하는 미술작품만 필터링해서 가져오기
-  useEffect(() => {
-    // 미술작품 가져오기
-    const getArtWorksByItemID = async () => {
-      let { data: items, error } = await supabase
-        // items 테이블에서
-        .from("items")
-        // title,artist,descriptions,imagePath,price,onSale,made_at column 선택
-        .select("title,artist,descriptions,imagePath,price,onSale,made_at")
-        // 현재 라우트에 해당하는 미술작품만 필터링
-        .eq("itemID", itemID);
+  // 현재 라우트에 해당하는 과 작품 리스트
+  const artWorkList = useLocation().state;
 
-      // 에러 없고 데이터가 있다면
-      if (!error && items) {
-        // 미술작품 데이터를 ArtWorkList 상태에 저장
-        setArtWork(items[0]);
-      } else {
-        console.log(error);
-      }
-    };
-
-    getArtWorksByItemID();
-  }, [itemID]);
-
+  // 구매 정보 토글
   const [isPurchased, setIsPurchased] = useState(false);
+
+  // artWorkList에서 현재 라우트에 해당하는 작품만 필터링
+  useEffect(() => {
+    const curartWork = artWorkList.filter(
+      (artWork) => artWork.itemID === itemID
+    );
+    setArtWork(curartWork[0]);
+  }, [itemID]);
 
   const HandlePurchaseClick = () => {
     setIsPurchased(!isPurchased);
