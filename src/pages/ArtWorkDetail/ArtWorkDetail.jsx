@@ -126,9 +126,6 @@ function ArtWorkDetail() {
           </ImageContainer>
         </ImageWrap>
         <RightContainer>
-          <RightArrowContainer>
-            <RightArrow onClick={onRightArrowClick}></RightArrow>
-          </RightArrowContainer>
           <RightMiddle>
             <DescriptionContainer>
               <DescriptionMiddle>
@@ -140,6 +137,9 @@ function ArtWorkDetail() {
               </DescriptionMiddle>
             </DescriptionContainer>
           </RightMiddle>
+          <RightArrowContainer>
+            <RightArrow onClick={onRightArrowClick}></RightArrow>
+          </RightArrowContainer>
         </RightContainer>
       </MainContainer>
       <PurchaseContainer>

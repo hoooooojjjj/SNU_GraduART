@@ -62,7 +62,7 @@ export const LeftContainer = styled.div`
   height: 100%;
   width: 25%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -75,23 +75,22 @@ export const LeftArrow = styled(ArrowBackIosIcon)`
   cursor: pointer;
   font-size: 60px;
   color: #c0c2c8;
-  padding-right: 10%;
+  padding-left: 40%;
 `;
 
 export const RightContainer = styled.div`
   height: 100%;
   width: 25%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: Center;
 `;
 
 export const RightArrowContainer = styled.div`
-  height: 54%;
+  height: 100%;
   width: 100%;
   display: flex;
-  align-items: flex-end;
-  padding-left: 30%;
+  align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   &:hover {
@@ -107,11 +106,11 @@ export const RightArrow = styled(ArrowForwardIosIcon)`
 
 export const RightMiddle = styled.div`
   display: flex;
-
   width: 100%;
-  height: 46%;
+  height: 83%;
   justify-content: flex-start;
-  padding-left: 30%;
+  align-items: flex-end;
+  padding-left: 15%;
 `;
 
 export const DescriptionContainer = styled.div`
