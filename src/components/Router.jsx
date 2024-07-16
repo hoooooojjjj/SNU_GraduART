@@ -11,10 +11,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/:department" element={<DepartmentDetail />}></Route>
-        <Route
-          path="/:department/:ArtWorkDetail"
-          element={<ArtWorkDetail />}
-        ></Route>
+        <Route path="/:department/:itemID" element={<ArtWorkDetail />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
