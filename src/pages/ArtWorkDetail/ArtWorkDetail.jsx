@@ -114,18 +114,27 @@ function ArtWorkDetail() {
       nav("/login", { state: "로그인이 필요한 서비스입니다" });
       return null;
     }
+    // cart_item 테이블에 데이터 추가
     const { data, error } = await supabase
       .from("cart_item")
       .insert([
         {
-          id: 1,
-          user_id: 1,
+          user_id: user.id,
           item_id: artWork.itemID,
         },
       ])
       .select();
     if (error) {
       console.log(error);
+    }
+    // 장바구니에 담겼다는 알림과 redirect 확인창
+    const isRedirectCartPage = confirm(
+      "장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"
+    );
+
+    // 확인을 누르면 장바구니 페이지로 이동
+    if (isRedirectCartPage) {
+      nav("/cart");
     }
   };
 
