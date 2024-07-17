@@ -11,12 +11,17 @@ const Login = () => {
     const closeModal = () => setModalIsOpen(false);
 
     const signInWithGoogle = async () => {
-        const {data, error} = await supabase.auth.signInWithOAuth({
+        const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
         })
 
         if (error) {
             console.error('Error signing in with Google:', error.message)
+        } else {
+            const { session } = data
+            if (session) {
+                localStorage.setItem('supabase.auth.token', JSON.stringify(session))
+            }
         }
     }
 
