@@ -110,6 +110,8 @@ export const CartItemDelete = styled.button({
   width: "10%",
   padding: "1%",
   marginRight: "3%",
+  backgroundColor: "white",
+  border: "none",
 });
 
 // 전체 금액 컨테이너
@@ -156,4 +158,6 @@ export const OrderButton = styled.button({
   fontSize: "16px",
   fontWeight: "350",
   letterSpacing: "1px",
+  backgroundColor: "white",
+  borderWidth: "1px",
 });
