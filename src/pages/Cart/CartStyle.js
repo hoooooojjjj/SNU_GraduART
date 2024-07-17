@@ -99,7 +99,7 @@ export const CartItemText = styled.div({
   marginLeft: "2%",
 });
 
-// 장바구니 항목 내 "삭제하기" 텍스트
+// 장바구니 항목 내 "삭제하기" 버튼
 export const CartItemDelete = styled.button({
   color: "black",
   textAlign: "center",
