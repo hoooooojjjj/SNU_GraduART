@@ -31,6 +31,7 @@ export const LoginText = styled.div({
 });
 
 export const GoogleLogin = styled.div`
+  cursor: pointer;
   width: 59.5%;
   height: 20%;
   margin-top: 10%;
