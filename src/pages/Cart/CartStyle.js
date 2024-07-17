@@ -49,8 +49,13 @@ export const ListText = styled.div({
   borderBottom: "solid #818181",
 });
 
+// 전체 작품 선택
+export const CheckAll = styled.button`
+  margin-left: 3%;
+`;
+
 // 장바구니 모든 항목 포함하는 리스트
-export const CartItemList = styled.div({
+export const CartItemList = styled.form({
   width: "80%",
   height: "auto",
   borderBottom: "solid",
@@ -68,7 +73,7 @@ export const CartItem = styled.div({
 });
 
 // 장바구니 체크 아이콘
-export const CheckBoxIcon = styled(CheckBoxOutlineBlankIcon)`
+export const CheckBoxIcon = styled.input`
   align-items: center;
   display: flex;
   margin: 3%;
@@ -149,7 +154,7 @@ export const OrderContainer = styled.div({
 // 선택 상품 주문, 전체 상품 주문에 사용될 주문 버튼
 export const OrderButton = styled.button({
   display: "flex",
-  width: "40%",
+  width: "95%",
   height: "10%",
   padding: "16px 12px",
   justifyContent: "center",

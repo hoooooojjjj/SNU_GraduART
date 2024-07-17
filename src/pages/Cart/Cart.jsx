@@ -14,6 +14,7 @@ import {
   PriceText,
   OrderContainer,
   OrderButton,
+  CheckAll,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
@@ -28,6 +29,12 @@ function Cart() {
 
   // 리렌더링 시키기 위한 키
   const [renderKey, setRenderKey] = useState(0);
+
+  // 선택된 작품 리스트
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  // 전체 상품 선택 여부
+  const [isCheckedAll, setIsCheckedAll] = useState(false);
 
   // 해당 유저가 담은 장바구니 리스트 가져오기
   useEffect(() => {
@@ -64,17 +71,57 @@ function Cart() {
     setRenderKey(renderKey + 1);
   };
 
+  // 전체 작품 선택 클릭 시
+  const handleCheckAll = () => {
+    // 만약 다 체크되어 있었다면 선택된 작품 리스트를 비움
+    if (isCheckedAll) {
+      setSelectedItems([]);
+      // 체크되어 있지 않았다면 유저가 담은 장바구니 리스트 모두를 선택된 작품 리스트에 추가
+    } else {
+      setSelectedItems(userCartItemList);
+    }
+
+    setIsCheckedAll(!isCheckedAll);
+  };
+
+  // 체크박스가 변경될 때마다 선택된 작품을 업데이트
+  const handleCheckboxChange = (event, item) => {
+    // 체크를 눌렀으면 선택된 작품 리스트에 추가,
+    if (event.target.checked) {
+      setSelectedItems([...selectedItems, item]);
+    } else {
+      // 체크를 해제했으면 선택된 작품 리스트에서 제거
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
+    }
+  };
+
+  // 선택된 작품 주문하기
+  const handleOrderSelectedItems = () => {
+    // 선택된 상품에 대한 주문 로직 구현
+  };
+
   return (
     <Container key={renderKey}>
       <Header></Header>
       <ContentContainer>
         <CartText>장바구니</CartText>
-        <ListText>목록</ListText>
+        <ListText>
+          목록<CheckAll onClick={handleCheckAll}>전체 작품 선택</CheckAll>
+        </ListText>
+
         <CartItemList>
           {userCartItemList ? (
             userCartItemList.map((item) => (
               <CartItem key={item.item_id}>
-                <CheckBoxIcon></CheckBoxIcon>
+                <CheckBoxIcon
+                  type="checkbox"
+                  id={item.item_id}
+                  name="isChecked"
+                  checked={selectedItems.includes(item)}
+                  onChange={(event) => handleCheckboxChange(event, item)}
+                ></CheckBoxIcon>
                 <CartItemImg path={item.imagePath}></CartItemImg>
                 <CartItemText>
                   {item.title} | {item.artist}
@@ -96,17 +143,16 @@ function Cart() {
           )}
         </CartItemList>
         <PriceContainer>
-          <PriceText>전체 금액</PriceText>
+          <PriceText>선택한 작품 총액</PriceText>
           <PriceText>
-            {userCartItemList
-              ? userCartItemList.reduce((total, item) => total + item.price, 0)
+            {selectedItems.length > 0
+              ? selectedItems.reduce((total, item) => total + item.price, 0)
               : 0}
             원
           </PriceText>
         </PriceContainer>
         <OrderContainer>
-          <OrderButton>선택 상품 주문</OrderButton>
-          <OrderButton>전체 상품 주문</OrderButton>
+          <OrderButton>선택 작품 주문</OrderButton>
         </OrderContainer>
       </ContentContainer>
     </Container>
