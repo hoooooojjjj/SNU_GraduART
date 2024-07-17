@@ -26,7 +26,9 @@ export const useAuth = () => {
     );
 
     return () => {
-      authListener.unsubscribe();
+      if (authListener && typeof authListener.unsubscribe === "function") {
+        authListener.unsubscribe();
+      }
     };
   }, []);
 
