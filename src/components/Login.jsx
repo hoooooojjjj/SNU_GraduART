@@ -17,29 +17,6 @@ const Login = () => {
 
         if (error) {
             console.error('Error signing in with Google:', error.message)
-        } else {
-            const user = supabase.auth.getUser
-            if (user) {
-                // Call the serverless function to insert the user data
-                const response = await fetch('/.netlify/functions/registerUser', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: user.id,
-                        created_at: new Date().toISOString(),
-                    }),
-                })
-
-                if (response.ok) {
-                    const userData = await response.json()
-                    console.log('User data inserted:', userData)
-                } else {
-                    const errorData = await response.json()
-                    console.error('Error inserting user data:', errorData.error)
-                }
-            }
         }
     }
 
