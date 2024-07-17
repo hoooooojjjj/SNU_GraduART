@@ -55,7 +55,7 @@ export const CheckAll = styled.button`
 `;
 
 // 장바구니 모든 항목 포함하는 리스트
-export const CartItemList = styled.form({
+export const CartItemList = styled.div({
   width: "80%",
   height: "auto",
   borderBottom: "solid",
