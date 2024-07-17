@@ -15,8 +15,6 @@ import {
   OrderContainer,
   OrderButton,
 } from "./CartStyle.js";
-import { NavLink } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
 import Header from "../../components/Header/Header.jsx";
 
 function Cart() {

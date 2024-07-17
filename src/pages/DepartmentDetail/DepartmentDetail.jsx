@@ -25,16 +25,11 @@ import {
   ArtWorkDescription,
   ArtWorkImgWrap,
 } from "./DepartmentDetailStyle.js";
-import { createClient } from "@supabase/supabase-js";
 import { useNavigate, useParams } from "react-router-dom";
 import departmentInfos from "./DepartmentInfo.json";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
-
-const supabase = createClient(
-  "https://wjoocdnkngzyrprnnytm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
-);
+import { supabase } from "../../ServerClient.js";
 
 function DepartmentDetail() {
   // 라우팅

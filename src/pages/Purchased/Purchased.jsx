@@ -9,8 +9,6 @@ import {
   CartItemText,
 } from "../Cart/CartStyle.js";
 import { PurchasedItemImg, PurchasedItemDelete } from "./Purchased.js";
-import { NavLink } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
 import Header from "../../components/Header/Header.jsx";
 
 function Purchased() {
