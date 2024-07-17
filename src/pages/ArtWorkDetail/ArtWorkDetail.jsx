@@ -110,6 +110,7 @@ function ArtWorkDetail() {
   // 장바구니 담기 클릭 시 cart_item 테이블에 데이터 추가
   const onInsertCart = async () => {
     // 로그인 안했다면 로그인 페이지로 이동
+    console.log(user);
     if (!user) {
       nav("/login", { state: "로그인이 필요한 서비스입니다" });
       return null;
