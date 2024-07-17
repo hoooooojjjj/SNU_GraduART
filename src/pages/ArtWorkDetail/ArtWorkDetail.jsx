@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header.jsx";
 import {
   Container,
@@ -26,12 +26,8 @@ import {
   ImageWrap,
 } from "./ArtWorkDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  "https://wjoocdnkngzyrprnnytm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
-);
+import { supabase } from "../../ServerClient.js";
+import { userContext } from "../../App";
 
 function ArtWorkDetail() {
   const nav = useNavigate();
@@ -47,6 +43,9 @@ function ArtWorkDetail() {
 
   // 구매 정보 토글
   const [isPurchased, setIsPurchased] = useState(false);
+
+  // 유저 정보 가져오기
+  const [user] = useContext(userContext);
 
   // artWorkList에서 현재 라우트에 해당하는 작품만 필터링
   useEffect(() => {
@@ -108,20 +107,40 @@ function ArtWorkDetail() {
     }
   };
 
-  // 장바구비 담기 클릭 시 cart_item 테이블에 데이터 추가
+  // 장바구니 담기 클릭 시 cart_item 테이블에 데이터 추가
   const onInsertCart = async () => {
+    // 로그인 안했다면 로그인 페이지로 이동
+    if (!user) {
+      nav("/login", { state: "로그인이 필요한 서비스입니다" });
+      return null;
+    }
+    // cart_item 테이블에 데이터 추가
     const { data, error } = await supabase
       .from("cart_item")
       .insert([
         {
-          id: 1,
-          user_id: 1,
+          user_id: user.id,
           item_id: artWork.itemID,
+          title: artWork.title,
+          artist: artWork.artist,
+          descriptions: artWork.descriptions,
+          imagePath: artWork.imagePath,
+          price: artWork.price,
+          made_at: artWork.made_at,
         },
       ])
       .select();
     if (error) {
       console.log(error);
+    }
+    // 장바구니에 담겼다는 알림과 redirect 확인창
+    const isRedirectCartPage = confirm(
+      "장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"
+    );
+
+    // 확인을 누르면 장바구니 페이지로 이동
+    if (isRedirectCartPage) {
+      nav("/cart");
     }
   };
 
