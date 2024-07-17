@@ -9,11 +9,16 @@ import {
   CartItemText,
 } from "../Cart/CartStyle.js";
 import { PurchasedItemImg, PurchasedItemDelete } from "./Purchased.js";
-import { NavLink } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.jsx";
 
 function Purchased() {
+  const nav = useNavigate();
+
+  const onClick = () => {
+    nav("/refund");
+  };
+
   return (
     <Container>
       <Header></Header>
@@ -27,7 +32,7 @@ function Purchased() {
               장면-표백하지 않은 흰색 | 김륜아<br></br>
               <br></br>600,000 원
             </CartItemText>
-            <PurchasedItemDelete to={"/refund"}>
+            <PurchasedItemDelete onClick={onClick}>
               취소/환불 신청하기
             </PurchasedItemDelete>
           </CartItem>
@@ -37,7 +42,7 @@ function Purchased() {
               풍경2 | 오승현<br></br>
               <br></br>400,000 원
             </CartItemText>
-            <PurchasedItemDelete to={"/refund"}>
+            <PurchasedItemDelete onClick={onClick}>
               취소/환불 신청하기
             </PurchasedItemDelete>
           </CartItem>

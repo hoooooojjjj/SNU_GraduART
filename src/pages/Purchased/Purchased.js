@@ -14,22 +14,8 @@ export const PurchasedItemImg = styled.img`
 `;
 
 // 구매내역 항목 내 "취소/환불하기" 버튼
-// export const PurchasedItemDelete = styled.button({
-//   color: "black",
-//   textAlign: "center",
-//   fontFamily: "pretendard",
-//   fontSize: "15px",
-//   fontStyle: "normal",
-//   fontWeight: "500",
-//   width: "15%",
-//   padding: "1%",
-//   marginRight: "3%",
-//   backgroundColor: "white",
-//   border: "none",
-// });
-
-export const PurchasedItemDelete = styled(NavLink)`
-  color: black,
+export const PurchasedItemDelete = styled.button({
+  color: "black",
   textAlign: "center",
   fontFamily: "pretendard",
   fontSize: "15px",
@@ -40,4 +26,18 @@ export const PurchasedItemDelete = styled(NavLink)`
   marginRight: "3%",
   backgroundColor: "white",
   border: "none",
-`;
+});
+
+// export const PurchasedItemDelete = styled(NavLink)`
+//   color: black,
+//   textAlign: "center",
+//   fontFamily: "pretendard",
+//   fontSize: "15px",
+//   fontStyle: "normal",
+//   fontWeight: "500",
+//   width: "15%",
+//   padding: "1%",
+//   marginRight: "3%",
+//   backgroundColor: "white",
+//   border: "none",
+// `;
