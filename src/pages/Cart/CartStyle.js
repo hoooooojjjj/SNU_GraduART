@@ -160,4 +160,5 @@ export const OrderButton = styled.button({
   letterSpacing: "1px",
   backgroundColor: "white",
   borderWidth: "1px",
+  marginBottom: "5%",
 });

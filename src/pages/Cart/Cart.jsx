@@ -54,10 +54,12 @@ function Cart() {
             userCartItemList.map((item) => (
               <CartItem key={item.item_id}>
                 <CheckBoxIcon></CheckBoxIcon>
-                <CartItemImg path={"/"}></CartItemImg>
+                <CartItemImg path={item.imagePath}></CartItemImg>
                 <CartItemText>
-                  장면-표백하지 않은 흰색 | 김륜아<br></br>
-                  <br></br>600,000 원
+                  {item.title} | {item.artist}
+                  <br></br>
+                  <br></br>
+                  {item.price} 원
                 </CartItemText>
                 <CartItemDelete>삭제하기</CartItemDelete>
               </CartItem>
@@ -68,7 +70,12 @@ function Cart() {
         </CartItemList>
         <PriceContainer>
           <PriceText>전체 금액</PriceText>
-          <PriceText>1,600,000원</PriceText>
+          <PriceText>
+            {userCartItemList
+              ? userCartItemList.reduce((total, item) => total + item.price, 0)
+              : 0}
+            원
+          </PriceText>
         </PriceContainer>
         <OrderContainer>
           <OrderButton>선택 상품 주문</OrderButton>

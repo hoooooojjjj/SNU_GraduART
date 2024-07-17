@@ -122,6 +122,12 @@ function ArtWorkDetail() {
         {
           user_id: user.id,
           item_id: artWork.itemID,
+          title: artWork.title,
+          artist: artWork.artist,
+          descriptions: artWork.descriptions,
+          imagePath: artWork.imagePath,
+          price: artWork.price,
+          made_at: artWork.made_at,
         },
       ])
       .select();

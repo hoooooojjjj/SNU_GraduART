@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     // 유저 정보 저장
     setUser(authUser);
-  }, [user]);
+  }, [authUser]);
 
   return (
     <userContext.Provider value={[user, setUser]}>
