@@ -27,7 +27,9 @@ function Purchased() {
               장면-표백하지 않은 흰색 | 김륜아<br></br>
               <br></br>600,000 원
             </CartItemText>
-            <PurchasedItemDelete>취소/환불 신청하기</PurchasedItemDelete>
+            <PurchasedItemDelete to={"/refund"}>
+              취소/환불 신청하기
+            </PurchasedItemDelete>
           </CartItem>
           <CartItem>
             <PurchasedItemImg path={`/assets/cartImg2.jpg`}></PurchasedItemImg>
@@ -35,7 +37,9 @@ function Purchased() {
               풍경2 | 오승현<br></br>
               <br></br>400,000 원
             </CartItemText>
-            <PurchasedItemDelete>취소/환불 신청하기</PurchasedItemDelete>
+            <PurchasedItemDelete to={"/refund"}>
+              취소/환불 신청하기
+            </PurchasedItemDelete>
           </CartItem>
         </CartItemList>
       </ContentContainer>
