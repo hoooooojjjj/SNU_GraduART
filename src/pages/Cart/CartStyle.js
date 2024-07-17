@@ -101,6 +101,7 @@ export const CartItemText = styled.div({
 
 // 장바구니 항목 내 "삭제하기" 버튼
 export const CartItemDelete = styled.button({
+  cursor: "pointer",
   color: "black",
   textAlign: "center",
   fontFamily: "pretendard",

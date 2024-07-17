@@ -26,6 +26,9 @@ function Cart() {
   // 유저 정보 가져오기
   const [user] = useContext(userContext);
 
+  // 리렌더링 시키기 위한 키
+  const [renderKey, setRenderKey] = useState(0);
+
   // 해당 유저가 담은 장바구니 리스트 가져오기
   useEffect(() => {
     const getUserCartItemList = async () => {
@@ -33,18 +36,36 @@ function Cart() {
         .from("cart_item")
         .select("*")
         // 해당 유저의 상품만 필터링
-        .eq("user_id", user.id);
-      console.log(cart_item);
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+      if (error) {
+        console.log(error);
+      }
       setUserCartItemList(cart_item);
     };
 
     if (user) {
       getUserCartItemList();
     }
-  }, [user]);
+  }, [user, renderKey]);
+
+  // 삭제하기 버튼 클릭 시 해당 작품 cart_item 테이블에서 삭제
+  const handleCartItemDelete = async (item) => {
+    if (user) {
+      const { error } = await supabase
+        .from("cart_item")
+        .delete()
+        .eq("item_id", item.item_id);
+      if (error) {
+        console.log(error);
+      }
+    }
+    // 리렌더링 시키기 위한 키 변경
+    setRenderKey(renderKey + 1);
+  };
 
   return (
-    <Container>
+    <Container key={renderKey}>
       <Header></Header>
       <ContentContainer>
         <CartText>장바구니</CartText>
@@ -61,7 +82,13 @@ function Cart() {
                   <br></br>
                   {item.price} 원
                 </CartItemText>
-                <CartItemDelete>삭제하기</CartItemDelete>
+                <CartItemDelete
+                  onClick={() => {
+                    handleCartItemDelete(item);
+                  }}
+                >
+                  삭제하기
+                </CartItemDelete>
               </CartItem>
             ))
           ) : (
