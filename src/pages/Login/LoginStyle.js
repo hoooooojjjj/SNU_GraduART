@@ -35,6 +35,7 @@ export const LoginText = styled.div({
 
 // 받아온 구글로그인 이미지
 export const GoogleLogin = styled.div`
+  cursor: pointer;
   width: 59.5%;
   height: 20%;
   margin-top: 10%;
