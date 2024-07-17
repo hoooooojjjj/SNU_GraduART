@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header.jsx";
 import {
   Container,
@@ -27,6 +27,7 @@ import {
 } from "./ArtWorkDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../ServerClient.js";
+import { userContext } from "../../App";
 
 function ArtWorkDetail() {
   const nav = useNavigate();
@@ -42,6 +43,9 @@ function ArtWorkDetail() {
 
   // 구매 정보 토글
   const [isPurchased, setIsPurchased] = useState(false);
+
+  // 유저 정보 가져오기
+  const [user] = useContext(userContext);
 
   // artWorkList에서 현재 라우트에 해당하는 작품만 필터링
   useEffect(() => {
@@ -103,8 +107,13 @@ function ArtWorkDetail() {
     }
   };
 
-  // 장바구비 담기 클릭 시 cart_item 테이블에 데이터 추가
+  // 장바구니 담기 클릭 시 cart_item 테이블에 데이터 추가
   const onInsertCart = async () => {
+    // 로그인 안했다면 로그인 페이지로 이동
+    if (!user) {
+      nav("/login", { state: "로그인이 필요한 서비스입니다" });
+      return null;
+    }
     const { data, error } = await supabase
       .from("cart_item")
       .insert([

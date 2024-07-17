@@ -36,7 +36,7 @@ export const LoginText = styled.div({
 // 받아온 구글로그인 이미지
 export const GoogleLogin = styled.div`
   cursor: pointer;
-  width: 59.5%;
+  width: 30%;
   height: 20%;
   margin-top: 10%;
   padding: 1%;
@@ -56,4 +56,13 @@ export const Line = styled.div({
   marginTop: "10%",
   display: "flex",
   justifyContent: "center",
+});
+
+// RedirectMessage
+export const RedirectMessage = styled.div({
+  color: "black",
+  fontFamily: "Pretendard",
+  fontSize: "20px",
+  width: "90%",
+  marginTop: "2%",
 });
