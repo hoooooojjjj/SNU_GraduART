@@ -8,6 +8,7 @@ import {
   HomeStyledNavLink,
 } from "./Header.js";
 import styled from "@emotion/styled";
+import Login from "../Login.jsx";
 
 const StyledScrollButton = styled.div(() => ({
   width: `23px`,
@@ -60,24 +61,24 @@ const Header = () => {
           <StyledNavLink to={"/Oriental Painting"} activeclassname={"active"}>
             동양화과
           </StyledNavLink>
-          <StyledNavLink to={"/Western Painting"} activeclassName={"active"}>
+          <StyledNavLink to={"/Western Painting"} activeclassname={"active"}>
             서양화과
           </StyledNavLink>
-          <StyledNavLink to={"/Sculpture"} activeclassName={"active"}>
+          <StyledNavLink to={"/Sculpture"} activeclassname={"active"}>
             조소과
           </StyledNavLink>
-          <StyledNavLink to={"/Craft"} activeclassName={"active"}>
+          <StyledNavLink to={"/Craft"} activeclassname={"active"}>
             공예과
           </StyledNavLink>
-          <StyledNavLink to={"/Design"} activeclassName={"active"}>
+          <StyledNavLink to={"/Design"} activeclassname={"active"}>
             디자인과
           </StyledNavLink>
-          <StyledNavLink to={"/MediaArts"} activeclassName={"active"}>
+          <StyledNavLink to={"/MediaArts"} activeclassname={"active"}>
             영상매체예술
           </StyledNavLink>
           <Seperator></Seperator>
           <ScrollButton></ScrollButton>
-          <StyledNavLink to={"/login"}>
+          <Login>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -96,7 +97,7 @@ const Header = () => {
                 fill="lightgray"
               />
             </svg>
-          </StyledNavLink>
+          </Login>
           <StyledNavLink to={"/cart"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
