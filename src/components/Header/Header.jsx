@@ -8,7 +8,6 @@ import {
   HomeStyledNavLink,
 } from "./Header.js";
 import styled from "@emotion/styled";
-import Login from "../Login.jsx";
 
 const StyledScrollButton = styled.div(() => ({
   width: `23px`,
@@ -78,7 +77,7 @@ const Header = () => {
           </StyledNavLink>
           <Seperator></Seperator>
           <ScrollButton></ScrollButton>
-          <Login>
+          <StyledNavLink to ={"/login"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -97,7 +96,7 @@ const Header = () => {
                 fill="lightgray"
               />
             </svg>
-          </Login>
+          </StyledNavLink>
           <StyledNavLink to={"/cart"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

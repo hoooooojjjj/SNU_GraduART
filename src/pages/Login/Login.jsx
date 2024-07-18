@@ -3,12 +3,12 @@ import {
   Container,
   LoginContainer,
   LoginText,
-  GoogleLogin,
   Line,
   RedirectMessage,
 } from "./LoginStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { useLocation } from "react-router-dom";
+import LoginComponent from "../../components/LoginComponent.jsx";
 
 function Login() {
   const [isRedirect, setIsRedirect] = useState(null);
@@ -36,10 +36,7 @@ function Login() {
       <LoginContainer>
         <LoginText>로그인</LoginText>
         <RedirectMessage>{isRedirect ? isRedirect : ""}</RedirectMessage>
-        <GoogleLogin
-          // onClick={googleLogin}
-          path={`/assets/googleLoginImg.png`}
-        ></GoogleLogin>
+        <LoginComponent></LoginComponent>
         <Line></Line>
       </LoginContainer>
     </Container>
