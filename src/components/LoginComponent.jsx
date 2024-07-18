@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
+import React from "react";
 import { supabase } from "../ServerClient.js";
 
-Modal.setAppElement("#root");
-
-const Login = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const openModal = () => setModalIsOpen(true);
-  const closeModal = () => setModalIsOpen(false);
-
+const LoginComponent = () => {
   const signInWithGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -28,28 +20,11 @@ const Login = () => {
   return (
     <div>
       <script src="https://accounts.google.com/gsi/client?hl=ko" async></script>
-      <button onClick={openModal}>Login</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Login Modal"
-        style={{
-          content: {
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-          },
-        }}
-      >
-        <h2>Login</h2>
         <div
           id="g_id_onload"
           data-locale="ko"
           data-client_id="887642201474-dlcahndjduspb0rpnpieui1mqpo6btoo.apps.googleusercontent.com"
-          data-login_uri="https://127.0.0.1/"
+          data-login_uri={import.meta.env.VITE_FRONT_URL}
           data-auto_prompt="false"
         ></div>
         <div
@@ -62,10 +37,8 @@ const Login = () => {
           data-logo_alignment="left"
         ></div>
         <button onClick={signInWithGoogle}>Login with Google</button>
-        <button onClick={closeModal}>Close</button>
-      </Modal>
     </div>
   );
 };
 
-export default Login;
+export default LoginComponent;
