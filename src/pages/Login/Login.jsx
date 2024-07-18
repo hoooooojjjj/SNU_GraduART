@@ -3,7 +3,6 @@ import {
   Container,
   LoginContainer,
   LoginText,
-  GoogleLogin,
   Line,
   RedirectMessage,
 } from "./LoginStyle.js";
@@ -36,11 +35,8 @@ function Login() {
       <Header></Header>
       <LoginContainer>
         <LoginText>로그인</LoginText>
-        <LoginComponent></LoginComponent>
         <RedirectMessage>{isRedirect ? isRedirect : ""}</RedirectMessage>
-        <GoogleLogin
-          path={`/assets/googleLoginImg.png`}
-        ></GoogleLogin>
+        <LoginComponent></LoginComponent>
         <Line></Line>
       </LoginContainer>
     </Container>

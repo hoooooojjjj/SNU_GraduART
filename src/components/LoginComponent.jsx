@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { supabase } from "../ServerClient.js";
 
 const LoginComponent = () => {
-  const signInWithGoogle = async () => {
+  useEffect(() => {
+    // Load the Google Sign-In script
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.onload = () => {
+      // Initialize the Google Sign-In button after the script loads
+      window.google.accounts.id.initialize({
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+      });
+
+      window.google.accounts.id.renderButton(
+          document.getElementById("g_id_signin"),
+          {
+            theme: "outline",
+            size: "large",
+            locale: "ko",
+          }
+      );
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  const handleCredentialResponse = async (response) => {
+    console.log(response);
+
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
@@ -19,11 +45,10 @@ const LoginComponent = () => {
 
   return (
     <div>
-      <script src="https://accounts.google.com/gsi/client?hl=ko" async></script>
         <div
           id="g_id_onload"
           data-locale="ko"
-          data-client_id="887642201474-dlcahndjduspb0rpnpieui1mqpo6btoo.apps.googleusercontent.com"
+          data-client_id={import.meta.env.VITE_GOOGLE_CLIENT_ID}
           data-login_uri={import.meta.env.VITE_FRONT_URL}
           data-auto_prompt="false"
         ></div>
@@ -36,7 +61,6 @@ const LoginComponent = () => {
           data-shape="rectangular"
           data-logo_alignment="left"
         ></div>
-        <button onClick={signInWithGoogle}>Login with Google</button>
     </div>
   );
 };
