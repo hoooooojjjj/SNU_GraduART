@@ -149,6 +149,7 @@ export const ArtWorkListWrap = styled.div({
 });
 
 export const ArtWorkGridItem = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center; /* 자식 요소를 수평 중앙 정렬 */

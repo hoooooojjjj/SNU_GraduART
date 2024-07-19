@@ -25,18 +25,16 @@ import {
   ArtWorkDescription,
   ArtWorkImgWrap,
 } from "./DepartmentDetailStyle.js";
-import { createClient } from "@supabase/supabase-js";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import departmentInfos from "./DepartmentInfo.json";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
-
-const supabase = createClient(
-  "https://wjoocdnkngzyrprnnytm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqb29jZG5rbmd6eXJwcm5ueXRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA0MzkyMjksImV4cCI6MjAzNjAxNTIyOX0.vBZyH45AvtMWgOzv2fRhMvJMO5xhcgaXpsV5rolYnq4"
-);
+import { supabase } from "../../ServerClient.js";
 
 function DepartmentDetail() {
+  // 라우팅
+  const nav = useNavigate();
+
   // 현재 라우트에 해당하는 과
   const { department } = useParams();
 
@@ -75,7 +73,9 @@ function DepartmentDetail() {
         // 모든 column 선택
         .select("*")
         // 현재 라우트에 해당하는 과 미술작품만 필터링
-        .eq("department", department);
+        .eq("department", department)
+        // 최신순으로 정렬
+        .order("created_at", { ascending: false });
 
       // 에러 없고 데이터가 있다면
       if (!error && items) {
@@ -103,6 +103,12 @@ function DepartmentDetail() {
 
     PaginateArtWorks();
   }, [department, ArtWorkList, page]);
+
+  // 작품 클릭하면 작품 상세페이지로 이동하는 함수
+  // 라우팅할 때 ArtWorkList도 props로 전달
+  const onClickArtWork = (itemID) => {
+    nav(`/${department}/${itemID}`, { state: ArtWorkList });
+  };
 
   return (
     <Container>
@@ -144,9 +150,14 @@ function DepartmentDetail() {
           {/* ArtWorksInOnePage에 데이터가 할당된다면 */}
           {ArtWorksInOnePage.length > 0 ? (
             // ArtWorksInOnePage의 데이터를 순회하며 한 페이지의 ArtWorkGridItem을 생성
-            ArtWorksInOnePage.map((item, index) => {
+            ArtWorksInOnePage.map((item) => {
               return (
-                <ArtWorkGridItem key={index}>
+                <ArtWorkGridItem
+                  key={item.itemID}
+                  onClick={() => {
+                    onClickArtWork(item.itemID);
+                  }}
+                >
                   <ArtWorkImgWrap>
                     <ArtWorkImg ImgUrl={item.imagePath}></ArtWorkImg>
                   </ArtWorkImgWrap>
