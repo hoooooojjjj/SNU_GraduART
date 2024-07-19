@@ -44,7 +44,7 @@ export const ListText = styled.div({
   lineHeight: "110%",
   display: "flex",
   justifyContent: "flex-start",
-  marginBottom: "2%",
+  marginBottom: "1%",
   paddingBottom: "0.5%",
   borderBottom: "solid #818181",
 });
@@ -63,12 +63,16 @@ export const CheckAllContainer = styled.div({
   height: "30%",
   display: "flex",
   flexDirection: "row",
+  alignItems: "center",
 });
 
 // "전체 선택" 체크박스 버튼
-export const CheckAll = styled.button`
+export const CheckAllIcon = styled.input`
+  align-items: center;
+  display: flex;
+  margin: 2%;
   margin-left: 3%;
-  background-image: url(${(props) => props.path});
+  margin-right: 1%;
 `;
 
 // "전체 선택" 텍스트
@@ -78,7 +82,6 @@ export const CheckAllText = styled.div({
   fontSize: "18px",
   fontStyle: "normal",
   fontWeight: "400",
-  marginLeft: "1%",
 });
 
 // 장바구니에 있는 항목 1개

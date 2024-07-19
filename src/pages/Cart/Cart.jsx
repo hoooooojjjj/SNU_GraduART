@@ -14,7 +14,7 @@ import {
   PriceText,
   OrderContainer,
   OrderButton,
-  CheckAll,
+  CheckAllIcon,
   CheckAllContainer,
   CheckAllText,
 } from "./CartStyle.js";
@@ -112,7 +112,11 @@ function Cart() {
         <ListText>목록</ListText>
         <CartItemList>
           <CheckAllContainer>
-            <CheckAll onClick={handleCheckAll}>체크박스 이미지</CheckAll>
+            <CheckAllIcon
+              type="checkbox"
+              name="isChecked"
+              onClick={handleCheckAll}
+            ></CheckAllIcon>
             <CheckAllText>전체 선택</CheckAllText>
           </CheckAllContainer>
           {userCartItemList.length > 0 ? (
