@@ -19,7 +19,6 @@ import {
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
 import { supabase } from "../../ServerClient.js";
-import {useNavigate} from "react-router-dom";
 import {isMobile} from "react-device-detect";
 
 function Cart() {
@@ -136,16 +135,6 @@ function Cart() {
       const response = await orderSelectedItems(user.id, itemIds);
       console.log('Order successful:', response);
       const tid = response.tid;
-
-      const isMobileDevice = () => {
-        // Check for common mobile user agents
-        const mobileRegex = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-        // Check for common desktop user agents to exclude them explicitly
-        const desktopRegex = /Windows|Macintosh|Linux|X11|CrOS|BSD/i;
-
-        const userAgent = navigator.userAgent;
-        return mobileRegex.test(userAgent) && !desktopRegex.test(userAgent);
-      };
 
       if (isMobile) {
         window.location.assign(`${response.next_redirect_mobile_url}?tid=${tid}`);
