@@ -124,7 +124,8 @@ export const DescriptionText = styled.p`
   width: 100%;
   color: #000000;
   font-family: "Pretendard-Regular", Helvetica;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1.7;
   font-weight: 400;
 `;
 
