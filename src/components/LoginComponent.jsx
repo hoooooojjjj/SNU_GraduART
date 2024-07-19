@@ -1,35 +1,6 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../ServerClient.js";
-
-const handleCredentialResponse = async (response, navigate) => {
-  console.log("Login attempt:", response);
-
-  const { credential } = response;
-
-  if (!credential) {
-    console.error("No credential found in response");
-    return;
-  }
-
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      access_token: credential,
-      redirectTo: "http://localhost:5173", //import.meta.env.VITE_FRONT_URL
-    },
-  });
-
-  if (error) {
-    console.error("Error signing in with Google:", error.message);
-  } else {
-    const { session } = data;
-    if (session) {
-      localStorage.setItem("supabase.auth.token", JSON.stringify(session));
-      navigate("/"); // Redirect to landing page
-    }
-  }
-};
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {supabase} from "../ServerClient.js";
 
 const LoginComponent = () => {
   const navigate = useNavigate();
@@ -41,7 +12,7 @@ const LoginComponent = () => {
     script.onload = () => {
       window.google.accounts.id.initialize({
         client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-        callback: (response) => handleCredentialResponse(response, navigate),
+        callback: handleSignIn,
       });
 
       window.google.accounts.id.renderButton(
@@ -60,10 +31,38 @@ const LoginComponent = () => {
     };
   }, [navigate]);
 
+  const handleSignIn = async (response) => {
+    console.log("Google login attempt:", response);
+    const { credential } = response;
+
+    if (!credential) {
+      console.error("No credential found in response");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        access_token: credential,
+        redirectTo: import.meta.env.VITE_FRONT_URL
+      },
+    });
+
+    if (error) {
+      console.error("Error signing in with Google:", error.message);
+    } else {
+      const { session } = data;
+      if (session) {
+        localStorage.setItem("supabase.auth.token", JSON.stringify(session));
+        navigate("/");
+      }
+    }
+  };
+
   useEffect(() => {
     const { user } = supabase.auth.getUser;
     if (user) {
-      navigate("/"); // Redirect to landing page if already logged in
+      navigate("/");
     }
   }, [navigate]);
 
@@ -89,4 +88,4 @@ const LoginComponent = () => {
   );
 };
 
-export default LoginComponent;
+export default LoginComponent
