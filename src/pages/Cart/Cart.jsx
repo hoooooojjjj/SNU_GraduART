@@ -14,7 +14,9 @@ import {
   PriceText,
   OrderContainer,
   OrderButton,
-  CheckAll,
+  CheckAllIcon,
+  CheckAllContainer,
+  CheckAllText,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
@@ -22,13 +24,10 @@ import { supabase } from "../../ServerClient.js";
 
 function Cart() {
   // 유저가 장바구니에 담은 작품 리스트
-  const [userCartItemList, setUserCartItemList] = useState(null);
+  const [userCartItemList, setUserCartItemList] = useState([]);
 
   // 유저 정보 가져오기
   const [user] = useContext(userContext);
-
-  // 리렌더링 시키기 위한 키
-  const [renderKey, setRenderKey] = useState(0);
 
   // 선택된 작품 리스트
   const [selectedItems, setSelectedItems] = useState([]);
@@ -54,7 +53,7 @@ function Cart() {
     if (user) {
       getUserCartItemList();
     }
-  }, [user, renderKey]);
+  }, [user]);
 
   // 삭제하기 버튼 클릭 시 해당 작품 cart_item 테이블에서 삭제
   const handleCartItemDelete = async (item) => {
@@ -67,8 +66,11 @@ function Cart() {
         console.log(error);
       }
     }
-    // 리렌더링 시키기 위한 키 변경
-    setRenderKey(renderKey + 1);
+
+    const newCartItemList = userCartItemList.filter(
+      (cartItem) => cartItem.item_id !== item.item_id
+    );
+    setUserCartItemList(newCartItemList);
   };
 
   // 전체 작품 선택 클릭 시
@@ -103,16 +105,21 @@ function Cart() {
   };
 
   return (
-    <Container key={renderKey}>
+    <Container>
       <Header></Header>
       <ContentContainer>
         <CartText>장바구니</CartText>
-        <ListText>
-          목록<CheckAll onClick={handleCheckAll}>전체 작품 선택</CheckAll>
-        </ListText>
-
+        <ListText>목록</ListText>
         <CartItemList>
-          {userCartItemList ? (
+          <CheckAllContainer>
+            <CheckAllIcon
+              type="checkbox"
+              name="isChecked"
+              onClick={handleCheckAll}
+            ></CheckAllIcon>
+            <CheckAllText>전체 선택</CheckAllText>
+          </CheckAllContainer>
+          {userCartItemList.length > 0 ? (
             userCartItemList.map((item) => (
               <CartItem key={item.item_id}>
                 <CheckBoxIcon
@@ -139,21 +146,35 @@ function Cart() {
               </CartItem>
             ))
           ) : (
-            <></>
+            <p
+              style={{
+                marginBottom: "40px",
+                textAlign: "center",
+                color: "gray",
+              }}
+            >
+              장바구니에 담긴 작품이 없습니다.
+            </p>
           )}
         </CartItemList>
-        <PriceContainer>
-          <PriceText>선택한 작품 총액</PriceText>
-          <PriceText>
-            {selectedItems.length > 0
-              ? selectedItems.reduce((total, item) => total + item.price, 0)
-              : 0}
-            원
-          </PriceText>
-        </PriceContainer>
-        <OrderContainer>
-          <OrderButton>선택 작품 주문</OrderButton>
-        </OrderContainer>
+        {userCartItemList.length > 0 ? (
+          <>
+            <PriceContainer>
+              <PriceText>선택한 작품 총액</PriceText>
+              <PriceText>
+                {selectedItems.length > 0
+                  ? selectedItems.reduce((total, item) => total + item.price, 0)
+                  : 0}
+                원
+              </PriceText>
+            </PriceContainer>
+            <OrderContainer>
+              <OrderButton>선택 작품 주문</OrderButton>
+            </OrderContainer>
+          </>
+        ) : (
+          <></>
+        )}
       </ContentContainer>
     </Container>
   );
