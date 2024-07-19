@@ -48,12 +48,13 @@ export const TitleText = styled.div`
 
 export const DescriptionContainer = styled.div`
   width: 100%;
-  height: 60dvh;
+  height: 55dvh;
   align-items: center;
   justify-content: center;
   display: flex;
   position: relative;
   box-shadow: 5px 5px 20px gray;
+  margin-bottom: 7dvh;
 `;
 
 export const MiddleContainer = styled.div`
