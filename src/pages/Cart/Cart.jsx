@@ -15,6 +15,8 @@ import {
   OrderContainer,
   OrderButton,
   CheckAll,
+  CheckAllContainer,
+  CheckAllText,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
@@ -107,10 +109,12 @@ function Cart() {
       <Header></Header>
       <ContentContainer>
         <CartText>장바구니</CartText>
-        <ListText>
-          목록<CheckAll onClick={handleCheckAll}>전체 작품 선택</CheckAll>
-        </ListText>
+        <ListText>목록</ListText>
         <CartItemList>
+          <CheckAllContainer>
+            <CheckAll onClick={handleCheckAll}>체크박스 이미지</CheckAll>
+            <CheckAllText>전체 선택</CheckAllText>
+          </CheckAllContainer>
           {userCartItemList.length > 0 ? (
             userCartItemList.map((item) => (
               <CartItem key={item.item_id}>
