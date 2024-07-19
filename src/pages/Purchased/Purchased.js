@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
-//
+// 구매내역 내 작품 이미지 (margin-left 위해 만듦)
 export const PurchasedItemImg = styled.img`
   width: 15%;
   height: 125px;
@@ -26,3 +27,17 @@ export const PurchasedItemDelete = styled.button({
   backgroundColor: "white",
   border: "none",
 });
+
+// export const PurchasedItemDelete = styled(NavLink)`
+//   color: black,
+//   textAlign: "center",
+//   fontFamily: "pretendard",
+//   fontSize: "15px",
+//   fontStyle: "normal",
+//   fontWeight: "500",
+//   width: "15%",
+//   padding: "1%",
+//   marginRight: "3%",
+//   backgroundColor: "white",
+//   border: "none",
+// `;
