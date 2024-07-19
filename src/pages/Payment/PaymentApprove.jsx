@@ -7,10 +7,9 @@ export const PaymentApprove = () => {
     const urlStr = window.location.href;
     const url = new URL(urlStr);
     const urlParams = url.searchParams;
-    const tid = urlParams.get('tid');
+    const tid = window.localStorage.getItem('temp_tid');
     const oid = urlParams.get('oid');
     const pgToken = urlParams.get('pg_token');
-
     const [user] = useContext(userContext);
 
     const requestApprove = async (oid, tid) => {

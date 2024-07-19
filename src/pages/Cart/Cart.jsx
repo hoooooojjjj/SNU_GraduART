@@ -135,11 +135,12 @@ function Cart() {
       const response = await orderSelectedItems(user.id, itemIds);
       console.log('Order successful:', response);
       const tid = response.tid;
+      window.localStorage.setItem('temp_tid', tid)
 
       if (isMobile) {
-        window.location.assign(`${response.next_redirect_mobile_url}?tid=${tid}`);
+        window.location.assign(`${response.next_redirect_mobile_url}`);
       } else {
-        window.location.assign(`${response.next_redirect_pc_url}?tid=${tid}`);
+        window.location.assign(`${response.next_redirect_pc_url}`);
       }
 
       setSelectedItems([]);
