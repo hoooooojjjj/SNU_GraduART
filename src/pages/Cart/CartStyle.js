@@ -49,17 +49,36 @@ export const ListText = styled.div({
   borderBottom: "solid #818181",
 });
 
-// 전체 작품 선택
-export const CheckAll = styled.button`
-  margin-left: 3%;
-`;
-
 // 장바구니 모든 항목 포함하는 리스트
-export const CartItemList = styled.form({
+export const CartItemList = styled.div({
   width: "80%",
   height: "auto",
   borderBottom: "solid",
   borderBottomColor: "grey",
+});
+
+// 전체 선택을 포함하는 컨테이너
+export const CheckAllContainer = styled.div({
+  width: "100%",
+  height: "30%",
+  display: "flex",
+  flexDirection: "row",
+});
+
+// "전체 선택" 체크박스 버튼
+export const CheckAll = styled.button`
+  margin-left: 3%;
+  background-image: url(${(props) => props.path});
+`;
+
+// "전체 선택" 텍스트
+export const CheckAllText = styled.div({
+  textAlign: "left",
+  fontFamily: "pretendard",
+  fontSize: "18px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  marginLeft: "1%",
 });
 
 // 장바구니에 있는 항목 1개
