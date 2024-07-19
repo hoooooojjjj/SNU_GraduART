@@ -44,7 +44,7 @@ const LoginComponent = () => {
       provider: "google",
       options: {
         access_token: credential,
-        redirectTo: import.meta.env.VITE_FRONT_URL
+        redirectTo: "https://snu-gradu-art.vercel.app/" //Redirection URL
       },
     });
 
