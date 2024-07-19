@@ -24,6 +24,10 @@ import {
   Price,
   BuyInfo,
   ImageWrap,
+  ModalOverlay,
+  ModalContent,
+  ModalButton,
+  Button,
 } from "./ArtWorkDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../ServerClient.js";
@@ -46,6 +50,37 @@ function ArtWorkDetail() {
 
   // 유저 정보 가져오기
   const [user] = useContext(userContext);
+
+  //모달 정보
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  // 모달을 표시하는 함수
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  // 모달을 숨기는 함수
+  const hideModal = () => {
+    setIsModalVisible(false);
+  };
+
+  //모달창 함수
+  const Modal = ({ onClose }) => (
+    <ModalOverlay onClick={onClose}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <p>장바구니에 추가되었습니다.</p>
+        <ModalButton onClick={onClose}>계속 관람하기</ModalButton>
+        <Button
+          onClick={() => {
+            onClose();
+            nav("/cart");
+          }}
+        >
+          장바구니 보기
+        </Button>
+      </ModalContent>
+    </ModalOverlay>
+  );
 
   // artWorkList에서 현재 라우트에 해당하는 작품만 필터링
   useEffect(() => {
@@ -133,15 +168,7 @@ function ArtWorkDetail() {
     if (error) {
       console.log(error);
     }
-    // 장바구니에 담겼다는 알림과 redirect 확인창
-    const isRedirectCartPage = confirm(
-      "장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"
-    );
-
-    // 확인을 누르면 장바구니 페이지로 이동
-    if (isRedirectCartPage) {
-      nav("/cart");
-    }
+    showModal();
   };
 
   return artWork ? (
@@ -195,6 +222,7 @@ function ArtWorkDetail() {
           )}
         </PurchaseMiddle>
       </PurchaseContainer>
+      {isModalVisible && <Modal onClose={hideModal} />}
     </Container>
   ) : (
     <></>
