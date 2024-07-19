@@ -5,6 +5,7 @@ import {
   LoginText,
   Line,
   RedirectMessage,
+  RedirectMessageContainer,
 } from "./LoginStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { useLocation } from "react-router-dom";
@@ -35,7 +36,9 @@ function Login() {
       <Header></Header>
       <LoginContainer>
         <LoginText>로그인</LoginText>
-        <RedirectMessage>{isRedirect ? isRedirect : ""}</RedirectMessage>
+        <RedirectMessageContainer>
+          <RedirectMessage>{isRedirect ? isRedirect : ""}</RedirectMessage>
+        </RedirectMessageContainer>
         <LoginComponent></LoginComponent>
         <Line></Line>
       </LoginContainer>

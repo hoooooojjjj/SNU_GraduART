@@ -53,16 +53,23 @@ export const Line = styled.div({
   width: "90%",
   height: "0.5%",
   backgroundColor: "#DDE1E6",
-  marginTop: "10%",
+  marginTop: "5%",
   display: "flex",
   justifyContent: "center",
 });
 
+// 리다이렉트메시지 담을 컨테이너
+export const RedirectMessageContainer = styled.div({
+  width: "90%",
+});
+
 // RedirectMessage
 export const RedirectMessage = styled.div({
-  color: "black",
+  color: "#686868",
   fontFamily: "Pretendard",
   fontSize: "20px",
-  width: "90%",
+  width: "100%",
   marginTop: "2%",
+  marginBottom: "5%",
+  display: "flex",
 });
