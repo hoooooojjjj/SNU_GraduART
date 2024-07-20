@@ -362,6 +362,7 @@ export const SearchContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin-top: 3%;
+  position: relative;
 `;
 
 // 검색창
@@ -373,6 +374,19 @@ export const SearchBox = styled.div`
   border-radius: 50px;
   border: 2px solid #818181;
   background: #ffffff;
+`;
+
+// 검색창 Placeholder Text "작가, 작품, 작품 설명을 검색하세요."
+export const SearchPlaceHolder = styled.div`
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 330;
+  line-height: 100%;
+  color: #818181;
+  position: absolute;
+  margin-top: 12.4dvh;
+  left: 23dvw;
 `;
 
 // 작가, 작품명 전체 컨테이너

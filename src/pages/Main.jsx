@@ -48,6 +48,7 @@ import {
   WesternContainer,
   SculptureContainer,
   DesignContainer,
+  SearchPlaceHolder,
 } from "../MainStyle.js";
 
 function Main() {
@@ -121,6 +122,9 @@ function Main() {
             />
           </svg>
         </SearchBox>
+        <SearchPlaceHolder>
+          작가, 작품, 작품 설명을 검색하세요.
+        </SearchPlaceHolder>
         <SearchResultContainer>
           <ArtistText>작가</ArtistText>
           <ArtistResultContainer>
