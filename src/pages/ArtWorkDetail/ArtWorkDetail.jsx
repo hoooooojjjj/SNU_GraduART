@@ -54,6 +54,9 @@ function ArtWorkDetail() {
   //모달 정보
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  // 똑같은 상품을 담았을 때
+  const [isOnConflict, setIsOnConflict] = useState(false);
+
   // 모달을 표시하는 함수
   const showModal = () => {
     setIsModalVisible(true);
@@ -68,16 +71,25 @@ function ArtWorkDetail() {
   const Modal = ({ onClose }) => (
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
-        <p>장바구니에 추가되었습니다.</p>
-        <ModalButton onClick={onClose}>계속 관람하기</ModalButton>
-        <Button
-          onClick={() => {
-            onClose();
-            nav("/cart");
-          }}
-        >
-          장바구니 보기
-        </Button>
+        {isOnConflict ? (
+          <>
+            <p>이미 장바구니에 담긴 상품입니다.</p>
+            <ModalButton onClick={onClose}>닫기</ModalButton>
+          </>
+        ) : (
+          <>
+            <p>장바구니에 추가되었습니다.</p>
+            <ModalButton onClick={onClose}>계속 관람하기</ModalButton>
+            <Button
+              onClick={() => {
+                onClose();
+                nav("/cart");
+              }}
+            >
+              장바구니 보기
+            </Button>
+          </>
+        )}
       </ModalContent>
     </ModalOverlay>
   );
@@ -152,21 +164,30 @@ function ArtWorkDetail() {
     // cart_item 테이블에 데이터 추가
     const { data, error } = await supabase
       .from("cart_item")
-      .insert([
-        {
-          user_id: user.id,
-          item_id: artWork.itemID,
-          title: artWork.title,
-          artist: artWork.artist,
-          descriptions: artWork.descriptions,
-          imagePath: artWork.imagePath,
-          price: artWork.price,
-          made_at: artWork.made_at,
-        },
-      ])
+      .upsert(
+        [
+          {
+            user_id: user.id,
+            item_id: artWork.itemID,
+            title: artWork.title,
+            artist: artWork.artist,
+            descriptions: artWork.descriptions,
+            imagePath: artWork.imagePath,
+            price: artWork.price,
+            made_at: artWork.made_at,
+          },
+        ],
+        // 중복되는 item_id가 있을 경우 onConflict 옵션으로 안 담기게 하기
+        { onConflict: "item_id" }
+      )
       .select();
+
     if (error) {
       console.log(error);
+    }
+    // 중복되는 item_id가 있을 경우 이미 담겼다는 모달창 띄우기
+    if (error?.code === "42501") {
+      setIsOnConflict(true);
     }
     showModal();
   };
