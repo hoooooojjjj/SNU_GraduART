@@ -169,6 +169,7 @@ function ArtWorkDetail() {
           {
             user_id: user.id,
             item_id: artWork.itemID,
+            department: artWork.department,
             title: artWork.title,
             artist: artWork.artist,
             descriptions: artWork.descriptions,

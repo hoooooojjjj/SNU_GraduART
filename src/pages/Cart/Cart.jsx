@@ -22,8 +22,11 @@ import {
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
 import { supabase } from "../../ServerClient.js";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Cart() {
+  const nav = useNavigate();
+
   // 유저가 장바구니에 담은 작품 리스트
   const [userCartItemList, setUserCartItemList] = useState([]);
 
@@ -135,9 +138,13 @@ function Cart() {
                   onChange={(event) => handleCheckboxChange(event, item)}
                 ></CheckBoxIcon>
                 <CartImgContainer>
-                  <CartItemImg path={item.imagePath}></CartItemImg>
+                  <CartItemImg
+                    onClick={() =>
+                      nav(`/${item.department}`, { state: item.item_id })
+                    }
+                    path={item.imagePath}
+                  ></CartItemImg>
                 </CartImgContainer>
-
                 <CartItemText>
                   {item.title} | {item.artist}
                   <br></br>
