@@ -134,7 +134,7 @@ function Cart() {
                   {item.title} | {item.artist}
                   <br></br>
                   <br></br>
-                  {item.price} 원
+                  {item.price.toLocaleString()} 원
                 </CartItemText>
                 <CartItemDelete
                   onClick={() => {
@@ -163,7 +163,9 @@ function Cart() {
               <PriceText>선택한 작품 총액</PriceText>
               <PriceText>
                 {selectedItems.length > 0
-                  ? selectedItems.reduce((total, item) => total + item.price, 0)
+                  ? selectedItems
+                      .reduce((total, item) => total + item.price, 0)
+                      .toLocaleString()
                   : 0}
                 원
               </PriceText>
