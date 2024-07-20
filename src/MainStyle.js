@@ -369,6 +369,7 @@ export const SearchContainer = styled.div`
 export const SearchBox = styled.div`
   width: 60%;
   margin: 10dvh auto;
+  margin-bottom: 7dvh;
   height: 5%;
   padding: 1% 1%;
   border-radius: 50px;
@@ -381,7 +382,7 @@ export const SearchPlaceHolder = styled.div`
   font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
-  font-weight: 330;
+  font-weight: 300;
   line-height: 100%;
   color: #818181;
   position: absolute;
@@ -389,92 +390,50 @@ export const SearchPlaceHolder = styled.div`
   left: 23dvw;
 `;
 
-// 작가, 작품명 전체 컨테이너
+// 검색 결과 전체 컨테이너
 export const SearchResultContainer = styled.div`
   width: 70%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 `;
 
-// 작가 컨테이너
-// "작가" 텍스트
-export const ArtistText = styled.div`
-  color: #000;
-  font-family: Pretendard;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%;
-  margin-top: 5%;
-`;
-
-// 작가 검색결과 컨테이너
-export const ArtistResultContainer = styled.div`
-  background: white;
-  width: 70dvw;
-  margin-top: 40px;
-  margin-bottom: 20px;
-`;
-
-// 작가 검색결과 컨테이너 속 작품명 텍스트
-export const ArtistResultTitle = styled.div`
+// 검색 결과 카테고리: "작가", "작품명" 등
+export const ResultCategoryText = styled.div`
   color: #000;
   font-family: Pretendard;
   font-size: 25px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-`;
-
-// 작가 검색결과 컨테이너 속 작가 및 설명
-export const ArtistResultExp = styled.div`
-  color: #000;
-  font-family: Pretendard;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  padding: 3% 0;
-  border-bottom: solid #818181;
-`;
-
-// 작품명 컨테이너
-// "작품명" 텍스트
-export const TitleText = styled.div`
-  color: #000;
-  font-family: Pretendard;
-  font-size: 30px;
-  font-style: normal;
   font-weight: 600;
   line-height: 100%;
-  margin-top: 10%;
+  margin-top: 3%;
 `;
 
-// 작품명 검색결과 컨테이너
-export const TitleResultContainer = styled.div`
+// 작가, 작품명 검색결과 컨테이너
+export const ResultContainer = styled.div`
   background: white;
   width: 70dvw;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 10dvh;
 `;
 
-// 작품명 검색결과 컨테이너 속 작품명 텍스트
-export const TitleResultTitle = styled.div`
+// 검색결과의 작품명 텍스트
+export const ResultTitle = styled.div`
   color: #000;
   font-family: Pretendard;
-  font-size: 25px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
+  margin-top: 4dvh;
 `;
 
-// 작품명 검색결과 컨테이너 속 작가 및 설명
-export const TitleResultExp = styled.div`
+// 검색결과의 작가 및 설명 텍스트
+export const ResultExp = styled.div`
   color: #000;
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
-  padding: 3% 0;
+  padding: 1.5dvh 0;
   border-bottom: solid #818181;
 `;
