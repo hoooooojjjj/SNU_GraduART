@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 
-
 // ContentContainer
 export const ContentContainer = styled.div`
   width: 100dvw;
@@ -34,9 +33,9 @@ export const MainText = styled.div`
 export const SubText = styled.div`
   color: #ffffff;
   font-family: Pretendard;
-  font-size: 96px;
+  font-size: 35px;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 110%; /* 105.6px */
   display: flex;
   flex-direction: column;
@@ -46,6 +45,8 @@ export const SubText = styled.div`
   position: absolute;
   right: 15px;
   bottom: 10px;
+  padding-bottom: 3%;
+  padding-right: 3%;
 `;
 
 // DepartmentBanner
@@ -64,10 +65,10 @@ export const SectionContainer = styled(NavLink)`
 
 // OrientalPaintingBlock
 export const OrientalPaintingBlock = styled.div((props) => ({
-    position: "relative",
-    backgroundColor: props.color,
-    width: "30%",
-    height: "100%",
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
 }));
 
 // OrientalPaintingEngText
@@ -98,11 +99,11 @@ export const OrientalPaintingKorText = styled.div`
 
 // OrientalPaintingImg
 export const OrientalPaintingImg = styled.div((props) => ({
-    backgroundImage: `url(${props.img})`,
-    backgroundSize: "cover",
-    backgroundPosition: "70% 55%",
-    width: "70%",
-    height: "100%",
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "70% 55%",
+  width: "70%",
+  height: "100%",
 }));
 
 // WesternContainer
@@ -114,19 +115,19 @@ export const WesternContainer = styled.div`
 
 // WesternPaintingImg
 export const WesternPaintingImg = styled.div((props) => ({
-    backgroundImage: `url(${props.img})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "70%",
-    height: "100%",
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  width: "70%",
+  height: "100%",
 }));
 
 // WesternPaintingBlock
 export const WesternPaintingBlock = styled.div((props) => ({
-    position: "relative",
-    backgroundColor: props.color,
-    width: "30%",
-    height: "100%",
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
 }));
 
 // WesternPaintingEngText
@@ -164,10 +165,10 @@ export const SculptureContainer = styled.div`
 
 // SculptureBlock
 export const SculptureBlock = styled.div((props) => ({
-    position: "relative",
-    backgroundColor: props.color,
-    width: "30%",
-    height: "100%",
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
 }));
 
 // SculptureEngText
@@ -198,11 +199,11 @@ export const SculptureKorText = styled.div`
 
 // SculptureImg
 export const SculptureImg = styled.div((props) => ({
-    backgroundImage: `url(${props.img})`,
-    backgroundSize: "cover",
-    backgroundPosition: "50% 50%",
-    width: "70%",
-    height: "100%",
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 50%",
+  width: "70%",
+  height: "100%",
 }));
 
 // CraftContainer
@@ -214,19 +215,19 @@ export const CraftContainer = styled.div`
 
 // CraftImg
 export const CraftImg = styled.div((props) => ({
-    backgroundImage: `url(${props.img})`,
-    backgroundSize: "cover",
-    backgroundPosition: "50% 60%",
-    width: "70%",
-    height: "100%",
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 60%",
+  width: "70%",
+  height: "100%",
 }));
 
 // CraftBlock
 export const CraftBlock = styled.div((props) => ({
-    position: "relative",
-    backgroundColor: props.color,
-    width: "30%",
-    height: "100%",
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
 }));
 
 // CraftEngText
@@ -264,10 +265,10 @@ export const DesignContainer = styled.div`
 
 // DesignBlock
 export const DesignBlock = styled.div((props) => ({
-    position: "relative",
-    backgroundColor: props.color,
-    width: "30%",
-    height: "100%",
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
 }));
 
 // DesignEngText
@@ -298,11 +299,11 @@ export const DesignKorText = styled.div`
 
 // DesignImg
 export const DesignImg = styled.div((props) => ({
-    backgroundImage: `url(${props.img})`,
-    backgroundSize: "cover",
-    backgroundPosition: "50% 50%",
-    width: "70%",
-    height: "100%",
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 50%",
+  width: "70%",
+  height: "100%",
 }));
 
 // MediaArtsContainer
@@ -314,19 +315,19 @@ export const MediaArtsContainer = styled.div`
 
 // MediaArtsImg
 export const MediaArtsImg = styled.div((props) => ({
-    backgroundImage: `url(${props.img})`,
-    backgroundSize: "cover",
-    backgroundPosition: "50% 60%",
-    width: "70%",
-    height: "100%",
+  backgroundImage: `url(${props.img})`,
+  backgroundSize: "cover",
+  backgroundPosition: "50% 60%",
+  width: "70%",
+  height: "100%",
 }));
 
 // MediaArtsBlock
 export const MediaArtsBlock = styled.div((props) => ({
-    position: "relative",
-    backgroundColor: props.color,
-    width: "30%",
-    height: "100%",
+  position: "relative",
+  backgroundColor: props.color,
+  width: "30%",
+  height: "100%",
 }));
 
 // MediaArtsEngText
@@ -372,6 +373,17 @@ export const SearchBox = styled.div`
   border-radius: 50px;
   border: 2px solid #818181;
   background: #ffffff;
+`;
+
+// 검색창 Placeholder text "작가, 작품, 작품 설명을 검색하세요."
+export const SearchPlaceHolder = styled.div`
+  color: #818181;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  position: absolute;
 `;
 
 // 작가, 작품명 전체 컨테이너

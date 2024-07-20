@@ -7,6 +7,7 @@ import NotFound from "../pages/NotFound";
 import Login from "../pages/Login/Login";
 import Cart from "../pages/Cart/Cart";
 import Purchased from "../pages/Purchased/Purchased.jsx";
+import Refund from "../pages/Refund/Refund.jsx";
 import PaymentApprove from "../pages/Payment/PaymentApprove.jsx";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/purchased" element={<Purchased />}></Route>
+        <Route path="/refund" element={<Refund />}></Route>
         <Route path="/purchaseApprove" element={<PaymentApprove />}></Route>
       </Routes>
     </BrowserRouter>

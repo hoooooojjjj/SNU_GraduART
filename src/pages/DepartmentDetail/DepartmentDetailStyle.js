@@ -48,12 +48,13 @@ export const TitleText = styled.div`
 
 export const DescriptionContainer = styled.div`
   width: 100%;
-  height: 60dvh;
+  height: 55dvh;
   align-items: center;
   justify-content: center;
   display: flex;
   position: relative;
   box-shadow: 5px 5px 20px gray;
+  margin-bottom: 7dvh;
 `;
 
 export const MiddleContainer = styled.div`
@@ -124,7 +125,8 @@ export const DescriptionText = styled.p`
   width: 100%;
   color: #000000;
   font-family: "Pretendard-Regular", Helvetica;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1.7;
   font-weight: 400;
 `;
 
