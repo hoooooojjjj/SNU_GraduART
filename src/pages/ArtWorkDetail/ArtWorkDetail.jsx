@@ -156,6 +156,7 @@ function ArtWorkDetail() {
 
   // 장바구니 담기 클릭 시 cart_item 테이블에 데이터 추가
   const onInsertCart = async () => {
+    setIsOnConflict(false);
     // 로그인 안했다면 로그인 페이지로 이동
     if (!user) {
       nav("/login", { state: "로그인이 필요한 서비스입니다" });
@@ -185,11 +186,12 @@ function ArtWorkDetail() {
 
     if (error) {
       console.log(error);
+      // 중복되는 item_id가 있을 경우 이미 담겼다는 모달창 띄우기
+      if (error.code === "42501") {
+        setIsOnConflict(true);
+      }
     }
-    // 중복되는 item_id가 있을 경우 이미 담겼다는 모달창 띄우기
-    if (error?.code === "42501") {
-      setIsOnConflict(true);
-    }
+
     showModal();
   };
 
