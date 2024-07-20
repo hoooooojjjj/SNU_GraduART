@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import Header from "../../components/Header/Header.jsx";
+
 import {
   Container,
   IntroContainer,
+  BackIcon,
   MainContainer,
   LeftContainer,
   ImageContainer,
@@ -28,6 +29,7 @@ import {
   ModalContent,
   ModalButton,
   Button,
+  PurchaseBox,
 } from "./ArtWorkDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../ServerClient.js";
@@ -171,10 +173,18 @@ function ArtWorkDetail() {
     showModal();
   };
 
+  const handleBackIconClick = () => {
+    // department는 artWorkList에서 첫 번째 작품의 department를 가져오도록 설정
+    const department = artWorkList[0]?.department;
+    if (department) {
+      nav(`/${department}`);
+    }
+  };
+
   return artWork ? (
     <Container isPurchased={isPurchased}>
       <IntroContainer>
-        <Header></Header>
+        <BackIcon onClick={handleBackIconClick}></BackIcon>
       </IntroContainer>
       <MainContainer onClick={handleMainContainerClick}>
         <LeftContainer>
@@ -208,13 +218,13 @@ function ArtWorkDetail() {
       <PurchaseContainer>
         <PurchaseMiddle onClick={HandlePurchaseClick}>
           {!isPurchased ? (
-            <>
+            <PurchaseBox>
               <DownArrow />
               <PurchaseInformation>구매 정보</PurchaseInformation>
-            </>
+            </PurchaseBox>
           ) : (
             <AlternateText>
-              <Price>{artWork.price.toLocaleString()}</Price>
+              <Price>{artWork.price.toLocaleString() + "원"}</Price>
               <BuyInfo onClick={onInsertCart} isSale={artWork.onSale}>
                 {artWork.onSale ? "장바구니 담기" : "판매 완료"}
               </BuyInfo>
