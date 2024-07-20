@@ -17,6 +17,7 @@ import {
   CheckAllIcon,
   CheckAllContainer,
   CheckAllText,
+  CartImgContainer,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
@@ -133,7 +134,10 @@ function Cart() {
                   checked={selectedItems.includes(item)}
                   onChange={(event) => handleCheckboxChange(event, item)}
                 ></CheckBoxIcon>
-                <CartItemImg path={item.imagePath}></CartItemImg>
+                <CartImgContainer>
+                  <CartItemImg path={item.imagePath}></CartItemImg>
+                </CartImgContainer>
+
                 <CartItemText>
                   {item.title} | {item.artist}
                   <br></br>

@@ -103,15 +103,23 @@ export const CheckBoxIcon = styled.input`
   margin-right: 5%;
 `;
 
-// 장바구니 항목 사진
-export const CartItemImg = styled.img`
+export const CartImgContainer = styled.div`
   width: 15%;
   height: 125px;
-  background-image: url(${(props) => props.path});
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: 3px 3px 5px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 1%;
+`;
+
+export const CartItemImg = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url(${(props) => props.path});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
 `;
 
 // 장바구니 항목 텍스트
