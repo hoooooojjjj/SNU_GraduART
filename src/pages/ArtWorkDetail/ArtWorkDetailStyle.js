@@ -137,8 +137,7 @@ export const DescriptionContainer = styled.div`
   background-color: #f4f4f4;
   border-radius: 3px;
   height: 13dvh;
-  min-width: 15dvh; /* 최소 너비 설정 */
-  width: auto;
+  width: 15dvh;
   padding: 20px 13px;
   box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.25);
   position: relative;
@@ -157,7 +156,6 @@ export const Title = styled.div`
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
-  white-space: nowrap;
 `;
 
 export const Description = styled.div`
