@@ -1,7 +1,54 @@
 import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import React from "react";
-import {ContentContainer, MainPicture, MainText, SectionContainer, OrientalPaintingEngText, OrientalPaintingImg, CraftImg, ArtistText, CraftEngText, SubText, CraftBlock, DesignEngText, DesignImg, DesignKorText, DesignBlock, CraftKorText, MediaArtsEngText, MediaArtsImg, MediaArtsBlock, OrientalPaintingBlock, SculptureEngText, SculptureKorText, SculptureImg, TitleText, SculptureBlock, MediaArtsKorText, OrientalPaintingKorText, WesternPaintingKorText, WesternPaintingBlock, WesternPaintingImg, ArtistResultExp, ArtistResultTitle, ArtistResultContainer, TitleResultContainer, SearchResultContainer, TitleResultExp, SearchBox, WesternPaintingEngText, SearchContainer, TitleResultTitle, CraftContainer, OrientalContainer, MediaArtsContainer, WesternContainer, SculptureContainer, DesignContainer} from "../MainStyle.js";
+import {
+  ContentContainer,
+  MainPicture,
+  MainText,
+  SectionContainer,
+  OrientalPaintingEngText,
+  OrientalPaintingImg,
+  CraftImg,
+  ArtistText,
+  CraftEngText,
+  SubText,
+  CraftBlock,
+  DesignEngText,
+  DesignImg,
+  DesignKorText,
+  DesignBlock,
+  CraftKorText,
+  MediaArtsEngText,
+  MediaArtsImg,
+  MediaArtsBlock,
+  OrientalPaintingBlock,
+  SculptureEngText,
+  SculptureKorText,
+  SculptureImg,
+  TitleText,
+  SculptureBlock,
+  MediaArtsKorText,
+  OrientalPaintingKorText,
+  WesternPaintingKorText,
+  WesternPaintingBlock,
+  WesternPaintingImg,
+  ArtistResultExp,
+  ArtistResultTitle,
+  ArtistResultContainer,
+  TitleResultContainer,
+  SearchResultContainer,
+  TitleResultExp,
+  SearchBox,
+  WesternPaintingEngText,
+  SearchContainer,
+  TitleResultTitle,
+  CraftContainer,
+  OrientalContainer,
+  MediaArtsContainer,
+  WesternContainer,
+  SculptureContainer,
+  DesignContainer,
+} from "../MainStyle.js";
 
 function Main() {
   return (
@@ -9,9 +56,7 @@ function Main() {
       <Header></Header>
       <MainPicture path={`/assets/mainImg.png`}>
         <MainText>GraduART</MainText>
-        <SubText>
-          서울대학교 미술대학 <br></br> 졸업전시
-        </SubText>
+        <SubText>서울대학교 미술대학 졸업전시 傳</SubText>
       </MainPicture>
       <SectionContainer to={"/Oriental Painting"}>
         <OrientalPaintingBlock color={"#FF983B"}>
