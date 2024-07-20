@@ -57,7 +57,7 @@ function Main() {
       <Header></Header>
       <MainPicture path={`/assets/mainImg.png`}>
         <MainText>GraduART</MainText>
-        <SubText>서울대학교 미술대학 졸업전시 傳</SubText>
+        <SubText>서울대학교 미술대학 졸업전시 展</SubText>
       </MainPicture>
       <SectionContainer to={"/Oriental Painting"}>
         <OrientalPaintingBlock color={"#FF983B"}>
