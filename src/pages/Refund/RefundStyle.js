@@ -65,19 +65,21 @@ export const RefundInfoText = styled.div({
 export const RefundInfoBox = styled.div({
   width: "100%",
   height: "237px",
-  backgroundColor: "#D9D9D9",
   marginTop: "1%",
   display: "flex",
   flexDirection: "row",
+  // backgroundColor: "#F1F1F1",
+  borderRadius: "30px",
 });
 
 // '금액', '결제수단', '결제승인시각' 등 구체적인 주문정보 박스
 export const RefundInfoTextBox = styled.div({
   width: "25%",
   margin: "1%",
+  marginRight: "0",
   display: "flex",
   flexDirection: "column",
-  textAlign: "center",
+  textAlign: "left",
 });
 
 // '금액', '결제수단', '결제승인시각' 등 구체적인 주문정보 텍스트
@@ -87,15 +89,14 @@ export const RefundDetailInfoText = styled.div({
   fontSize: "20px",
   fontStyle: "normal",
   fontWeight: "400",
-  marginBlock: "10px",
-  backgroundColor: "grey",
-  width: "80%",
+  width: "100%",
   height: "30%",
   display: "flex",
   flexDirection: "column",
-  textAlign: "center",
+  textAlign: "left",
   justifyContent: "center",
-  marginLeft: "5%",
+  marginBlock: "10px",
+  marginLeft: "20%",
 });
 
 // 실제 금액, 결제수단, 결제승인시각 데이터 텍스트
@@ -105,13 +106,21 @@ export const RefundInfoDataText = styled.div({
   fontSize: "20px",
   fontStyle: "normal",
   fontWeight: "400",
-  marginBlock: "25px",
+  width: "100%",
+  height: "30%",
+  display: "flex",
+  flexDirection: "column",
+  textAlign: "left",
+  justifyContent: "center",
+  marginBlock: "10px",
+  marginLeft: "20%",
 });
 
 // 실제 금액, 결제수단, 결제승인시각 데이터가 적힐 박스
 export const RefundInfoDataBox = styled.div({
   width: "75%",
   margin: "1%",
+  marginLeft: "0",
   display: "flex",
   flexDirection: "column",
   textAlign: "center",
