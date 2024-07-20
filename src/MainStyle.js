@@ -375,6 +375,17 @@ export const SearchBox = styled.div`
   background: #ffffff;
 `;
 
+// 검색창 Placeholder text "작가, 작품, 작품 설명을 검색하세요."
+export const SearchPlaceHolder = styled.div`
+  color: #818181;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  position: absolute;
+`;
+
 // 작가, 작품명 전체 컨테이너
 export const SearchResultContainer = styled.div`
   width: 70%;

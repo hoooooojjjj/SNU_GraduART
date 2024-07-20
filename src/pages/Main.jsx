@@ -41,6 +41,7 @@ import {
   SearchBox,
   WesternPaintingEngText,
   SearchContainer,
+  SearchPlaceHolder,
   TitleResultTitle,
   CraftContainer,
   OrientalContainer,
@@ -121,6 +122,9 @@ function Main() {
             />
           </svg>
         </SearchBox>
+        <SearchPlaceHolder>
+          작가, 작품, 작품 설명을 검색하세요.
+        </SearchPlaceHolder>
         <SearchResultContainer>
           <ArtistText>작가</ArtistText>
           <ArtistResultContainer>
