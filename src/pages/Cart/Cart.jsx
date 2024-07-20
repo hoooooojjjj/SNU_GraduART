@@ -111,14 +111,18 @@ function Cart() {
         <CartText>장바구니</CartText>
         <ListText>목록</ListText>
         <CartItemList>
-          <CheckAllContainer>
-            <CheckAllIcon
-              type="checkbox"
-              name="isChecked"
-              onClick={handleCheckAll}
-            ></CheckAllIcon>
-            <CheckAllText>전체 선택</CheckAllText>
-          </CheckAllContainer>
+          {userCartItemList.length > 0 ? (
+            <CheckAllContainer>
+              <CheckAllIcon
+                type="checkbox"
+                name="isChecked"
+                onClick={handleCheckAll}
+              ></CheckAllIcon>
+              <CheckAllText>전체 선택</CheckAllText>
+            </CheckAllContainer>
+          ) : (
+            <></>
+          )}
           {userCartItemList.length > 0 ? (
             userCartItemList.map((item) => (
               <CartItem key={item.item_id}>
