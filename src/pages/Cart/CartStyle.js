@@ -64,14 +64,15 @@ export const CheckAllContainer = styled.div({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
+  textAlign: "left",
+  margin: "2% 0 2% 0",
 });
 
 // "전체 선택" 체크박스 버튼
 export const CheckAllIcon = styled.input`
+  text-align: left;
   align-items: center;
   display: flex;
-  margin: 2%;
-  margin-left: 3%;
   margin-right: 1%;
 `;
 
