@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {isMobile} from "react-device-detect";
 import {userContext} from "../../App.jsx";
+import {useNavigate} from "react-router-dom";
 
 export const PaymentApprove = () => {
 
@@ -11,30 +12,6 @@ export const PaymentApprove = () => {
     const oid = urlParams.get('oid');
     const pgToken = urlParams.get('pg_token');
     const [user] = useContext(userContext);
-
-    const requestInsertionTest = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/insertionTest`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-                },
-                body: JSON.stringify({}),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error);
-            }
-
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error Requesting Test:', error);
-            throw error;
-        }
-    }
 
     const requestApprove = async (oid, tid) => {
         try {
@@ -65,17 +42,19 @@ export const PaymentApprove = () => {
         }
     };
 
+    const navigate = useNavigate();
+    const paymentSuccessNavigate = () => {navigate(`/paymentSuccess`)};
+    const paymentFailNavigate = () => {navigate(`/paymentFail`)};
+
     //Request Handling (카카오 Request 받아서 처리)
     const handleRequestApprove = async () => {
         try {
             const response = await requestApprove(oid,tid);
             console.log(response);
-
-            setSelectedItems([]);
-            setIsCheckedAll(false);
-            setRenderKey(renderKey + 1); // Refresh cart items
+            paymentSuccessNavigate();
         } catch (error) {
             console.error('Approve failed:', error);
+            paymentFailNavigate();
         }
     };
 
