@@ -48,7 +48,6 @@ export const TitleText = styled.div`
 
 export const DescriptionContainer = styled.div`
   width: 100%;
-  height: 55dvh;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -62,7 +61,8 @@ export const MiddleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 88%;
-  height: 90%;
+  margin: 5dvh 0 9dvh 0;
+  flex-wrap: wrap;
 `;
 
 export const DescriptionExtra = styled.div`
@@ -113,14 +113,14 @@ export const Link = styled.a`
   }
 `;
 export const DescriptionBox = styled.div`
-  height: 291px;
   width: 58%;
   background-color: #ffffff;
   position: relative;
+  flex-wrap: wrap;
 `;
 
 export const DescriptionText = styled.p`
-  position: absolute;
+  position: static;
   top: 9%;
   width: 100%;
   color: #000000;
@@ -128,6 +128,7 @@ export const DescriptionText = styled.p`
   font-size: 18px;
   line-height: 1.7;
   font-weight: 400;
+  margin-top: 5dvh;
 `;
 
 /* ArtWorkList ---------------------------------------------- */

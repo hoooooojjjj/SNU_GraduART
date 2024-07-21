@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import LogoutIcon from "@mui/icons-material/Logout";
+import backgroundImage from "/assets/baa.jpg";
+//import ClearIcon from "@mui/icons-material/Clear";
+//import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 export const Container = styled.div`
   width: 100dvw;
@@ -18,10 +22,28 @@ export const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const IntroContainer = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  height: 10dvh;
+  align-items: center;
+`;
+
+export const BackIcon = styled(LogoutIcon)`
+  transform: rotate(180deg);
+  font-size: 25px;
+  margin-left: 3dvw;
+  color: #928a8a;
+  &:hover {
+    color: #2c2c2c;
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -74,7 +96,7 @@ export const LeftContainer = styled.div`
 export const LeftArrow = styled(ArrowBackIosIcon)`
   cursor: pointer;
   font-size: 60px;
-  color: #c0c2c8;
+  color: #928a8a;
   padding-left: 40%;
 `;
 
@@ -100,7 +122,7 @@ export const RightArrowContainer = styled.div`
 
 export const RightArrow = styled(ArrowForwardIosIcon)`
   font-size: 60px;
-  color: #c0c2c8;
+  color: #928a8a;
   cursor: pointer;
 `;
 
@@ -130,6 +152,7 @@ export const DescriptionMiddle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 6px;
 `;
 
 export const Title = styled.div`
@@ -159,16 +182,24 @@ export const PurchaseContainer = styled.div`
 export const PurchaseMiddle = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+`;
+
+export const PurchaseBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: #928a8a;
+  &:hover {
+    color: #2c2c2c;
+  }
 `;
 
 export const DownArrow = styled(KeyboardArrowDownIcon)`
   font-size: 20px;
-  color: #2c2c2c;
 `;
 
 export const PurchaseInformation = styled.div`
   cursor: pointer;
-  color: #2c2c2c;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -222,13 +253,11 @@ export const ModalContent = styled.div`
 export const Button = styled.button`
   margin: 10px;
   padding: 10px 20px;
-  background-color: #7391c8;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background: #b5c0d0;
 `;
 
-export const ModalButton = styled(Button)`
-  background-color: #bdc6d9;
-`;
+export const ModalButton = styled(Button)``;
