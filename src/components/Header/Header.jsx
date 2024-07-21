@@ -17,7 +17,7 @@ const StyledScrollButton = styled.div((props) => ({
   width: `23px`,
   height: `23px`,
   color: `white`,
-  marginRight: `5px`,
+  paddingRight: `0.75dvw`,
   visibility: props.display
 }));
 

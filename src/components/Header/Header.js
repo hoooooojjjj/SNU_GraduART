@@ -61,5 +61,5 @@ export const Buttons = styled.ul`
   justify-content: end;
   align-items: center;
   gap: 2dvw;
-  margin: 0 1dvh 0 0;
+  margin: 0 2dvw 0 0;
 `
