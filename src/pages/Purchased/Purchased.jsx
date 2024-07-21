@@ -8,7 +8,11 @@ import {
   CartItemList,
   CartItemText,
 } from "../Cart/CartStyle.js";
-import { PurchasedItemImg, PurchasedItemDelete } from "./Purchased.js";
+import {
+  PurchasedItemImg,
+  PurchasedItemDelete,
+  PurchasedItemImgWrap,
+} from "./Purchased.js";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.jsx";
 import { supabase } from "../../ServerClient.js";
@@ -58,7 +62,9 @@ function Purchased() {
           {userPurchaseItemList.length > 0 ? (
             userPurchaseItemList.map((item) => (
               <CartItem key={item.item_id}>
-                <PurchasedItemImg path={item.imagePath}></PurchasedItemImg>
+                <PurchasedItemImgWrap>
+                  <PurchasedItemImg path={item.imagePath}></PurchasedItemImg>
+                </PurchasedItemImgWrap>
                 <CartItemText>
                   {item.title} | {item.artist}
                   <br></br>
