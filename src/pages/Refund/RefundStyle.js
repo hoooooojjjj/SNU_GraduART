@@ -128,6 +128,7 @@ export const RefundInfoDataBox = styled.div({
 
 // 취소/환불하기 버튼
 export const RefundButton = styled.button({
+  cursor: "pointer",
   display: "flex",
   width: "80%",
   height: "10%",
@@ -163,9 +164,10 @@ export const ModalOverlay = styled.div`
 export const ModalContent = styled.div`
   background: white;
   padding: 50px;
+  padding-bottom: 30px;
   border-radius: 8px;
+  width: 60%;
   max-width: 500px;
-  width: 100%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 `;
@@ -175,13 +177,12 @@ export const PhoneNumberContainer = styled.div`
   width: 100%;
   height: 50%;
   display: flex;
-  justify-content: center;
-  text-align: center;
   margin-bottom: 5dvh;
 `;
 
 // "환불받을 전화번호" 텍스트
 export const PhoneNumberText = styled.div`
+  text-align: left;
   width: 40%;
   color: black;
   font-family: pretendard;
@@ -196,8 +197,8 @@ export const PhoneNumber = styled.input`
   display: flex;
   justify-content: center;
   font-family: pretendard;
-  width: 10dvw;
-  height: 2dvh;
+  width: 40%;
+  padding-left: 5px;
 `;
 
 // 개인정보 수집 동의 체크박스랑 텍스트 담을 컨테이너
@@ -231,8 +232,8 @@ export const AdmitExpText = styled.div`
   font-family: pretendard;
   color: grey;
   font-size: 12px;
-  margin-top: 0.5dvh;
-  margin-bottom: 3dvh;
+  margin-top: 2%;
+  margin-bottom: 5%;
   text-align: left;
 `;
 
