@@ -25,7 +25,7 @@ import {
   ArtWorkDescription,
   ArtWorkImgWrap,
 } from "./DepartmentDetailStyle.js";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import departmentInfos from "./DepartmentInfo.json";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
@@ -34,6 +34,9 @@ import { supabase } from "../../ServerClient.js";
 function DepartmentDetail() {
   // 라우팅
   const nav = useNavigate();
+
+  //
+  const redirectToArtWorkDetail = useLocation().state;
 
   // 현재 라우트에 해당하는 과
   const { department } = useParams();
@@ -49,6 +52,12 @@ function DepartmentDetail() {
 
   // 현재 페이지네이션 페이지
   const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    if (redirectToArtWorkDetail && ArtWorkList.length > 0) {
+      nav(`/${department}/${redirectToArtWorkDetail}`, { state: ArtWorkList });
+    }
+  }, [ArtWorkList]);
 
   // 리렌더링되면 다시 페이지네이션을 0으로 초기화
   useEffect(() => {

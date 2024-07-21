@@ -17,12 +17,16 @@ import {
   CheckAllIcon,
   CheckAllContainer,
   CheckAllText,
+  CartImgContainer,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
 import { supabase } from "../../ServerClient.js";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Cart() {
+  const nav = useNavigate();
+
   // 유저가 장바구니에 담은 작품 리스트
   const [userCartItemList, setUserCartItemList] = useState([]);
 
@@ -55,6 +59,42 @@ function Cart() {
     }
   }, [user]);
 
+  // 로컬 스토리지에서 선택된 아이템 id 복원
+  useEffect(() => {
+    const savedSelectedItemIds = JSON.parse(
+      localStorage.getItem("selectedItems")
+    );
+    const savedIsCheckedAll = JSON.parse(localStorage.getItem("isCheckedAll"));
+    if (savedSelectedItemIds) {
+      const savedSelectedItems = userCartItemList.filter((item) =>
+        savedSelectedItemIds.includes(item.item_id)
+      );
+      setSelectedItems(savedSelectedItems);
+    }
+    if (savedIsCheckedAll !== null) {
+      setIsCheckedAll(savedIsCheckedAll);
+    }
+  }, [userCartItemList]);
+
+  // 선택된 아이템 상태가 변경될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    const selectedIds = selectedItems.map((item) => item.item_id);
+    localStorage.setItem("selectedItems", JSON.stringify(selectedIds));
+    localStorage.setItem("isCheckedAll", JSON.stringify(isCheckedAll));
+  }, [selectedItems, isCheckedAll]);
+
+  // selectedItems가 변경될 때 isCheckedAll 상태를 업데이트
+  useEffect(() => {
+    if (
+      selectedItems.length === userCartItemList.length &&
+      userCartItemList.length > 0
+    ) {
+      setIsCheckedAll(true);
+    } else {
+      setIsCheckedAll(false);
+    }
+  }, [selectedItems, userCartItemList]);
+
   // 삭제하기 버튼 클릭 시 해당 작품 cart_item 테이블에서 삭제
   const handleCartItemDelete = async (item) => {
     if (user) {
@@ -78,11 +118,9 @@ function Cart() {
     // 만약 다 체크되어 있었다면 선택된 작품 리스트를 비움
     if (isCheckedAll) {
       setSelectedItems([]);
-      // 체크되어 있지 않았다면 유저가 담은 장바구니 리스트 모두를 선택된 작품 리스트에 추가
     } else {
       setSelectedItems(userCartItemList);
     }
-
     setIsCheckedAll(!isCheckedAll);
   };
 
@@ -94,7 +132,9 @@ function Cart() {
     } else {
       // 체크를 해제했으면 선택된 작품 리스트에서 제거
       setSelectedItems(
-        selectedItems.filter((selectedItem) => selectedItem !== item)
+        selectedItems.filter(
+          (selectedItem) => selectedItem.item_id !== item.item_id
+        )
       );
     }
   };
@@ -111,14 +151,19 @@ function Cart() {
         <CartText>장바구니</CartText>
         <ListText>목록</ListText>
         <CartItemList>
-          <CheckAllContainer>
-            <CheckAllIcon
-              type="checkbox"
-              name="isChecked"
-              onClick={handleCheckAll}
-            ></CheckAllIcon>
-            <CheckAllText>전체 선택</CheckAllText>
-          </CheckAllContainer>
+          {userCartItemList.length > 0 ? (
+            <CheckAllContainer>
+              <CheckAllIcon
+                type="checkbox"
+                name="isChecked"
+                checked={isCheckedAll}
+                onChange={handleCheckAll}
+              ></CheckAllIcon>
+              <CheckAllText>전체 선택</CheckAllText>
+            </CheckAllContainer>
+          ) : (
+            <></>
+          )}
           {userCartItemList.length > 0 ? (
             userCartItemList.map((item) => (
               <CartItem key={item.item_id}>
@@ -126,15 +171,24 @@ function Cart() {
                   type="checkbox"
                   id={item.item_id}
                   name="isChecked"
-                  checked={selectedItems.includes(item)}
+                  checked={selectedItems.some(
+                    (selectedItem) => selectedItem.item_id === item.item_id
+                  )}
                   onChange={(event) => handleCheckboxChange(event, item)}
                 ></CheckBoxIcon>
-                <CartItemImg path={item.imagePath}></CartItemImg>
+                <CartImgContainer>
+                  <CartItemImg
+                    onClick={() =>
+                      nav(`/${item.department}`, { state: item.item_id })
+                    }
+                    path={item.imagePath}
+                  ></CartItemImg>
+                </CartImgContainer>
                 <CartItemText>
                   {item.title} | {item.artist}
                   <br></br>
                   <br></br>
-                  {item.price} 원
+                  {item.price.toLocaleString()} 원
                 </CartItemText>
                 <CartItemDelete
                   onClick={() => {
@@ -163,7 +217,9 @@ function Cart() {
               <PriceText>선택한 작품 총액</PriceText>
               <PriceText>
                 {selectedItems.length > 0
-                  ? selectedItems.reduce((total, item) => total + item.price, 0)
+                  ? selectedItems
+                      .reduce((total, item) => total + item.price, 0)
+                      .toLocaleString()
                   : 0}
                 원
               </PriceText>
