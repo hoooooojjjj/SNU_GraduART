@@ -12,6 +12,7 @@ import {
 import styled from "@emotion/styled";
 import {userContext} from "../../App.jsx";
 import {supabase} from "../../ServerClient.js";
+import {isMobile} from "react-device-detect";
 
 const StyledScrollButton = styled.div((props) => ({
   width: `23px`,
@@ -79,7 +80,8 @@ const Header = () => {
         <HomeStyledNavLink to={"/"} margin={"2dvw"}>
           GraduART
         </HomeStyledNavLink>
-        <List>
+        {isMobile ? (<></>) :
+            (<List>
           <StyledNavLink to={"/Oriental Painting"} activeclassname={"active"}>
             동양화과
           </StyledNavLink>
@@ -98,7 +100,7 @@ const Header = () => {
           <StyledNavLink to={"/MediaArts"} activeclassname={"active"}>
             영상매체예술
           </StyledNavLink>
-        </List>
+        </List>)}
           <Seperator></Seperator>
         <Buttons>
           <ScrollButton display={showScrollButton}></ScrollButton>
