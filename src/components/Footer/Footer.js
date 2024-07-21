@@ -4,7 +4,7 @@ import { NavLink as NavigationLink } from "react-router-dom";
 
 export const FooterContainer = styled.footer`
   background-color: #6d6d6d;
-  padding: 40px 20px;
+  padding: 30px 8dvw;
   color: white;
   text-align: center;
   display: flex;
@@ -17,30 +17,45 @@ export const FooterContent = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  margin: 0 auto;
-  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 7dvh;
+  font-family: "Pretendard Variable";
 `;
+
+export const FooterLogo = styled.div({
+    color: "white",
+    fontFamily: 'DM Serif Display',
+    fontWeight: 'Bold',
+    fontSize:'23px',
+    textDecoration: "none",
+})
 
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin: 10px;
   width: 15dvw;
 `;
 
 export const Title = styled.h4`
   font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 17px;
 `;
 
 export const Text = styled.p((props) => ({
-  margin: `20px 0`,
+  fontSize: '15px',
+  fontWeight: 'light',
+  margin: `10px 0`,
 }));
 
 export const NavLink = styled(NavigationLink)`
   color: white;
   text-decoration: none;
-  margin: 5px 0;
+  margin: 10px 0;
+  font-size: 15px;
+  font-weight: normal;
   display: block;
   &:hover {
     text-decoration: underline;

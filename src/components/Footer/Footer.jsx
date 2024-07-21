@@ -5,36 +5,29 @@ import {
   Column,
   Title,
   Text,
-  NavLink,
+  NavLink, FooterLogo,
 } from "./Footer.js";
+
+const navigateToURL = () => {
+  window.open("https://snulion.com", '_blank', "noreferrer").focus()
+}
 
 const Footer = () => {
   return (
     <FooterContainer>
       <Column>
-        <img
-          style={{ margin: "0 auto" }}
-          width={`60%`}
-          src={`/assets/textLogo_LowRes.png`}
-          alt="Graduart Logo"
-        />
+        <FooterLogo>GraduART</FooterLogo>
       </Column>
       <FooterContent>
         <Column>
-          <Title>About Us</Title>
-          <Text>상담/주문전화</Text>
-          <Text>010-1234-5678</Text>
-          <Text>CS 운영시간</Text>
-          <Text>월-금 09:00-18:00</Text>
+          <Title>Created & Operated By</Title>
+          <Text>박민서·유호준·김대유·김민석</Text>
         </Column>
         <Column>
-          <Title>작품 등록</Title>
-          <Text>문의 이메일</Text>
-          <Text>
+          <Title>작품 등록 문의</Title>
             <NavLink to="mailto:snugraduart@naver.com">
               snugraduart@naver.com
             </NavLink>
-          </Text>
         </Column>
         <Column>
           <Title>운영정책</Title>
@@ -45,17 +38,15 @@ const Footer = () => {
           <Title>Made by</Title>
           <img
             style={{ margin: "0 auto" }}
-            width={`60%`}
+            width={`100%`}
             src={`/assets/likeLion.png`}
             alt="LikeLion Logo"
+            onClick={navigateToURL}
           />
-          <Title>Join Us</Title>
-          <NavLink to="https://facebook.com">Facebook</NavLink>
-          <NavLink to="https://instagram.com">Instagram</NavLink>
         </Column>
       </FooterContent>
-      <Text style={{ margin: "0 auto" }}>
-        SNUgraduART @ 2024. All rights reserved.
+      <Text style={{margin: "0 auto"}}>
+        GraduART @ 2024. All rights reserved.
       </Text>
     </FooterContainer>
   );

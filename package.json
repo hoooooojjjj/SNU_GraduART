@@ -18,11 +18,12 @@
     "@supabase/supabase-js": "^2.44.3",
     "npm": "^10.8.1",
     "react": "^18.3.1",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.3.1",
+    "react-error-overlay": "^6.0.9",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "^4.0.3",
-    "react-error-overlay": "^6.0.9"
+    "react-scripts": "^4.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

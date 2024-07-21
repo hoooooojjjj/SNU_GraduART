@@ -184,6 +184,7 @@ export const OrderContainer = styled.div({
 
 // 선택 상품 주문, 전체 상품 주문에 사용될 주문 버튼
 export const OrderButton = styled.button({
+  cursor: "pointer",
   display: "flex",
   width: "95%",
   height: "10%",

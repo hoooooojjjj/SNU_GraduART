@@ -19,17 +19,6 @@ function Login() {
   useEffect(() => {
     setIsRedirect(redirectMessage);
   });
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     const {
-  //       data: { user },
-  //     } = await supabase.auth.getUser();
-
-  //     console.log(user);
-  //   };
-
-  //   getUser();
-  // });
 
   return (
     <Container>

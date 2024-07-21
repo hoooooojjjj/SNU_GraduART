@@ -14,6 +14,7 @@ import {
   RefundInfoDataBox,
   RefundButton,
   RefundInfoDataText,
+  RefundImgWrap,
   ModalOverlay,
   ModalButton,
   ModalContent,
@@ -56,7 +57,9 @@ function Refund() {
         <CartText>취소/환불신청</CartText>
         <RefundItemContainer>
           <RefundImgContainer>
-            <RefundImg path={`/assets/cartImg1.jpg`}></RefundImg>
+            <RefundImgWrap>
+              <RefundImg path={`/assets/cartImg1.jpg`}></RefundImg>
+            </RefundImgWrap>
             <RefundItemText>장면-표백하지 않은 흰색 | 김륜아</RefundItemText>
           </RefundImgContainer>
           <RefundInfoContainer>

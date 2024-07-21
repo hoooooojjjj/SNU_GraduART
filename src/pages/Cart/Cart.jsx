@@ -22,6 +22,7 @@ import {
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
 import { supabase } from "../../ServerClient.js";
+import {isMobile} from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
@@ -140,8 +141,56 @@ function Cart() {
   };
 
   // 선택된 작품 주문하기
-  const handleOrderSelectedItems = () => {
-    // 선택된 상품에 대한 주문 로직 구현
+
+  const orderSelectedItems = async (userId, itemIds) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/purchaseItems`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          item_ids: itemIds,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error ordering items:', error);
+      throw error;
+    }
+  };
+
+  //실제 주문 Handling
+  const handleOrderSelectedItems = async () => {
+    try {
+      const itemIds = selectedItems.map(item => item.item_id);
+      console.log(itemIds);
+      const response = await orderSelectedItems(user.id, itemIds);
+      console.log('Order successful:', response);
+      const tid = response.tid;
+      window.localStorage.setItem('temp_tid', tid)
+
+      if (isMobile) {
+        window.location.assign(`${response.next_redirect_mobile_url}`);
+      } else {
+        window.location.assign(`${response.next_redirect_pc_url}`);
+      }
+
+      setSelectedItems([]);
+      setIsCheckedAll(false);
+      setRenderKey(renderKey + 1); // Refresh cart items
+    } catch (error) {
+      console.error('Order failed:', error);
+    }
   };
 
   return (
@@ -225,7 +274,7 @@ function Cart() {
               </PriceText>
             </PriceContainer>
             <OrderContainer>
-              <OrderButton>선택 작품 주문</OrderButton>
+          <OrderButton onClick={handleOrderSelectedItems}>선택 작품 주문</OrderButton>
             </OrderContainer>
           </>
         ) : (
