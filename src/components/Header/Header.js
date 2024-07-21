@@ -23,7 +23,7 @@ export const NavBar = styled.nav`
   margin-bottom: 1.2dvh;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const Seperator = styled.div`
@@ -44,10 +44,22 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const HomeStyledNavLink = styled(NavLink)((props) => ({
-  color: "lightgray",
+  color: "dimgrey",
+  fontFamily: 'DM Serif Display',
+  fontWeight: 'Bold',
+  fontSize:'23px',
   textDecoration: "none",
-  fontWeight: "normal",
-  paddingTop: "0.5dvh",
-  marginRight: props.margin,
-  visibility: props.visible,
+  marginLeft: props.margin,
+  marginRight: '10dvw'
 }));
+
+export const Buttons = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 2dvw;
+  margin: 0 1dvh 0 0;
+`

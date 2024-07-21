@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   Head,
@@ -7,16 +7,18 @@ import {
   Seperator,
   StyledNavLink,
   HomeStyledNavLink,
+  Buttons
 } from "./Header.js";
 import styled from "@emotion/styled";
 import {userContext} from "../../App.jsx";
 import {supabase} from "../../ServerClient.js";
 
-const StyledScrollButton = styled.div(() => ({
+const StyledScrollButton = styled.div((props) => ({
   width: `23px`,
   height: `23px`,
   color: `white`,
   marginRight: `5px`,
+  visibility: props.display
 }));
 
 const scrollToBottom = () => {
@@ -25,10 +27,10 @@ const scrollToBottom = () => {
     behavior: "smooth",
   });
 };
-const ScrollButton = () => {
+const ScrollButton = ({ display }) => {
   return (
     <>
-      <StyledScrollButton onClick={scrollToBottom}>
+      <StyledScrollButton onClick={scrollToBottom} display={display}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -51,7 +53,17 @@ const ScrollButton = () => {
 const Header = () => {
 
   const [user, setUser] = useContext(userContext);
+  const [showScrollButton, setShowScrollButton] = useState('hidden');
   const location = useLocation();
+  const isLandingPage = location.pathname === '/';
+  useEffect(() => {
+    if(isLandingPage){
+      setShowScrollButton('visible');
+    } else {
+      setShowScrollButton('hidden');
+    }
+  }, [location]);
+
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -61,18 +73,11 @@ const Header = () => {
     }
   };
 
-  const isLandingPage = location.pathname === '/';
-
-
   return (
     <Head>
       <NavBar>
-        <HomeStyledNavLink margin={"10dvw"} to={"/"}>
-          <img
-            alt={"Graduart Logo"}
-            src={`/assets/textLogo_LowRes.png`}
-            height={"15dvw"}
-          ></img>
+        <HomeStyledNavLink to={"/"} margin={"2dvw"}>
+          GraduART
         </HomeStyledNavLink>
         <List>
           <StyledNavLink to={"/Oriental Painting"} activeclassname={"active"}>
@@ -93,12 +98,14 @@ const Header = () => {
           <StyledNavLink to={"/MediaArts"} activeclassname={"active"}>
             영상매체예술
           </StyledNavLink>
+        </List>
           <Seperator></Seperator>
-          <ScrollButton></ScrollButton>
+        <Buttons>
+          <ScrollButton display={showScrollButton}></ScrollButton>
           {user ? (
               <>
                 <StyledNavLink onClick={() => handleLogout()}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="24" height="24" viewBox="2 2 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd"
                           d="M8.25 5.25L9 4.5H18L18.75 5.25V18.75L18 19.5H9L8.25 18.75V16.5H9.75V18H17.25V6H9.75V7.5H8.25V5.25Z"
                           fill="lightgray"/>
@@ -260,7 +267,7 @@ const Header = () => {
                 </StyledNavLink>
               </>
           )}
-        </List>
+        </Buttons>
       </NavBar>
     </Head>
   );
