@@ -22,7 +22,7 @@ import {
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
 import { supabase } from "../../ServerClient.js";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const nav = useNavigate();

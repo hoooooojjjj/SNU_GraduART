@@ -164,6 +164,9 @@ function ArtWorkDetail() {
       nav("/login", { state: "로그인이 필요한 서비스입니다" });
       return null;
     }
+    if (!artWork.onSale) {
+      return null;
+    }
     // cart_item 테이블에 데이터 추가
     const { data, error } = await supabase
       .from("cart_item")
@@ -172,18 +175,23 @@ function ArtWorkDetail() {
           {
             user_id: user.id,
             item_id: artWork.itemID,
+            collection: artWork.collection,
             department: artWork.department,
             title: artWork.title,
             artist: artWork.artist,
             descriptions: artWork.descriptions,
             imagePath: artWork.imagePath,
             price: artWork.price,
+            onSale: artWork.onSale,
             made_at: artWork.made_at,
+            num_code: artWork.num_code,
           },
         ],
+
         // 중복되는 item_id가 있을 경우 onConflict 옵션으로 안 담기게 하기
         { onConflict: "item_id" }
       )
+      .eq("onSale", true)
       .select();
 
     if (error) {
