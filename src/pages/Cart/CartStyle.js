@@ -18,6 +18,12 @@ export const ContentContainer = styled.div({
   alignItems: "center",
 });
 
+export const LogoutButton = styled.div({
+  color: 'darkred',
+  fontSize: "20px",
+  textDecoration:'underline'
+});
+
 // "장바구니" 텍스트
 export const CartText = styled.div({
   color: "black",
