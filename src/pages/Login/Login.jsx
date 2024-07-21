@@ -5,6 +5,7 @@ import {
   LoginText,
   Line,
   RedirectMessage,
+  RedirectMessageContainer,
 } from "./LoginStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { useLocation } from "react-router-dom";

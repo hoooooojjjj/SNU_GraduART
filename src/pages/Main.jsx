@@ -9,7 +9,7 @@ import {
   OrientalPaintingEngText,
   OrientalPaintingImg,
   CraftImg,
-  ArtistText,
+  ResultCategoryText,
   CraftEngText,
   SubText,
   CraftBlock,
@@ -25,19 +25,15 @@ import {
   SculptureEngText,
   SculptureKorText,
   SculptureImg,
-  TitleText,
   SculptureBlock,
   MediaArtsKorText,
   OrientalPaintingKorText,
   WesternPaintingKorText,
   WesternPaintingBlock,
   WesternPaintingImg,
-  ArtistResultExp,
-  ArtistResultTitle,
-  ArtistResultContainer,
-  TitleResultContainer,
+  ResultExp,
+  ResultTitle,
   SearchResultContainer,
-  TitleResultExp,
   SearchBox,
   WesternPaintingEngText,
   SearchContainer,
@@ -49,6 +45,8 @@ import {
   WesternContainer,
   SculptureContainer,
   DesignContainer,
+  SearchPlaceHolder,
+  ResultContainer,
 } from "../MainStyle.js";
 
 function Main() {
@@ -126,22 +124,18 @@ function Main() {
           작가, 작품, 작품 설명을 검색하세요.
         </SearchPlaceHolder>
         <SearchResultContainer>
-          <ArtistText>작가</ArtistText>
-          <ArtistResultContainer>
-            <ArtistResultTitle>미니멀 시리즈</ArtistResultTitle>
-            <ArtistResultExp>
-              김공찬 | 적동, 백동, 물푸레나무, 판금, 26x11.5x11.5 cm
-            </ArtistResultExp>
-          </ArtistResultContainer>
-          <TitleText>작품명</TitleText>
-          <TitleResultContainer>
-            <TitleResultTitle>
-              터널형 공간을 위한 프로젝션 매핑
-            </TitleResultTitle>
-            <TitleResultExp>
-              임경훈 | MDF, 프로파일, 포맥스, 프로젝터, 비디오, 94x365x186 cm
-            </TitleResultExp>
-          </TitleResultContainer>
+          <ResultCategoryText>작가</ResultCategoryText>
+          <ResultContainer>
+            <ResultTitle>나의 행운과 불행 2</ResultTitle>
+            <ResultExp>이가현 | 2020 78×116cm</ResultExp>
+          </ResultContainer>
+          <ResultCategoryText>작품명</ResultCategoryText>
+          <ResultContainer>
+            <ResultTitle>3월</ResultTitle>
+            <ResultExp>윤정연 | 2021 130.3×130.3cm</ResultExp>
+            <ResultTitle>풍경2</ResultTitle>
+            <ResultExp>오승현 | 2021 227.3×181.8cm</ResultExp>
+          </ResultContainer>
         </SearchResultContainer>
       </SearchContainer>
       <Footer></Footer>
