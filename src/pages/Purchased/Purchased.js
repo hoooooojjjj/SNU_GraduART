@@ -15,6 +15,7 @@ export const PurchasedItemImg = styled.img`
 
 // 구매내역 항목 내 "취소/환불하기" 버튼
 export const PurchasedItemDelete = styled.button({
+  cursor: "pointer",
   color: "black",
   textAlign: "center",
   fontFamily: "pretendard",
