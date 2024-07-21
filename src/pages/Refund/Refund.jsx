@@ -29,7 +29,7 @@ import {
 
 function Refund() {
   //모달 정보
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   // 모달을 표시하는 함수
   const showModal = () => {
@@ -83,11 +83,7 @@ function Refund() {
           ></PhoneNumber>
         </PhoneNumberContainer>
         <AdmitContainer>
-          <CheckBox
-            type="checkbox"
-            name="isChecked"
-            onChange={(event) => handleCheckboxChange(event, item)}
-          ></CheckBox>
+          <CheckBox type="checkbox" name="isChecked"></CheckBox>
           <AdmitText>개인정보 수집에 대한 동의</AdmitText>
         </AdmitContainer>
         <AdmitExpText>

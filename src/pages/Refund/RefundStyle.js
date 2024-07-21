@@ -207,6 +207,7 @@ export const AdmitContainer = styled.div`
   height: 50%;
   display: flex;
   justify-content: left;
+  align-items: center;
   text-align: center;
 `;
 
@@ -218,11 +219,13 @@ export const CheckBox = styled.input`
 
 // 개인정보 수집 동의 텍스트
 export const AdmitText = styled.div`
-  width: 30%;
+  margin-left: 5px;
+  padding-top: 3px;
   color: black;
   font-family: pretendard;
   font-weight: 400;
   font-size: 14px;
+  line-height: 14px;
 `;
 
 // 개인정보 수집에 대한 부가 설명 텍스트 '환불 처리를 위한 최소한의~'
