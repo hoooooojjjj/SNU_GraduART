@@ -7,7 +7,8 @@ const LoginComponent = () => {
   const navigate = useNavigate();
   const handleSignIn = async (response) => {
 
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithIdToken({
+      token: credential,
       provider: "google",
       options: {
         redirectTo: import.meta.env.VITE_FRONT_URL,
@@ -17,19 +18,24 @@ const LoginComponent = () => {
     if (error) {
       console.error("Error signing in with Google:", error.message);
     } else {
-      const { session } = data;
-      if (session) {
-        localStorage.setItem("supabase.auth.token", JSON.stringify(session));
+      const { user } = data;
+      if (user) {
+        localStorage.setItem("supabase.auth.token", JSON.stringify(user));
         navigate("/");
       }
     }
   };
 
   useEffect(() => {
-    const { user } = supabase.auth.getUser;
-    if (user) {
-      navigate("/");
-    }
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        navigate("/");
+      }
+    };
+    checkUser();
   }, [navigate]);
 
   return (
@@ -39,6 +45,7 @@ const LoginComponent = () => {
              width={'50%'}>
         </img>
       </div>
+
   );
 };
 

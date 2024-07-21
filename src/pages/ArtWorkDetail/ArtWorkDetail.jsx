@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import Header from "../../components/Header/Header.jsx";
+
 import {
   Container,
   IntroContainer,
+  BackIcon,
   MainContainer,
   LeftContainer,
   ImageContainer,
@@ -28,6 +29,7 @@ import {
   ModalContent,
   ModalButton,
   Button,
+  PurchaseBox,
 } from "./ArtWorkDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../ServerClient.js";
@@ -54,6 +56,9 @@ function ArtWorkDetail() {
   //모달 정보
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  // 똑같은 상품을 담았을 때
+  const [isOnConflict, setIsOnConflict] = useState(false);
+
   // 모달을 표시하는 함수
   const showModal = () => {
     setIsModalVisible(true);
@@ -68,16 +73,25 @@ function ArtWorkDetail() {
   const Modal = ({ onClose }) => (
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
-        <p>장바구니에 추가되었습니다.</p>
-        <ModalButton onClick={onClose}>계속 관람하기</ModalButton>
-        <Button
-          onClick={() => {
-            onClose();
-            nav("/cart");
-          }}
-        >
-          장바구니 보기
-        </Button>
+        {isOnConflict ? (
+          <>
+            <p>이미 장바구니에 담긴 상품입니다.</p>
+            <ModalButton onClick={onClose}>닫기</ModalButton>
+          </>
+        ) : (
+          <>
+            <p>장바구니에 추가되었습니다.</p>
+            <ModalButton onClick={onClose}>계속 관람하기</ModalButton>
+            <Button
+              onClick={() => {
+                onClose();
+                nav("/cart");
+              }}
+            >
+              장바구니 보기
+            </Button>
+          </>
+        )}
       </ModalContent>
     </ModalOverlay>
   );
@@ -144,37 +158,65 @@ function ArtWorkDetail() {
 
   // 장바구니 담기 클릭 시 cart_item 테이블에 데이터 추가
   const onInsertCart = async () => {
+    setIsOnConflict(false);
     // 로그인 안했다면 로그인 페이지로 이동
     if (!user) {
       nav("/login", { state: "로그인이 필요한 서비스입니다" });
       return null;
     }
+    if (!artWork.onSale) {
+      return null;
+    }
     // cart_item 테이블에 데이터 추가
     const { data, error } = await supabase
       .from("cart_item")
-      .insert([
-        {
-          user_id: user.id,
-          item_id: artWork.itemID,
-          title: artWork.title,
-          artist: artWork.artist,
-          descriptions: artWork.descriptions,
-          imagePath: artWork.imagePath,
-          price: artWork.price,
-          made_at: artWork.made_at,
-        },
-      ])
+      .upsert(
+        [
+          {
+            user_id: user.id,
+            item_id: artWork.itemID,
+            collection: artWork.collection,
+            department: artWork.department,
+            title: artWork.title,
+            artist: artWork.artist,
+            descriptions: artWork.descriptions,
+            imagePath: artWork.imagePath,
+            price: artWork.price,
+            onSale: artWork.onSale,
+            made_at: artWork.made_at,
+            num_code: artWork.num_code,
+          },
+        ],
+
+        // 중복되는 item_id가 있을 경우 onConflict 옵션으로 안 담기게 하기
+        { onConflict: "item_id" }
+      )
+      .eq("onSale", true)
       .select();
+
     if (error) {
       console.log(error);
+      // 중복되는 item_id가 있을 경우 이미 담겼다는 모달창 띄우기
+      if (error.code === "42501") {
+        setIsOnConflict(true);
+      }
     }
+
     showModal();
+  };
+
+  const handleBackIconClick = () => {
+    // department는 artWorkList에서 첫 번째 작품의 department를 가져오도록 설정
+    const department = artWorkList[0]?.department;
+    if (department) {
+      nav(`/${department}`);
+    }
   };
 
   return artWork ? (
     <Container isPurchased={isPurchased}>
       <IntroContainer>
-        <Header></Header>
+        <BackIcon onClick={handleBackIconClick}></BackIcon>
       </IntroContainer>
       <MainContainer onClick={handleMainContainerClick}>
         <LeftContainer>
@@ -208,13 +250,13 @@ function ArtWorkDetail() {
       <PurchaseContainer>
         <PurchaseMiddle onClick={HandlePurchaseClick}>
           {!isPurchased ? (
-            <>
+            <PurchaseBox>
               <DownArrow />
               <PurchaseInformation>구매 정보</PurchaseInformation>
-            </>
+            </PurchaseBox>
           ) : (
             <AlternateText>
-              <Price>{artWork.price.toLocaleString()}</Price>
+              <Price>{artWork.price.toLocaleString() + "원"}</Price>
               <BuyInfo onClick={onInsertCart} isSale={artWork.onSale}>
                 {artWork.onSale ? "장바구니 담기" : "판매 완료"}
               </BuyInfo>

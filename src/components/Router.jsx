@@ -12,6 +12,7 @@ import PaymentApprove from "../pages/Payment/PaymentApprove.jsx";
 import PaymentFail from "../pages/Payment/PaymentFail.jsx";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess.jsx";
 
+
 function Router() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ function Router() {
         <Route path="/purchaseApprove" element={<PaymentApprove />}></Route>
         <Route path="/paymentSuccess" element={<PaymentSuccess/>}></Route>
         <Route path="/paymentFail" element={<PaymentFail/>}></Route>
+
       </Routes>
     </BrowserRouter>
   );
