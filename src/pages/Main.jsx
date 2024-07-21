@@ -1,7 +1,51 @@
 import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import React from "react";
-import {ContentContainer, MainPicture, MainText, SectionContainer, OrientalPaintingEngText, OrientalPaintingImg, CraftImg, ArtistText, CraftEngText, SubText, CraftBlock, DesignEngText, DesignImg, DesignKorText, DesignBlock, CraftKorText, MediaArtsEngText, MediaArtsImg, MediaArtsBlock, OrientalPaintingBlock, SculptureEngText, SculptureKorText, SculptureImg, TitleText, SculptureBlock, MediaArtsKorText, OrientalPaintingKorText, WesternPaintingKorText, WesternPaintingBlock, WesternPaintingImg, ArtistResultExp, ArtistResultTitle, ArtistResultContainer, TitleResultContainer, SearchResultContainer, TitleResultExp, SearchBox, WesternPaintingEngText, SearchContainer, TitleResultTitle, CraftContainer, OrientalContainer, MediaArtsContainer, WesternContainer, SculptureContainer, DesignContainer} from "../MainStyle.js";
+import {
+  ContentContainer,
+  MainPicture,
+  MainText,
+  SectionContainer,
+  OrientalPaintingEngText,
+  OrientalPaintingImg,
+  CraftImg,
+  ResultCategoryText,
+  CraftEngText,
+  SubText,
+  CraftBlock,
+  DesignEngText,
+  DesignImg,
+  DesignKorText,
+  DesignBlock,
+  CraftKorText,
+  MediaArtsEngText,
+  MediaArtsImg,
+  MediaArtsBlock,
+  OrientalPaintingBlock,
+  SculptureEngText,
+  SculptureKorText,
+  SculptureImg,
+  SculptureBlock,
+  MediaArtsKorText,
+  OrientalPaintingKorText,
+  WesternPaintingKorText,
+  WesternPaintingBlock,
+  WesternPaintingImg,
+  ResultExp,
+  ResultTitle,
+  SearchResultContainer,
+  SearchBox,
+  WesternPaintingEngText,
+  SearchContainer,
+  CraftContainer,
+  OrientalContainer,
+  MediaArtsContainer,
+  WesternContainer,
+  SculptureContainer,
+  DesignContainer,
+  SearchPlaceHolder,
+  ResultContainer,
+} from "../MainStyle.js";
 
 function Main() {
   return (
@@ -9,9 +53,7 @@ function Main() {
       <Header></Header>
       <MainPicture path={`/assets/mainImg.png`}>
         <MainText>GraduART</MainText>
-        <SubText>
-          서울대학교 미술대학 <br></br> 졸업전시
-        </SubText>
+        <SubText>서울대학교 미술대학 졸업전시 傳</SubText>
       </MainPicture>
       <SectionContainer to={"/Oriental Painting"}>
         <OrientalPaintingBlock color={"#FF983B"}>
@@ -76,23 +118,22 @@ function Main() {
             />
           </svg>
         </SearchBox>
+        <SearchPlaceHolder>
+          작가, 작품, 작품 설명을 검색하세요.
+        </SearchPlaceHolder>
         <SearchResultContainer>
-          <ArtistText>작가</ArtistText>
-          <ArtistResultContainer>
-            <ArtistResultTitle>미니멀 시리즈</ArtistResultTitle>
-            <ArtistResultExp>
-              김공찬 | 적동, 백동, 물푸레나무, 판금, 26x11.5x11.5 cm
-            </ArtistResultExp>
-          </ArtistResultContainer>
-          <TitleText>작품명</TitleText>
-          <TitleResultContainer>
-            <TitleResultTitle>
-              터널형 공간을 위한 프로젝션 매핑
-            </TitleResultTitle>
-            <TitleResultExp>
-              임경훈 | MDF, 프로파일, 포맥스, 프로젝터, 비디오, 94x365x186 cm
-            </TitleResultExp>
-          </TitleResultContainer>
+          <ResultCategoryText>작가</ResultCategoryText>
+          <ResultContainer>
+            <ResultTitle>나의 행운과 불행 2</ResultTitle>
+            <ResultExp>이가현 | 2020 78×116cm</ResultExp>
+          </ResultContainer>
+          <ResultCategoryText>작품명</ResultCategoryText>
+          <ResultContainer>
+            <ResultTitle>3월</ResultTitle>
+            <ResultExp>윤정연 | 2021 130.3×130.3cm</ResultExp>
+            <ResultTitle>풍경2</ResultTitle>
+            <ResultExp>오승현 | 2021 227.3×181.8cm</ResultExp>
+          </ResultContainer>
         </SearchResultContainer>
       </SearchContainer>
       <Footer></Footer>
