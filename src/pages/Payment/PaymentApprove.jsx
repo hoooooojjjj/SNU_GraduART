@@ -63,10 +63,6 @@ export const PaymentApprove = () => {
             <button style={styles.button} onClick={handleRequestApprove}>
                 결제 승인
             </button>
-            <div></div>
-            <button style={styles.button} onClick={requestInsertionTest}>
-                Insertion Test Trigger
-            </button>
         </div>
     );
 };
