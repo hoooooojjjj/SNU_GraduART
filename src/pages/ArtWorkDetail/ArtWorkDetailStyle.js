@@ -3,6 +3,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
+import backgroundImage from "/Users/minsok/Desktop/Graduart/SNU_GraduART/public/assets/baa.jpg";
 //import ClearIcon from "@mui/icons-material/Clear";
 //import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -21,6 +22,10 @@ export const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const IntroContainer = styled.div`
@@ -35,7 +40,7 @@ export const BackIcon = styled(LogoutIcon)`
   transform: rotate(180deg);
   font-size: 25px;
   margin-left: 3dvw;
-  color: #c0c2c8;
+  color: #928a8a;
   &:hover {
     color: #2c2c2c;
   }
@@ -91,7 +96,7 @@ export const LeftContainer = styled.div`
 export const LeftArrow = styled(ArrowBackIosIcon)`
   cursor: pointer;
   font-size: 60px;
-  color: #c0c2c8;
+  color: #928a8a;
   padding-left: 40%;
 `;
 
@@ -117,7 +122,7 @@ export const RightArrowContainer = styled.div`
 
 export const RightArrow = styled(ArrowForwardIosIcon)`
   font-size: 60px;
-  color: #c0c2c8;
+  color: #928a8a;
   cursor: pointer;
 `;
 
@@ -183,7 +188,7 @@ export const PurchaseMiddle = styled.div`
 export const PurchaseBox = styled.div`
   display: flex;
   flex-direction: row;
-  color: #c0c2c8;
+  color: #928a8a;
   &:hover {
     color: #2c2c2c;
   }
@@ -248,13 +253,11 @@ export const ModalContent = styled.div`
 export const Button = styled.button`
   margin: 10px;
   padding: 10px 20px;
-  background-color: #7391c8;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background: #b5c0d0;
 `;
 
-export const ModalButton = styled(Button)`
-  background-color: #bdc6d9;
-`;
+export const ModalButton = styled(Button)``;
