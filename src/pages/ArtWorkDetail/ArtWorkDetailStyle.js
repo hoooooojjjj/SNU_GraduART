@@ -3,7 +3,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
-import backgroundImage from "/Users/minsok/Desktop/Graduart/SNU_GraduART/public/assets/baa.jpg";
+import backgroundImage from "/assets/baa.jpg";
 //import ClearIcon from "@mui/icons-material/Clear";
 //import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
