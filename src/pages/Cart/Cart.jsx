@@ -114,17 +114,6 @@ function Cart() {
     setUserCartItemList(newCartItemList);
   };
 
-  const navigator = useNavigate();
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error('Error logging out:', error.message);
-    } else {
-      navigator('/');
-      setUser(null);
-    }
-  };
-
   // 전체 작품 선택 클릭 시
   const handleCheckAll = () => {
     // 만약 다 체크되어 있었다면 선택된 작품 리스트를 비움
@@ -208,8 +197,8 @@ function Cart() {
     <Container>
       <Header></Header>
       <ContentContainer>
-        <CartText>마이페이지</CartText>
-        <ListText>장바구니</ListText>
+        <CartText>장바구니</CartText>
+        <ListText>목록</ListText>
         <CartItemList>
           {userCartItemList.length > 0 ? (
             <CheckAllContainer>
@@ -291,8 +280,6 @@ function Cart() {
         ) : (
           <></>
         )}
-        <br></br>
-        {user ? (<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>) : (<></>)}
       </ContentContainer>
     </Container>
   );

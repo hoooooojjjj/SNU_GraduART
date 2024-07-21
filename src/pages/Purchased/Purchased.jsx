@@ -6,7 +6,7 @@ import {
   ListText,
   CartItem,
   CartItemList,
-  CartItemText,
+  CartItemText, LogoutButton,
 } from "../Cart/CartStyle.js";
 import {
   PurchasedItemImg,
@@ -30,6 +30,17 @@ function Purchased() {
   // 취소환불 페이지로 이동
   const onClick = () => {
     nav("/refund");
+  };
+
+  const navigator = useNavigate();
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Error logging out:', error.message);
+    } else {
+      navigator('/');
+      setUser(null);
+    }
   };
 
   // 해당 유저가 담은 장바구니 리스트 가져오기
@@ -90,6 +101,8 @@ function Purchased() {
             </>
           )}
         </CartItemList>
+        <br></br>
+        {user ? (<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>) : (<></>)}
       </ContentContainer>
     </Container>
   );
