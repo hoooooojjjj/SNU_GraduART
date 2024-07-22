@@ -6,7 +6,8 @@ import {
   ListText,
   CartItem,
   CartItemList,
-  CartItemText, LogoutButton,
+  CartItemText,
+  LogoutButton,
 } from "../Cart/CartStyle.js";
 import {
   PurchasedItemImg,
@@ -28,17 +29,17 @@ function Purchased() {
   const [userPurchaseItemList, setUserPurchaseItemList] = useState([]);
 
   // 취소환불 페이지로 이동
-  const onClick = () => {
-    nav("/refund");
+  const handleRefund = (item) => {
+    nav(`/refund/${item.item_id}`, { state: item });
   };
 
   const navigator = useNavigate();
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      console.error('Error logging out:', error.message);
+      console.error("Error logging out:", error.message);
     } else {
-      navigator('/');
+      navigator("/");
       setUser(null);
     }
   };
@@ -82,7 +83,7 @@ function Purchased() {
                   <br></br>
                   {item.price} 원
                 </CartItemText>
-                <PurchasedItemDelete onClick={onClick}>
+                <PurchasedItemDelete onClick={() => handleRefund(item)}>
                   취소/환불 신청하기
                 </PurchasedItemDelete>
               </CartItem>
@@ -102,7 +103,11 @@ function Purchased() {
           )}
         </CartItemList>
         <br></br>
-        {user ? (<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>) : (<></>)}
+        {user ? (
+          <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+        ) : (
+          <></>
+        )}
       </ContentContainer>
     </Container>
   );

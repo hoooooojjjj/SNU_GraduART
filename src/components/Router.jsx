@@ -12,7 +12,6 @@ import PaymentApprove from "../pages/Payment/PaymentApprove.jsx";
 import PaymentFail from "../pages/Payment/PaymentFail.jsx";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess.jsx";
 
-
 function Router() {
   return (
     <BrowserRouter>
@@ -24,11 +23,10 @@ function Router() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/purchased" element={<Purchased />}></Route>
-        <Route path="/refund" element={<Refund />}></Route>
+        <Route path="/refund/:refundItemID" element={<Refund />}></Route>
         <Route path="/purchaseApprove" element={<PaymentApprove />}></Route>
-        <Route path="/paymentSuccess" element={<PaymentSuccess/>}></Route>
-        <Route path="/paymentFail" element={<PaymentFail/>}></Route>
-
+        <Route path="/paymentSuccess" element={<PaymentSuccess />}></Route>
+        <Route path="/paymentFail" element={<PaymentFail />}></Route>
       </Routes>
     </BrowserRouter>
   );
