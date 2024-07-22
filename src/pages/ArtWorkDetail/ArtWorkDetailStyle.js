@@ -257,7 +257,9 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: #b5c0d0;
+  background: #8c94a9;
 `;
 
-export const ModalButton = styled(Button)``;
+export const ModalButton = styled(Button)`
+  background: #b5c0d0;
+`;
