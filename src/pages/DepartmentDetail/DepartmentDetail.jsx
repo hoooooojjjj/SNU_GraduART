@@ -32,6 +32,28 @@ import Footer from "../../components/Footer/Footer.jsx";
 import { supabase } from "../../ServerClient.js";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 
+// 미술작품 가져오기
+const getArtWorksByDepartment = async (department) => {
+  let { data: items, error } = await supabase
+    // items 테이블에서
+    .from("items")
+    // 모든 column 선택
+    .select("*")
+    // 현재 라우트에 해당하는 과 미술작품만 필터링
+    .eq("department", department)
+    // 최신순으로 정렬
+    .order("created_at", { ascending: false });
+
+  // 에러 없고 데이터가 있다면
+  if (!error && items) {
+    // 데이터 리턴
+    return items;
+  } else {
+    console.log(error);
+    throw new Error(error.message); // Error handling 추가
+  }
+};
+
 function DepartmentDetail() {
   // 라우팅
   const nav = useNavigate();
@@ -51,36 +73,11 @@ function DepartmentDetail() {
   // 현재 페이지네이션 페이지
   const [page, setPage] = useState(0);
 
-  // Access the client
-  const queryClient = useQueryClient();
-
-  // 미술작품 가져오기
-  const getArtWorksByDepartment = async () => {
-    let { data: items, error } = await supabase
-      // items 테이블에서
-      .from("items")
-      // 모든 column 선택
-      .select("*")
-      // 현재 라우트에 해당하는 과 미술작품만 필터링
-      .eq("department", department)
-      // 최신순으로 정렬
-      .order("created_at", { ascending: false });
-
-    // 에러 없고 데이터가 있다면
-    if (!error && items) {
-      // 미술작품 데이터를 ArtWorkList 상태에 저장
-      // setArtWorkList(items);
-      return items;
-    } else {
-      console.log(error);
-    }
-  };
-
   // 현재 라우트에 해당하는 과 미술작품만 필터링해서 가져오기
   // Queries
   const { isPending, isError, data, error } = useQuery({
     queryKey: [`getArtWorksByDepartment`, department],
-    queryFn: getArtWorksByDepartment,
+    queryFn: () => getArtWorksByDepartment(department),
   });
 
   // 장바구니에서 redirect로 넘어온 경우
@@ -105,7 +102,6 @@ function DepartmentDetail() {
 
   useEffect(() => {
     // ArtWorkList 리스트에서 6개씩 끊어서 페이지네이션을 구현하는 함수
-
     const PaginateArtWorks = () => {
       const paginatedArtWorks = data.filter(
         // 미술작품 데이터에서 현재 페이지에 해당하는 데이터만 필터링
@@ -128,7 +124,43 @@ function DepartmentDetail() {
 
   // 데이터가 들어오고 있을 때
   if (isPending) {
-    return <span>Loading...</span>;
+    return (
+      <Container>
+        <IntroContainer>
+          <Intro>
+            <Header></Header>
+            <TitleBackground color={departmentInfo.titleColor}>
+              <TitleText>{department}</TitleText>
+            </TitleBackground>
+            <Img src={`/assets/${departmentInfo.imgPath}`}></Img>
+          </Intro>
+          <DescriptionContainer>
+            <MiddleContainer>
+              <DescriptionExtra>
+                <ExtraTitle>{departmentInfo.departmentName}</ExtraTitle>
+                <LinkContainer>
+                  <Insta>
+                    <InstaIcon />
+                    <Link href={departmentInfo.Instagram}> 인스타그램</Link>
+                  </Insta>
+                  <Link href={departmentInfo.collection}>
+                    2021 졸업작품 컬렉션
+                  </Link>
+                  <Link href={departmentInfo.homepage}>
+                    {departmentInfo.departmentName} 홈페이지
+                  </Link>
+                </LinkContainer>
+              </DescriptionExtra>
+              <DescriptionBox>
+                <DescriptionText>
+                  {departmentInfo.departmentDescription}
+                </DescriptionText>
+              </DescriptionBox>
+            </MiddleContainer>
+          </DescriptionContainer>
+        </IntroContainer>
+      </Container>
+    );
   }
 
   // fetching 과정에서 에러가 발생했을 때
