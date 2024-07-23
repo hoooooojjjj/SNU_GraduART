@@ -161,7 +161,9 @@ function ArtWorkDetail() {
     setIsOnConflict(false);
     // 로그인 안했다면 로그인 페이지로 이동
     if (!user) {
-      nav("/login", { state: "로그인이 필요한 서비스입니다" });
+      nav("/login", {
+        state: { redirectMessage: "로그인이 필요한 서비스입니다" },
+      });
       return null;
     }
     if (!artWork.onSale) {
