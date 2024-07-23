@@ -14,11 +14,11 @@ import LoginComponent from "../../components/LoginComponent.jsx";
 function Login() {
   const [isRedirect, setIsRedirect] = useState(null);
 
-  const redirectMessage = useLocation().state;
+  const redirectMessage = useLocation().state?.redirectMessage;
 
   useEffect(() => {
     setIsRedirect(redirectMessage);
-  });
+  }, []);
 
   return (
     <Container>

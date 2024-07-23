@@ -161,17 +161,43 @@ function ArtWorkDetail() {
     setIsOnConflict(false);
     // 로그인 안했다면 로그인 페이지로 이동
     if (!user) {
-      nav("/login", { state: "로그인이 필요한 서비스입니다" });
+      nav("/login", {
+        state: { redirectMessage: "로그인이 필요한 서비스입니다" },
+      });
       return null;
     }
     if (!artWork.onSale) {
       return null;
     }
-    // cart_item 테이블에 데이터 추가
-    const { data, error } = await supabase
+
+    // 이미 유저가 담은 작품인지 여부
+    let AlreadyInsert = false;
+
+    // 유저가 이전에 담았던 작품들을 가져옴
+    let { data: cart_item, getError } = await supabase
       .from("cart_item")
-      .upsert(
-        [
+      .select("user_id, item_id")
+      .eq("user_id", user.id);
+
+    // 유저가 이전에 담았던 작품들 중에서 지금 담으려는 작품이 있는지 확인
+    cart_item?.forEach((item) => {
+      // 지금 담으려는 작품이 있다면
+      if (item.item_id === artWork.itemID) {
+        // isOnConflict를 true로
+        setIsOnConflict(true);
+        // 이미 유저가 담았음을 명시
+        AlreadyInsert = true;
+      }
+    });
+    if (getError) {
+      console.log(getError);
+    }
+    // 유저가 똑같은 걸 담지 않았다면
+    if (!AlreadyInsert) {
+      // cart_item 테이블에 데이터 추가
+      const { inserrError } = await supabase
+        .from("cart_item")
+        .upsert([
           {
             user_id: user.id,
             item_id: artWork.itemID,
@@ -186,22 +212,15 @@ function ArtWorkDetail() {
             made_at: artWork.made_at,
             num_code: artWork.num_code,
           },
-        ],
+        ])
+        .eq("onSale", true)
+        .select();
 
-        // 중복되는 item_id가 있을 경우 onConflict 옵션으로 안 담기게 하기
-        { onConflict: "item_id" }
-      )
-      .eq("onSale", true)
-      .select();
-
-    if (error) {
-      console.log(error);
-      // 중복되는 item_id가 있을 경우 이미 담겼다는 모달창 띄우기
-      if (error.code === "42501") {
-        setIsOnConflict(true);
+      if (inserrError) {
+        console.log(inserrError);
       }
     }
-
+    // 모달창 띄우기
     showModal();
   };
 

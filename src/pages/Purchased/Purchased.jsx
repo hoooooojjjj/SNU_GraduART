@@ -23,7 +23,7 @@ function Purchased() {
   const nav = useNavigate();
 
   // 유저 정보 가져오기
-  const [user] = useContext(userContext);
+  const [user, setUser] = useContext(userContext);
 
   // 유저가 구매한 작품 리스트
   const [userPurchaseItemList, setUserPurchaseItemList] = useState([]);
