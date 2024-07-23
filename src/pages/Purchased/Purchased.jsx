@@ -6,7 +6,8 @@ import {
   ListText,
   CartItem,
   CartItemList,
-  CartItemText, LogoutButton,
+  CartItemText,
+  LogoutButton,
 } from "../Cart/CartStyle.js";
 import {
   PurchasedItemImg,
@@ -22,7 +23,7 @@ function Purchased() {
   const nav = useNavigate();
 
   // 유저 정보 가져오기
-  const [user] = useContext(userContext);
+  const [user, setUser] = useContext(userContext);
 
   // 유저가 구매한 작품 리스트
   const [userPurchaseItemList, setUserPurchaseItemList] = useState([]);
@@ -36,9 +37,9 @@ function Purchased() {
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      console.error('Error logging out:', error.message);
+      console.error("Error logging out:", error.message);
     } else {
-      navigator('/');
+      navigator("/");
       setUser(null);
     }
   };
@@ -102,7 +103,11 @@ function Purchased() {
           )}
         </CartItemList>
         <br></br>
-        {user ? (<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>) : (<></>)}
+        {user ? (
+          <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+        ) : (
+          <></>
+        )}
       </ContentContainer>
     </Container>
   );
