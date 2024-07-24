@@ -19,6 +19,7 @@ import {
   CheckAllText,
   CartImgContainer,
   LogoutButton,
+  AlreadyPurchased,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";
 import { userContext } from "../../App.jsx";
@@ -93,15 +94,18 @@ function Cart() {
 
   // 전체 작품 선택 클릭 시
   const handleCheckAll = () => {
-    if (data) {
-      // 만약 다 체크되어 있었다면 선택된 작품 리스트를 비움
-      if (isCheckedAll) {
-        setSelectedItems([]);
-      } else {
-        setSelectedItems(data);
-      }
-      setIsCheckedAll(!isCheckedAll);
+    // 판매 중인 항목만 필터링
+    const onSaleItems = data.filter((item) => item.onSale);
+
+    if (isCheckedAll) {
+      setSelectedItems([]);
+    } else {
+      // 판매 중인 항목만 selectedItems에 추가
+      setSelectedItems(onSaleItems);
     }
+
+    // isCheckedAll을 판매 중인 모든 항목이 선택되었는지에 따라 조정
+    setIsCheckedAll(!isCheckedAll);
   };
 
   // 체크박스가 변경될 때마다 선택된 작품을 업데이트
@@ -211,7 +215,8 @@ function Cart() {
   useEffect(() => {
     if (data) {
       const allSelected =
-        data.length > 0 && selectedItems.length === data.length;
+        data.length > 0 &&
+        selectedItems.length === data.filter((item) => item.onSale).length;
       setIsCheckedAll(allSelected);
     }
   }, [selectedItems, data]);
@@ -250,7 +255,7 @@ function Cart() {
       <ContentContainer>
         <CartText>장바구니</CartText> <ListText>목록</ListText>
         <CartItemList>
-          {data && data.length > 0 ? (
+          {data && data.filter((item) => item.onSale).length ? (
             <CheckAllContainer>
               <CheckAllIcon
                 type="checkbox"
@@ -265,16 +270,20 @@ function Cart() {
           )}
           {data && data.length > 0 ? (
             data.map((item) => (
-              <CartItem key={item.item_id}>
-                <CheckBoxIcon
-                  type="checkbox"
-                  id={item.item_id}
-                  name="isChecked"
-                  checked={selectedItems.some(
-                    (selectedItem) => selectedItem.item_id === item.item_id
-                  )}
-                  onChange={(event) => handleCheckboxChange(event, item)}
-                ></CheckBoxIcon>
+              <CartItem isOnSale={item.onSale} key={item.item_id}>
+                {item.onSale ? (
+                  <CheckBoxIcon
+                    type="checkbox"
+                    id={item.item_id}
+                    name="isChecked"
+                    checked={selectedItems.some(
+                      (selectedItem) => selectedItem.item_id === item.item_id
+                    )}
+                    onChange={(event) => handleCheckboxChange(event, item)}
+                  ></CheckBoxIcon>
+                ) : (
+                  <AlreadyPurchased>판매완료</AlreadyPurchased>
+                )}
                 <CartImgContainer>
                   <CartItemImg
                     onClick={() =>

@@ -19,9 +19,9 @@ export const ContentContainer = styled.div({
 });
 
 export const LogoutButton = styled.div({
-  color: 'darkred',
+  color: "darkred",
   fontSize: "20px",
-  textDecoration:'underline'
+  textDecoration: "underline",
 });
 
 // "장바구니" 텍스트
@@ -80,6 +80,7 @@ export const CheckAllIcon = styled.input`
   align-items: center;
   display: flex;
   margin-right: 1%;
+  width: 10%;
 `;
 
 // "전체 선택" 텍스트
@@ -92,21 +93,30 @@ export const CheckAllText = styled.div({
 });
 
 // 장바구니에 있는 항목 1개
-export const CartItem = styled.div({
+export const CartItem = styled.div((props) => ({
   width: "100%",
   height: "50%",
   marginBottom: "3%",
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-});
+  color: props.isOnSale ? "black" : "gray",
+}));
 
 // 장바구니 체크 아이콘
 export const CheckBoxIcon = styled.input`
   align-items: center;
   display: flex;
+  width: 10%;
   margin: 3%;
-  margin-right: 5%;
+`;
+
+export const AlreadyPurchased = styled.div`
+  align-items: center;
+  display: flex;
+  width: 10%;
+  margin: 3%;
+  color: gray;
 `;
 
 export const CartImgContainer = styled.div`
