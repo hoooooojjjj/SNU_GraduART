@@ -165,16 +165,43 @@ export const ArtWorkImgWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-export const ArtWorkImg = styled.div`
+// 기본 설정 이미지
+export const PendingArtWorkImg = styled.picture`
+  z-index: 100;
+  opacity: ${(props) => (props.imageLoaded ? 0 : 1)};
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: ${(props) => `url(${props.ImgUrl})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  // 네트워크 탭을 보면 이미지 로드 시간이 대략 0.5초 정도 걸림
+  transition: opacity 0.5s ease-in-out;
+  ${(props) =>
+    !props.imageLoaded &&
+    `
+    transition-delay: 0.5s;
+    opacity: 1;
+  `}
+`;
+
+export const ArtWorkImg = styled.picture`
+  opacity: ${(props) => (props.imageLoaded ? 1 : 0)};
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 export const ArtWorkTitle = styled.div({

@@ -24,6 +24,7 @@ import {
   ArtWorkTitle,
   ArtWorkDescription,
   ArtWorkImgWrap,
+  PendingArtWorkImg,
 } from "./DepartmentDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import departmentInfos from "./DepartmentInfo.json";
@@ -54,6 +55,16 @@ const getArtWorksByDepartment = async (department) => {
   }
 };
 
+// 이미지 프리로드 함수
+const preloadImage = (src) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = resolve;
+    img.onerror = reject;
+  });
+};
+
 function DepartmentDetail() {
   // 라우팅
   const nav = useNavigate();
@@ -72,6 +83,9 @@ function DepartmentDetail() {
 
   // 현재 페이지네이션 페이지
   const [page, setPage] = useState(0);
+
+  // artwork 이미지 로드 상태
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // 현재 라우트에 해당하는 과 미술작품만 필터링해서 가져오기
   // Queries
@@ -120,6 +134,27 @@ function DepartmentDetail() {
   // 라우팅할 때 ArtWorkList도 props로 전달
   const onClickArtWork = (itemID) => {
     nav(`/${department}/${itemID}`, { state: data });
+  };
+
+  // 이미지 프리로드 useEffect
+  useEffect(() => {
+    if (data) {
+      data.forEach((item) => {
+        preloadImage(item.imagePath).catch((error) => {
+          console.error("Failed to preload image:", item.imagePath, error);
+        });
+      });
+    }
+
+    // 컴포넌트가 언마운트되면 이미지 로드 상태를 false로 변경
+    return () => {
+      setImageLoaded(false);
+    };
+  }, [data]);
+
+  // artwork 이미지 로드가 완료되면 imageLoaded 상태를 true로 변경
+  const handleImageLoad = () => {
+    setImageLoaded(true);
   };
 
   // 데이터가 들어오고 있을 때
@@ -216,7 +251,26 @@ function DepartmentDetail() {
                   }}
                 >
                   <ArtWorkImgWrap>
-                    <ArtWorkImg ImgUrl={item.imagePath}></ArtWorkImg>
+                    {/*  artwork의 이미지가 브라우저에 load되기 전에는 기본 설정된 이미지를 렌더링 */}
+                    {/*  artwork의 이미지가 브라우저에 load되면 실제 이미지를 렌더링 */}
+                    <PendingArtWorkImg imageLoaded={imageLoaded}>
+                      <source
+                        type="image/webp"
+                        srcSet={`/assets/landing-oriental.webp`}
+                      />
+                      <img
+                        src={`/assets/landing-oriental.webp`}
+                        alt="ArtWork"
+                      />
+                    </PendingArtWorkImg>
+                    <ArtWorkImg imageLoaded={imageLoaded}>
+                      <source type="image/webp" srcSet={`${item.imagePath}`} />
+                      <img
+                        src={item.imagePath}
+                        onLoad={handleImageLoad}
+                        alt="ArtWork"
+                      />
+                    </ArtWorkImg>
                   </ArtWorkImgWrap>
                   <ArtWorkTitle>{item.title}</ArtWorkTitle>
                   <ArtWorkDescription>
