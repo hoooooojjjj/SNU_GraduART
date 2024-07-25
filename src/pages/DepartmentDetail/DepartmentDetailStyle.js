@@ -168,8 +168,8 @@ export const ArtWorkImgWrap = styled.div`
   position: relative;
 `;
 
-// 기본 설정 이미지
-export const PendingArtWorkImg = styled.picture`
+// 이미지 로딩
+export const PendingArtWorkImg = styled.div`
   z-index: 100;
   opacity: ${(props) => (props.imageLoaded ? 0 : 1)};
   position: absolute;
@@ -179,11 +179,28 @@ export const PendingArtWorkImg = styled.picture`
   display: flex;
   justify-content: center;
   align-items: center;
-  & > img {
-    width: 30%;
-    height: 30%;
-    object-fit: contain;
-    animation: rotate 1s infinite linear; // Add animation property
+  & > span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+  }
+  & > span:nth-of-type(0) {
+    margin: 5px;
+    animation-delay: 0s;
+    background-color: red;
+  }
+  & > span:nth-of-type(1) {
+    margin: 5px;
+    animation-delay: 0.2s;
+    background-color: dodgerblue;
+  }
+  & > span:nth-of-type(2) {
+    margin: 5px;
+    animation-delay: 0.4s;
+    background-color: greenyellow;
   }
   transition: opacity 0.1s ease-in-out;
   ${(props) =>
@@ -192,12 +209,18 @@ export const PendingArtWorkImg = styled.picture`
     opacity: 1;
   `}
 
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
+  @keyframes loading {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
     }
-    to {
-      transform: rotate(360deg);
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
     }
   }
 `;

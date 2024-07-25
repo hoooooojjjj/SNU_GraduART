@@ -254,11 +254,9 @@ function DepartmentDetail() {
                     {/*  artwork의 이미지가 브라우저에 load되기 전에는 기본 설정된 이미지를 렌더링 */}
                     {/*  artwork의 이미지가 브라우저에 load되면 실제 이미지를 렌더링 */}
                     <PendingArtWorkImg imageLoaded={imageLoaded}>
-                      <source
-                        type="image/webp"
-                        srcSet={`/assets/ImgLoading.png`}
-                      />
-                      <img src={`/assets/ImgLoading.png`} alt="ArtWork" />
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </PendingArtWorkImg>
                     <ArtWorkImg imageLoaded={imageLoaded}>
                       <source type="image/webp" srcSet={`${item.imagePath}`} />
