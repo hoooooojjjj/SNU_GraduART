@@ -53,7 +53,7 @@ function Purchased() {
     if (error) {
       console.error("Error logging out:", error.message);
     } else {
-      navigator("/");
+      nav("/");
       setUser(null);
     }
   };

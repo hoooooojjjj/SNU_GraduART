@@ -16,6 +16,8 @@ function Login() {
 
   const redirectMessage = useLocation().state?.redirectMessage;
 
+  const redirectPath = useLocation().state?.redirectPath;
+
   useEffect(() => {
     setIsRedirect(redirectMessage);
   }, []);
@@ -28,7 +30,7 @@ function Login() {
         <RedirectMessageContainer>
           <RedirectMessage>{isRedirect ? isRedirect : ""}</RedirectMessage>
         </RedirectMessageContainer>
-        <LoginComponent></LoginComponent>
+        <LoginComponent redirectPath={redirectPath}></LoginComponent>
         <Line></Line>
       </LoginContainer>
     </Container>

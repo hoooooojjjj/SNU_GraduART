@@ -181,12 +181,12 @@ export const PendingArtWorkImg = styled.picture`
     height: 100%;
     object-fit: contain;
   }
-  // 네트워크 탭을 보면 이미지 로드 시간이 대략 0.5초 정도 걸림
+  // 네트워크 탭을 보면 이미지 로드 시간이 최대 1초 정도 걸림
   transition: opacity 0.5s ease-in-out;
   ${(props) =>
     !props.imageLoaded &&
     `
-    transition-delay: 0.5s;
+
     opacity: 1;
   `}
 `;

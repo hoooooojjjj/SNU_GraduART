@@ -162,7 +162,10 @@ function ArtWorkDetail() {
     // 로그인 안했다면 로그인 페이지로 이동
     if (!user) {
       nav("/login", {
-        state: { redirectMessage: "로그인이 필요한 서비스입니다" },
+        state: {
+          redirectMessage: "로그인이 필요한 서비스입니다",
+          redirectPath: `/${artWork.department}/${artWork.itemID}`,
+        },
       });
       return null;
     }
