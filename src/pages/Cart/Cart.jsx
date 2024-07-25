@@ -231,7 +231,7 @@ function Cart() {
             <Box
               style={{
                 width: "100%",
-                height: "50dvh",
+                height: "20dvh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",

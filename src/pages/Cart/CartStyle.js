@@ -19,9 +19,16 @@ export const ContentContainer = styled.div({
 });
 
 export const LogoutButton = styled.div({
-  color: "darkred",
+  color: "black",
+  margin: 30,
+  marginBottom: 30,
+  padding: "10px 20px",
+  color: "white",
+  border: "none",
+  borderRadius: 5,
+  cursor: "pointer",
   fontSize: "20px",
-  textDecoration: "underline",
+  background: "#8c94a9",
 });
 
 // "장바구니" 텍스트
