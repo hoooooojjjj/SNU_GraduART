@@ -158,7 +158,13 @@ function Refund() {
             <>
               <RefundImgContainer>
                 <RefundImgWrap>
-                  <RefundImg path={`${refundItem.imagePath}`}></RefundImg>
+                  <RefundImg>
+                    <source
+                      type="image/webp"
+                      srcSet={`${refundItem.imagePath}`}
+                    />
+                    <img src={refundItem.imagePath} alt="ArtWork" />
+                  </RefundImg>
                 </RefundImgWrap>
                 <RefundItemText>
                   {refundItem.title} | {refundItem.artist}
