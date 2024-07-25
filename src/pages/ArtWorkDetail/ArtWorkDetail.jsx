@@ -59,6 +59,11 @@ function ArtWorkDetail() {
   // 똑같은 상품을 담았을 때
   const [isOnConflict, setIsOnConflict] = useState(false);
 
+  // 애니메이션 정보
+  const [animateOut, setAnimateOut] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
+  const [animateDirection, setAnimateDirection] = useState("");
+
   // 모달을 표시하는 함수
   const showModal = () => {
     setIsModalVisible(true);
@@ -106,44 +111,56 @@ function ArtWorkDetail() {
 
   // 오른쪽 화살표를 누르면 다음 작품 상세 페이지로 이동
   const onRightArrowClick = () => {
-    // 현재 작품보다 오래된 작품 중 제일 첫번째 작품 필터링
-    const nextArtWork = artWorkList.filter(
-      (artworks) =>
-        new Date(artWork.created_at) > new Date(artworks.created_at) &&
-        artWork.itemID !== artworks.itemID
-    );
-    // 현재 작품보다 오랜된 작품이 없으면 가장 최신 작품으로 이동
-    if (nextArtWork.length === 0) {
-      nav(`/${artWorkList[0].department}/${artWorkList[0].itemID}`, {
-        state: artWorkList,
-      });
-      // 현재 작품보다 오래된 작품이 있으면 그 작품으로 이동
-    } else {
-      nav(`/${nextArtWork[0].department}/${nextArtWork[0].itemID}`, {
-        state: artWorkList,
-      });
-    }
+    setAnimateDirection("Left");
+    setAnimateOut(true);
+    setTimeout(() => {
+      // 현재 작품보다 오래된 작품 중 제일 첫번째 작품 필터링
+      const nextArtWork = artWorkList.filter(
+        (artworks) =>
+          new Date(artWork.created_at) > new Date(artworks.created_at) &&
+          artWork.itemID !== artworks.itemID
+      );
+      // 현재 작품보다 오랜된 작품이 없으면 가장 최신 작품으로 이동
+      if (nextArtWork.length === 0) {
+        nav(`/${artWorkList[0].department}/${artWorkList[0].itemID}`, {
+          state: artWorkList,
+        });
+        // 현재 작품보다 오래된 작품이 있으면 그 작품으로 이동
+      } else {
+        nav(`/${nextArtWork[0].department}/${nextArtWork[0].itemID}`, {
+          state: artWorkList,
+        });
+      }
+      setAnimateOut(false);
+      setAnimateIn(true);
+    }, 900);
   };
 
   // 왼쪽 화살표를 누르면 이전 작품 상세 페이지로 이동
   const onLeftArrowClick = () => {
-    // 현재 작품보다 최신인 작품 중 제일 마지막 작품 필터링
-    const prevArtWork = artWorkList.filter(
-      (artworks) =>
-        new Date(artWork.created_at) < new Date(artworks.created_at) &&
-        artWork.itemID !== artworks.itemID
-    );
-    // 현재 작품보다 최신인 작품이 없으면 가장 오래된 작품으로 이동
-    if (prevArtWork.length === 0) {
-      nav(`/${artWorkList.at(-1).department}/${artWorkList.at(-1).itemID}`, {
-        state: artWorkList,
-      });
-      // 현재 작품보다 최신인 작품이 있으면 그 작품으로 이동
-    } else {
-      nav(`/${prevArtWork.at(-1).department}/${prevArtWork.at(-1).itemID}`, {
-        state: artWorkList,
-      });
-    }
+    setAnimateDirection("Right");
+    setAnimateOut(true);
+    setTimeout(() => {
+      // 현재 작품보다 최신인 작품 중 제일 마지막 작품 필터링
+      const prevArtWork = artWorkList.filter(
+        (artworks) =>
+          new Date(artWork.created_at) < new Date(artworks.created_at) &&
+          artWork.itemID !== artworks.itemID
+      );
+      // 현재 작품보다 최신인 작품이 없으면 가장 오래된 작품으로 이동
+      if (prevArtWork.length === 0) {
+        nav(`/${artWorkList.at(-1).department}/${artWorkList.at(-1).itemID}`, {
+          state: artWorkList,
+        });
+        // 현재 작품보다 최신인 작품이 있으면 그 작품으로 이동
+      } else {
+        nav(`/${prevArtWork.at(-1).department}/${prevArtWork.at(-1).itemID}`, {
+          state: artWorkList,
+        });
+      }
+      setAnimateOut(false);
+      setAnimateIn(true);
+    }, 900);
   };
 
   const HandlePurchaseClick = () => {
@@ -236,11 +253,23 @@ function ArtWorkDetail() {
   };
 
   return artWork ? (
-    <Container isPurchased={isPurchased}>
+    <Container
+      isPurchased={isPurchased}
+      // animateOut={animateOut}
+      // animateIn={animateIn}
+      // animateDirection={animateDirection}
+      // onAnimationEnd={() => setAnimateIn(false)}
+    >
       <IntroContainer>
         <BackIcon onClick={handleBackIconClick}></BackIcon>
       </IntroContainer>
-      <MainContainer onClick={handleMainContainerClick}>
+      <MainContainer
+        animateOut={animateOut}
+        animateIn={animateIn}
+        animateDirection={animateDirection}
+        onAnimationEnd={() => setAnimateIn(false)}
+        onClick={handleMainContainerClick}
+      >
         <LeftContainer>
           <LeftArrow onClick={onLeftArrowClick}></LeftArrow>
         </LeftContainer>

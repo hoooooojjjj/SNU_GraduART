@@ -4,8 +4,31 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import backgroundImage from "/assets/baa.jpg";
+import { keyframes, css } from "@emotion/react";
 //import ClearIcon from "@mui/icons-material/Clear";
 //import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+
+const fadeOutLeft = keyframes`
+  0% {  transform: translateX(0) },
+  100% {  transform: translateX(-100%) },
+`;
+
+const fadeInLeft = keyframes`
+  0% {  transform: translateX(80%) },
+  100% {  transform: translateX(0) },
+`;
+
+// Fade-out and slide-Right animation
+const fadeOutRight = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+`;
+
+// Fade-in and slide-Right animation
+const fadeInRight = keyframes`
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+`;
 
 export const Container = styled.div`
   width: 100dvw;
@@ -51,6 +74,20 @@ export const MainContainer = styled.div`
   height: 80dvh;
   display: flex;
   flex-direction: row;
+  position: relative;
+
+  ${({ animateOut, animateDirection }) =>
+    animateOut &&
+    css`
+      animation: ${animateDirection === "Left" ? fadeOutLeft : fadeOutRight}
+        1.5s ease-in-out forwards;
+    `}
+  ${({ animateIn, animateDirection }) =>
+    animateIn &&
+    css`
+      animation: ${animateDirection === "Left" ? fadeInLeft : fadeInRight} 1s
+        ease-in-out forwards;
+    `}
 `;
 
 export const ImageWrap = styled.div`
