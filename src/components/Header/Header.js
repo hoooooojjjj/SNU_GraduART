@@ -45,12 +45,12 @@ export const StyledNavLink = styled(NavLink)`
 
 export const HomeStyledNavLink = styled(NavLink)((props) => ({
   color: "dimgrey",
-  fontFamily: 'DM Serif Display',
-  fontWeight: 'Bold',
-  fontSize:'23px',
+  fontFamily: "DM Serif Display",
+  fontWeight: "Bold",
+  fontSize: "23px",
   textDecoration: "none",
   marginLeft: props.margin,
-  marginRight: '10dvw'
+  marginRight: "10dvw",
 }));
 
 export const Buttons = styled.ul`
@@ -62,4 +62,4 @@ export const Buttons = styled.ul`
   align-items: center;
   gap: 2dvw;
   margin: 0 2dvw 0 0;
-`
+`;

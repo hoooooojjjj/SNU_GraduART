@@ -1,22 +1,65 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
+import { keyframes } from "@emotion/react";
+import "animate.css";
 
 // ContentContainer
 export const ContentContainer = styled.div`
   width: 100dvw;
 `;
 
+//maintext 애니메이션
+const FadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const FadeInFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const FadeInFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 // MainPicture
 export const MainPicture = styled.section`
+  animation: fadeInRight;
+  animation-duration: 0.7s;
+  animation-timing-function: linear;
   width: 100%;
   height: 94dvh;
   background-image: url(${(props) => props.path});
   background-size: cover;
   background-position-y: 50%;
+  &.fade-out {
+    animation: fadeOutUp;
+  }
 `;
 
 // GraduART Text
 export const MainText = styled.div`
+  animation: ${FadeIn};
+  animation-duration: 2s;
+  animation-timing-function: linear;
   color: #ffffff;
   font-family: "DM Serif Display";
   font-size: 96px;
@@ -31,6 +74,8 @@ export const MainText = styled.div`
 
 // 서울대학교 미술대학 졸업전시 Text
 export const SubText = styled.div`
+  animation: fadeInUp;
+  animation-duration: 2s;
   color: #ffffff;
   font-family: Pretendard;
   font-size: 35px;
@@ -55,12 +100,14 @@ export const OrientalContainer = styled.div`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: relative;
 `;
 
 export const SectionContainer = styled(NavLink)`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: relative;
 `;
 
 // OrientalPaintingBlock
@@ -69,6 +116,15 @@ export const OrientalPaintingBlock = styled.div((props) => ({
   backgroundColor: props.color,
   width: "30%",
   height: "100%",
+  left: 0,
+  opacity: 0, // Start with opacity 0
+  transition: "opacity 1s ease-in-out",
+  "&.animate": {
+    display: "block",
+    opacity: 1,
+    transform: "translateX(0)",
+    animation: `${FadeInFromLeft} 1s ease-in-out`,
+  },
 }));
 
 // OrientalPaintingEngText
@@ -82,6 +138,12 @@ export const OrientalPaintingEngText = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: 100%; /* 45px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromLeft} 1s ease-in-out;
+  }
 `;
 
 // OrientalPaintingKorText
@@ -95,6 +157,12 @@ export const OrientalPaintingKorText = styled.div`
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromLeft} 1s ease-in-out;
+  }
 `;
 
 // OrientalPaintingImg
@@ -102,8 +170,9 @@ export const OrientalPaintingImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "cover",
   backgroundPosition: "70% 55%",
-  width: "70%",
+  width: "100%",
   height: "100%",
+  position: "absolute",
 }));
 
 // WesternContainer
@@ -111,6 +180,7 @@ export const WesternContainer = styled.div`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: relative;
 `;
 
 // WesternPaintingImg
@@ -118,16 +188,27 @@ export const WesternPaintingImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
-  width: "70%",
+  width: "100%",
   height: "100%",
+  position: "absolute",
 }));
 
 // WesternPaintingBlock
 export const WesternPaintingBlock = styled.div((props) => ({
-  position: "relative",
+  position: "absolute",
   backgroundColor: props.color,
   width: "30%",
   height: "100%",
+  right: 0,
+  display: "none", // Start with display none
+  opacity: 0, // Start with opacity 0
+  transition: "opacity 1s ease-in-out",
+  "&.animate": {
+    display: "block",
+    opacity: 1,
+    transform: "translateX(0)",
+    animation: `${FadeInFromRight} 1s ease-in-out`,
+  },
 }));
 
 // WesternPaintingEngText
@@ -141,6 +222,12 @@ export const WesternPaintingEngText = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: 100%; /* 45px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromRight} 1s ease-in-out;
+  }
 `;
 
 // WesternPaintingKorText
@@ -154,6 +241,12 @@ export const WesternPaintingKorText = styled.div`
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromRight} 1s ease-in-out;
+  }
 `;
 
 // SculptureContainer
@@ -161,6 +254,7 @@ export const SculptureContainer = styled.div`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: relative;
 `;
 
 // SculptureBlock
@@ -169,6 +263,15 @@ export const SculptureBlock = styled.div((props) => ({
   backgroundColor: props.color,
   width: "30%",
   height: "100%",
+  left: 0,
+  opacity: 0, // Start with opacity 0
+  transition: "opacity 1s ease-in-out",
+  "&.animate": {
+    display: "block",
+    opacity: 1,
+    transform: "translateX(0)",
+    animation: `${FadeInFromLeft} 1s ease-in-out`,
+  },
 }));
 
 // SculptureEngText
@@ -182,6 +285,12 @@ export const SculptureEngText = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: 100%; /* 45px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromLeft} 1s ease-in-out;
+  }
 `;
 
 // SculptureKorText
@@ -195,6 +304,12 @@ export const SculptureKorText = styled.div`
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromLeft} 1s ease-in-out;
+  }
 `;
 
 // SculptureImg
@@ -202,8 +317,9 @@ export const SculptureImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "cover",
   backgroundPosition: "50% 50%",
-  width: "70%",
+  width: "100%",
   height: "100%",
+  position: "absolute",
 }));
 
 // CraftContainer
@@ -211,6 +327,7 @@ export const CraftContainer = styled.div`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: relative;
 `;
 
 // CraftImg
@@ -218,16 +335,27 @@ export const CraftImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "cover",
   backgroundPosition: "50% 60%",
-  width: "70%",
+  width: "100%",
   height: "100%",
+  position: "absolute",
 }));
 
 // CraftBlock
 export const CraftBlock = styled.div((props) => ({
-  position: "relative",
+  position: "absolute",
   backgroundColor: props.color,
   width: "30%",
   height: "100%",
+  right: 0,
+  display: "none", // Start with display none
+  opacity: 0, // Start with opacity 0
+  transition: "opacity 1s ease-in-out",
+  "&.animate": {
+    display: "block",
+    opacity: 1,
+    transform: "translateX(0)",
+    animation: `${FadeInFromRight} 1s ease-in-out`,
+  },
 }));
 
 // CraftEngText
@@ -241,6 +369,12 @@ export const CraftEngText = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: 100%; /* 45px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromRight} 1s ease-in-out;
+  }
 `;
 
 // CraftKorText
@@ -254,6 +388,12 @@ export const CraftKorText = styled.div`
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromRight} 1s ease-in-out;
+  }
 `;
 
 // DesignContainer
@@ -261,6 +401,7 @@ export const DesignContainer = styled.div`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: relative;
 `;
 
 // DesignBlock
@@ -269,6 +410,15 @@ export const DesignBlock = styled.div((props) => ({
   backgroundColor: props.color,
   width: "30%",
   height: "100%",
+  left: 0,
+  opacity: 0, // Start with opacity 0
+  transition: "opacity 1s ease-in-out",
+  "&.animate": {
+    display: "block",
+    opacity: 1,
+    transform: "translateX(0)",
+    animation: `${FadeInFromLeft} 1s ease-in-out`,
+  },
 }));
 
 // DesignEngText
@@ -282,6 +432,12 @@ export const DesignEngText = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: 100%; /* 45px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromLeft} 1s ease-in-out;
+  }
 `;
 
 // DesignKorText
@@ -295,6 +451,12 @@ export const DesignKorText = styled.div`
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromLeft} 1s ease-in-out;
+  }
 `;
 
 // DesignImg
@@ -302,8 +464,9 @@ export const DesignImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "cover",
   backgroundPosition: "50% 50%",
-  width: "70%",
+  width: "100%",
   height: "100%",
+  position: "absolute",
 }));
 
 // MediaArtsContainer
@@ -311,6 +474,7 @@ export const MediaArtsContainer = styled.div`
   width: 100%;
   height: 50dvh;
   display: flex;
+  position: "relative";
 `;
 
 // MediaArtsImg
@@ -318,16 +482,27 @@ export const MediaArtsImg = styled.div((props) => ({
   backgroundImage: `url(${props.img})`,
   backgroundSize: "cover",
   backgroundPosition: "50% 60%",
-  width: "70%",
+  width: "100%",
   height: "100%",
+  position: "absolute",
 }));
 
 // MediaArtsBlock
 export const MediaArtsBlock = styled.div((props) => ({
-  position: "relative",
+  position: "absolute",
   backgroundColor: props.color,
   width: "30%",
   height: "100%",
+  right: 0,
+  display: "none", // Start with display none
+  opacity: 0, // Start with opacity 0
+  transition: "opacity 1s ease-in-out",
+  "&.animate": {
+    display: "block",
+    opacity: 1,
+    transform: "translateX(0)",
+    animation: `${FadeInFromRight} 1s ease-in-out`,
+  },
 }));
 
 // MediaArtsEngText
@@ -341,6 +516,12 @@ export const MediaArtsEngText = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: 100%; /* 45px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromRight} 1s ease-in-out;
+  }
 `;
 
 // MediaArtsKorText
@@ -354,6 +535,12 @@ export const MediaArtsKorText = styled.div`
   font-style: normal;
   font-weight: 350;
   line-height: 100%; /* 35px */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.animate {
+    opacity: 1;
+    animation: ${FadeInFromRight} 1s ease-in-out;
+  }
 `;
 
 // 검색 전체 컨테이너

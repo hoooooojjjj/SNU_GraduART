@@ -1,6 +1,9 @@
 import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import React from "react";
+import { useEffect, useRef, useState } from "react";
+import useIntersectionObserver from "../hooks/useIntersectionObserver.js";
+
 import {
   ContentContainer,
   MainPicture,
@@ -48,6 +51,25 @@ import {
 } from "../MainStyle.js";
 
 function Main() {
+  const [OrientalRef, isOrientalVisible] = useIntersectionObserver({
+    threshold: 0.1,
+  });
+  const [WesternRef, isWesternVisible] = useIntersectionObserver({
+    threshold: 0.1,
+  });
+  const [SculptureRef, isSculptureVisible] = useIntersectionObserver({
+    threshold: 0.1,
+  });
+  const [CraftRef, isCraftVisible] = useIntersectionObserver({
+    threshold: 0.1,
+  });
+  const [DesignRef, isDesignVisible] = useIntersectionObserver({
+    threshold: 0.1,
+  });
+  const [MediaRef, isMediaVisible] = useIntersectionObserver({
+    threshold: 0.1,
+  });
+
   return (
     <ContentContainer>
       <Header></Header>
@@ -55,50 +77,94 @@ function Main() {
         <MainText>GraduART</MainText>
         <SubText>서울대학교 미술대학 졸업전시 展</SubText>
       </MainPicture>
-      <SectionContainer to={"/Oriental Painting"}>
-        <OrientalPaintingBlock color={"#FF983B"}>
-          <OrientalPaintingEngText>Oriental Painting</OrientalPaintingEngText>
-          <OrientalPaintingKorText>: 동양화과</OrientalPaintingKorText>
+      <SectionContainer ref={OrientalRef} to={"/Oriental Painting"}>
+        <OrientalPaintingImg img={`/assets/orientalImg.webp`} />
+        <OrientalPaintingBlock
+          color={"#FF983B"}
+          className={isOrientalVisible ? "animate" : ""}
+        >
+          <OrientalPaintingEngText
+            className={isOrientalVisible ? "animate" : ""}
+          >
+            Oriental Painting
+          </OrientalPaintingEngText>
+          <OrientalPaintingKorText
+            className={isOrientalVisible ? "animate" : ""}
+          >
+            : 동양화과
+          </OrientalPaintingKorText>
         </OrientalPaintingBlock>
-        <OrientalPaintingImg
-          img={`/assets/orientalImg.webp`}
-        ></OrientalPaintingImg>
       </SectionContainer>
-      <SectionContainer to={"/Western Painting"}>
+      <SectionContainer ref={WesternRef} to={"/Western Painting"}>
         <WesternPaintingImg
           img={`/assets/westernImg.jpeg`}
         ></WesternPaintingImg>
-        <WesternPaintingBlock color={"#EE5397"}>
-          <WesternPaintingEngText>Western Painting</WesternPaintingEngText>
-          <WesternPaintingKorText>: 서양화과</WesternPaintingKorText>
+        <WesternPaintingBlock
+          color={"#EE5397"}
+          className={isWesternVisible ? "animate" : ""}
+        >
+          <WesternPaintingEngText className={isWesternVisible ? "animate" : ""}>
+            Western Painting
+          </WesternPaintingEngText>
+          <WesternPaintingKorText className={isWesternVisible ? "animate" : ""}>
+            : 서양화과
+          </WesternPaintingKorText>
         </WesternPaintingBlock>
       </SectionContainer>
-      <SectionContainer to={"/Sculpture"}>
-        <SculptureBlock color={"#FE4E4E"}>
-          <SculptureEngText>Sculpture</SculptureEngText>
-          <SculptureKorText>: 조소과</SculptureKorText>
+      <SectionContainer ref={SculptureRef} to={"/Sculpture"}>
+        <SculptureBlock
+          className={isSculptureVisible ? "animate" : ""}
+          color={"#FE4E4E"}
+        >
+          <SculptureEngText className={isSculptureVisible ? "animate" : ""}>
+            Sculpture
+          </SculptureEngText>
+          <SculptureKorText className={isSculptureVisible ? "animate" : ""}>
+            : 조소과
+          </SculptureKorText>
         </SculptureBlock>
         <SculptureImg img={`/assets/sculptureImg.jpeg`}></SculptureImg>
       </SectionContainer>
-      <SectionContainer to={"/Craft"}>
+      <SectionContainer ref={CraftRef} to={"/Craft"}>
         <CraftImg img={`/assets/craftImg.heic`}></CraftImg>
-        <CraftBlock color={"#00C4D4"}>
-          <CraftEngText>Craft</CraftEngText>
-          <CraftKorText>: 공예과</CraftKorText>
+        <CraftBlock
+          className={isCraftVisible ? "animate" : ""}
+          color={"#00C4D4"}
+        >
+          <CraftEngText className={isCraftVisible ? "animate" : ""}>
+            Craft
+          </CraftEngText>
+          <CraftKorText className={isCraftVisible ? "animate" : ""}>
+            : 공예과
+          </CraftKorText>
         </CraftBlock>
       </SectionContainer>
-      <SectionContainer to={"/Design"}>
-        <DesignBlock color={"#3466A5"}>
-          <DesignEngText>Design</DesignEngText>
-          <DesignKorText>: 디자인과</DesignKorText>
+      <SectionContainer ref={DesignRef} to={"/Design"}>
+        <DesignBlock
+          color={"#3466A5"}
+          className={isDesignVisible ? "animate" : ""}
+        >
+          <DesignEngText className={isDesignVisible ? "animate" : ""}>
+            Design
+          </DesignEngText>
+          <DesignKorText className={isDesignVisible ? "animate" : ""}>
+            : 디자인과
+          </DesignKorText>
         </DesignBlock>
         <DesignImg img={`/assets/designImg.avif`}></DesignImg>
       </SectionContainer>
-      <SectionContainer to={"/MediaArts"}>
+      <SectionContainer ref={MediaRef} to={"/MediaArts"}>
         <MediaArtsImg img={`/assets/mediaartsImg.jpeg`}></MediaArtsImg>
-        <MediaArtsBlock color={"#DBEB57"}>
-          <MediaArtsEngText>MediaArts</MediaArtsEngText>
-          <MediaArtsKorText>: 영상매체예술</MediaArtsKorText>
+        <MediaArtsBlock
+          className={isMediaVisible ? "animate" : ""}
+          color={"#DBEB57"}
+        >
+          <MediaArtsEngText className={isMediaVisible ? "animate" : ""}>
+            MediaArts
+          </MediaArtsEngText>
+          <MediaArtsKorText className={isMediaVisible ? "animate" : ""}>
+            : 영상매체예술
+          </MediaArtsKorText>
         </MediaArtsBlock>
       </SectionContainer>
       <SearchContainer>
