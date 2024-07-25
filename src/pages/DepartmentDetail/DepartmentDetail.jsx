@@ -256,12 +256,9 @@ function DepartmentDetail() {
                     <PendingArtWorkImg imageLoaded={imageLoaded}>
                       <source
                         type="image/webp"
-                        srcSet={`/assets/landing-oriental.webp`}
+                        srcSet={`/assets/ImgLoading.png`}
                       />
-                      <img
-                        src={`/assets/landing-oriental.webp`}
-                        alt="ArtWork"
-                      />
+                      <img src={`/assets/ImgLoading.png`} alt="ArtWork" />
                     </PendingArtWorkImg>
                     <ArtWorkImg imageLoaded={imageLoaded}>
                       <source type="image/webp" srcSet={`${item.imagePath}`} />

@@ -176,19 +176,30 @@ export const PendingArtWorkImg = styled.picture`
   inset: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & > img {
-    width: 100%;
-    height: 100%;
+    width: 30%;
+    height: 30%;
     object-fit: contain;
+    animation: rotate 1s infinite linear; // Add animation property
   }
-  // 네트워크 탭을 보면 이미지 로드 시간이 최대 1초 정도 걸림
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
   ${(props) =>
     !props.imageLoaded &&
     `
-
     opacity: 1;
   `}
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export const ArtWorkImg = styled.picture`
