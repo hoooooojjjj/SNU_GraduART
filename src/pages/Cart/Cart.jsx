@@ -289,8 +289,10 @@ function Cart() {
                     onClick={() =>
                       nav(`/${item.department}`, { state: item.item_id })
                     }
-                    path={item.imagePath}
-                  ></CartItemImg>
+                  >
+                    <source type="image/webp" srcSet={`${item.imagePath}`} />
+                    <img src={item.imagePath} alt="ArtWork" />
+                  </CartItemImg>
                 </CartImgContainer>
                 <CartItemText>
                   {item.title} | {item.artist} <br></br> <br></br>

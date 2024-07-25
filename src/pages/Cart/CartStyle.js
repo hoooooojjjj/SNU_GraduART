@@ -133,16 +133,20 @@ export const CartImgContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 1%;
+  position: relative;
 `;
 
 export const CartItemImg = styled.div`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${(props) => props.path});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  }
 `;
 
 // 장바구니 항목 텍스트
