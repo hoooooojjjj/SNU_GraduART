@@ -109,7 +109,10 @@ function Purchased() {
             data.map((item) => (
               <CartItem key={item.item_id}>
                 <PurchasedItemImgWrap>
-                  <PurchasedItemImg path={item.imagePath}></PurchasedItemImg>
+                  <PurchasedItemImg>
+                    <source type="image/webp" srcSet={`${item.imagePath}`} />
+                    <img src={item.imagePath} alt="ArtWork" />
+                  </PurchasedItemImg>
                 </PurchasedItemImgWrap>
                 <CartItemText>
                   {item.title} | {item.artist}
