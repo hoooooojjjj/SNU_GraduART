@@ -201,6 +201,7 @@ export const ArtWorkImg = styled.picture`
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
   }
 `;
 

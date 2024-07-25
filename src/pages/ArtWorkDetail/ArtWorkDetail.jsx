@@ -243,10 +243,10 @@ function ArtWorkDetail() {
         </LeftContainer>
         <ImageWrap>
           <ImageContainer>
-            <Image
-              url={artWork.imagePath}
-              alt={`${artWork.artist}님의 작품`}
-            ></Image>
+            <Image>
+              <source type="image/webp" srcSet={`${artWork.imagePath}`} />
+              <img src={artWork.imagePath} alt={`${artWork.artist}님의 작품`} />
+            </Image>
           </ImageContainer>
         </ImageWrap>
         <RightContainer>

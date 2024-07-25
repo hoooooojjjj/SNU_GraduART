@@ -68,16 +68,20 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-export const Image = styled.div`
+export const Image = styled.picture`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: ${(props) => `url(${props.url})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  }
 `;
 
 export const LeftContainer = styled.div`
