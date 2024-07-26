@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
-import React from "react";
 export const Head = styled.header`
   padding: 1.5dvh 0;
   width: 100dvw;
@@ -41,16 +40,20 @@ export const StyledNavLink = styled(NavLink)`
     color: black;
     font-weight: bold;
   }
+  &:hover {
+    color: black; // 호버 시 글씨 색상 변경
+    transform: scale(1.1); // 호버 시 약간 크게 만드는 효과
+  }
 `;
 
 export const HomeStyledNavLink = styled(NavLink)((props) => ({
   color: "dimgrey",
-  fontFamily: 'DM Serif Display',
-  fontWeight: 'Bold',
-  fontSize:'23px',
+  fontFamily: "DM Serif Display",
+  fontWeight: "Bold",
+  fontSize: "23px",
   textDecoration: "none",
   marginLeft: props.margin,
-  marginRight: '10dvw'
+  marginRight: "10dvw",
 }));
 
 export const Buttons = styled.ul`
@@ -62,4 +65,4 @@ export const Buttons = styled.ul`
   align-items: center;
   gap: 2dvw;
   margin: 0 2dvw 0 0;
-`
+`;

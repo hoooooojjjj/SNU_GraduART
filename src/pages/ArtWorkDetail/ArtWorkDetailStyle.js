@@ -4,8 +4,32 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import backgroundImage from "/assets/baa.jpg";
+import { keyframes, css } from "@emotion/react";
+import { CircularProgress } from "@mui/material";
 //import ClearIcon from "@mui/icons-material/Clear";
 //import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+
+const fadeOutLeft = keyframes`
+  0% {  transform: translateX(0) },
+  100% {  transform: translateX(-100%) },
+`;
+
+const fadeInLeft = keyframes`
+  0% {  transform: translateX(80%) },
+  100% {  transform: translateX(0) },
+`;
+
+// Fade-out and slide-Right animation
+const fadeOutRight = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+`;
+
+// Fade-in and slide-Right animation
+const fadeInRight = keyframes`
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+`;
 
 export const Container = styled.div`
   width: 100dvw;
@@ -51,6 +75,31 @@ export const MainContainer = styled.div`
   height: 80dvh;
   display: flex;
   flex-direction: row;
+  position: relative;
+
+  ${({ animateOut, animateDirection }) =>
+    animateOut &&
+    css`
+      animation: ${animateDirection === "Left" ? fadeOutLeft : fadeOutRight}
+        1.5s ease-in-out forwards;
+    `}
+  ${({ animateIn, animateDirection }) =>
+    animateIn &&
+    css`
+      animation: ${animateDirection === "Left" ? fadeInLeft : fadeInRight} 1s
+        ease-in-out forwards;
+    `}
+`;
+
+const shadowDrop2Br = keyframes`
+0% {
+      transform: translateZ(0) translateX(-15px) translateY(-15px);
+      filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0))
+  }
+  100% {
+      transform: translateZ(50px) translateX(0) translateY(0);
+      filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4))
+  }
 `;
 
 export const ImageWrap = styled.div`
@@ -68,16 +117,26 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
-
-export const Image = styled.div`
+export const ImageCircularProgress = styled(CircularProgress)({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+});
+export const Image = styled.picture`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: ${(props) => `url(${props.url})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+    animation: ${shadowDrop2Br} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  position: relative;
 `;
 
 export const LeftContainer = styled.div`
@@ -187,7 +246,9 @@ export const PurchaseMiddle = styled.div`
 
 export const PurchaseBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: #928a8a;
   &:hover {
     color: #2c2c2c;
@@ -257,7 +318,9 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: #b5c0d0;
+  background: #8c94a9;
 `;
 
-export const ModalButton = styled(Button)``;
+export const ModalButton = styled(Button)`
+  background: #b5c0d0;
+`;

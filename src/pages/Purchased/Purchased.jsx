@@ -6,7 +6,8 @@ import {
   ListText,
   CartItem,
   CartItemList,
-  CartItemText, LogoutButton,
+  CartItemText,
+  LogoutButton,
 } from "../Cart/CartStyle.js";
 import {
   PurchasedItemImg,
@@ -17,72 +18,113 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.jsx";
 import { supabase } from "../../ServerClient.js";
 import { userContext } from "../../App.jsx";
+import { useQuery } from "@tanstack/react-query";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+
+// 해당 유저가 담은 구매내역 리스트 가져오는 함수
+const getUserPurchaseItemList = async (user) => {
+  let { data: purchased, error } = await supabase
+    .from("purchased")
+    .select("*")
+    // 해당 유저의 상품만 필터링
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false });
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+  return purchased;
+};
 
 function Purchased() {
   const nav = useNavigate();
 
   // 유저 정보 가져오기
-  const [user] = useContext(userContext);
-
-  // 유저가 구매한 작품 리스트
-  const [userPurchaseItemList, setUserPurchaseItemList] = useState([]);
+  const [user, setUser] = useContext(userContext);
 
   // 취소환불 페이지로 이동
-  const onClick = () => {
-    nav("/refund");
+  const handleRefund = (item) => {
+    nav(`/refund/${item.item_id}`, { state: item });
   };
 
-  const navigator = useNavigate();
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      console.error('Error logging out:', error.message);
+      console.error("Error logging out:", error.message);
     } else {
-      navigator('/');
+      nav("/");
       setUser(null);
     }
   };
 
-  // 해당 유저가 담은 장바구니 리스트 가져오기
-  useEffect(() => {
-    const getUserCartItemList = async () => {
-      let { data: purchased, error } = await supabase
-        .from("purchased")
-        .select("*")
-        // 해당 유저의 상품만 필터링
-        .eq("user_id", user.id)
-        .order("created_at", { ascending: false });
-      if (error) {
-        console.log(error);
-      }
-      setUserPurchaseItemList(purchased);
-    };
+  // 해당 유저가 담은 구매내역 리스트 가져오기
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: [`getUserPurchaseItemList`, user],
+    queryFn: () => getUserPurchaseItemList(user),
+  });
 
-    if (user) {
-      getUserCartItemList();
-    }
-  }, [user]);
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("ko-KR").format(price);
+  };
+
+  if (isPending) {
+    return (
+      <Container>
+        <Header></Header>
+        <ContentContainer>
+          <CartText>마이페이지</CartText>
+          <ListText>구매목록</ListText>
+          <CartItemList>
+            <Box
+              style={{
+                width: "100%",
+                height: "20dvh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress color="inherit" />
+            </Box>
+          </CartItemList>
+          {user ? (
+            <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+          ) : (
+            <></>
+          )}
+        </ContentContainer>
+      </Container>
+    );
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <Container>
       <Header></Header>
       <ContentContainer>
-        <CartText>구매내역</CartText>
-        <ListText>목록</ListText>
+        <CartText>마이페이지</CartText>
+        <ListText>구매목록</ListText>
         <CartItemList>
-          {userPurchaseItemList.length > 0 ? (
-            userPurchaseItemList.map((item) => (
+          {data && data.length > 0 ? (
+            data.map((item) => (
               <CartItem key={item.item_id}>
                 <PurchasedItemImgWrap>
-                  <PurchasedItemImg path={item.imagePath}></PurchasedItemImg>
+                  <PurchasedItemImg>
+                    <source type="image/webp" srcSet={`${item.imagePath}`} />
+                    <img src={item.imagePath} alt="ArtWork" />
+                  </PurchasedItemImg>
                 </PurchasedItemImgWrap>
                 <CartItemText>
                   {item.title} | {item.artist}
                   <br></br>
                   <br></br>
-                  {item.price} 원
+                  {formatPrice(item.price)} 원
                 </CartItemText>
-                <PurchasedItemDelete onClick={onClick}>
+                <PurchasedItemDelete onClick={() => handleRefund(item)}>
                   취소/환불 신청하기
                 </PurchasedItemDelete>
               </CartItem>
@@ -102,7 +144,11 @@ function Purchased() {
           )}
         </CartItemList>
         <br></br>
-        {user ? (<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>) : (<></>)}
+        {user ? (
+          <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+        ) : (
+          <></>
+        )}
       </ContentContainer>
     </Container>
   );

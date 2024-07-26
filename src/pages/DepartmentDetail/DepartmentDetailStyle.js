@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Pagination from "@mui/material/Pagination";
+import { keyframes } from "@emotion/react";
 
 export const Container = styled.div({
   width: "100dvw",
@@ -23,16 +24,38 @@ export const Intro = styled.div`
   height: 100dvh;
 `;
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const TitleBackground = styled.div`
   background-color: ${(props) => `${props.color}`};
   width: 100%;
   height: 25dvh;
+  animation: ${fadeIn} 1s ease-out;
 `;
 
 export const Img = styled.img`
   width: 100%;
   height: 65dvh;
   object-fit: cover;
+  animation: ${fadeIn} 1s ease-out;
+`;
+
+const fadeInFromLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 `;
 
 export const TitleText = styled.div`
@@ -44,6 +67,7 @@ export const TitleText = styled.div`
   position: relative;
   top: 30%;
   left: 3%;
+  animation: ${fadeInFromLeft} 1s ease-out;
 `;
 
 export const DescriptionContainer = styled.div`
@@ -99,6 +123,7 @@ export const Insta = styled.div`
 export const InstaIcon = styled(InstagramIcon)`
   align-items: center;
   display: flex;
+  padding-right: 2%;
 `;
 
 export const Link = styled.a`
@@ -158,6 +183,16 @@ export const ArtWorkGridItem = styled.div`
   align-items: center; /* 자식 요소를 수평 중앙 정렬 */
 `;
 
+const zoomInWithShadow = keyframes`
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: scale(1.05); /* 약간의 확대 효과 */
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6);
+  }
+`;
 export const ArtWorkImgWrap = styled.div`
   width: 100%;
   height: 75%;
@@ -165,16 +200,83 @@ export const ArtWorkImgWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 부드럽게 전환 */
+
+  &:hover {
+    animation: ${zoomInWithShadow} 0.3s forwards; /* 호버 시 애니메이션 적용 */
+  }
 `;
 
-export const ArtWorkImg = styled.div`
+// 이미지 로딩
+export const PendingArtWorkImg = styled.div`
+  z-index: 100;
+  opacity: ${(props) => (props.imageLoaded ? 0 : 1)};
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: ${(props) => `url(${props.ImgUrl})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+  }
+  & > span:nth-of-type(0) {
+    margin: 5px;
+    animation-delay: 0s;
+    background-color: red;
+  }
+  & > span:nth-of-type(1) {
+    margin: 5px;
+    animation-delay: 0.2s;
+    background-color: dodgerblue;
+  }
+  & > span:nth-of-type(2) {
+    margin: 5px;
+    animation-delay: 0.4s;
+    background-color: greenyellow;
+  }
+  transition: opacity 0.1s ease-in-out;
+  ${(props) =>
+    !props.imageLoaded &&
+    `
+    opacity: 1;
+  `}
+
+  @keyframes loading {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+`;
+
+export const ArtWorkImg = styled.picture`
+  opacity: ${(props) => (props.imageLoaded ? 1 : 0)};
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  }
 `;
 
 export const ArtWorkTitle = styled.div({

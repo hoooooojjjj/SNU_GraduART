@@ -8,10 +8,9 @@ import Login from "../pages/Login/Login";
 import Cart from "../pages/Cart/Cart";
 import Purchased from "../pages/Purchased/Purchased.jsx";
 import Refund from "../pages/Refund/Refund.jsx";
-import PaymentApprove from "../pages/Payment/PaymentApprove.jsx";
+import PaymentApprove from "../pages/PaymentApprove/PaymentApprove.jsx";
 import PaymentFail from "../pages/Payment/PaymentFail.jsx";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess.jsx";
-
 
 function Router() {
   return (
@@ -24,11 +23,10 @@ function Router() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/purchased" element={<Purchased />}></Route>
-        <Route path="/refund" element={<Refund />}></Route>
+        <Route path="/refund/:refundItemID" element={<Refund />}></Route>
         <Route path="/purchaseApprove" element={<PaymentApprove />}></Route>
         <Route path="/paymentSuccess" element={<PaymentSuccess/>}></Route>
         <Route path="/purchaseFail" element={<PaymentFail/>}></Route>
-
       </Routes>
     </BrowserRouter>
   );
