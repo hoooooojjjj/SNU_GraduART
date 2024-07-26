@@ -67,6 +67,7 @@ export const GreyButton = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 110%;
+  cursor: pointer;
 `;
 
 // 초록색 버튼
@@ -87,4 +88,5 @@ export const GreenButton = styled.div`
   font-weight: 500;
   line-height: 110%;
   color: #ffffff;
+  cursor: pointer;
 `;

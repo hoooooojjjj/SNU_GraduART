@@ -17,6 +17,14 @@ export const PaymentFail = () => {
 
   const navigate = useNavigate();
 
+  const onClickToMain = () => {
+    navigate("/");
+  };
+
+  const onClickToPurchased = () => {
+    navigate("/cart");
+  };
+
   return (
     <Container>
       <Header></Header>
@@ -25,32 +33,13 @@ export const PaymentFail = () => {
           <img src="/assets/paymentFailIcon.svg"></img>
           <MainText>결제가 실패하였습니다.</MainText>
           <ButtonContainer>
-            <GreyButton>메인페이지로</GreyButton>
-            <RedButton>장바구니로</RedButton>
+            <GreyButton onClick={onClickToMain}>메인페이지로</GreyButton>
+            <RedButton onClick={onClickToPurchased}>장바구니로</RedButton>
           </ButtonContainer>
         </ContentContainer>
       </MainContainer>
     </Container>
   );
-};
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f5f5f5",
-  },
-  button: {
-    fontSize: "2rem",
-    padding: "20px 40px",
-    backgroundColor: "orange",
-    color: "dimgrey",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
 };
 
 export default PaymentFail;
