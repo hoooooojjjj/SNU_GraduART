@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 // ContentContainer
 export const ContentContainer = styled.div`
   width: 100dvw;
-`;
+`
 
 // MainPicture
 export const MainPicture = styled.section`
