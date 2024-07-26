@@ -82,7 +82,7 @@ function DepartmentDetail() {
 
   // 장바구니에서 redirect로 넘어온 경우
   useEffect(() => {
-    if (redirectToArtWorkDetail && data.length > 0) {
+    if (redirectToArtWorkDetail && data && data.length > 0) {
       nav(`/${department}/${redirectToArtWorkDetail}`, { state: data });
     }
   }, [data]);

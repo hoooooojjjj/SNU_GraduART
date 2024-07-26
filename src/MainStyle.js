@@ -390,6 +390,7 @@ export const SearchBox = styled.input((props) => ({
 export const SearchResultContainer = styled.ul`
   width: 70%;
   margin-bottom: 5%;
+  cursor: pointer;
 `;
 
 // 검색 결과 카테고리: "작가", "작품명" 등

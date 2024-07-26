@@ -166,7 +166,7 @@ function Main() {
         <SearchResultContainer>
           <ResultCategoryText>작품명</ResultCategoryText>
           {titleResults[0] ? titleResults.map((item) => (
-              <ResultContainer onClick={()=>
+              <ResultContainer key={item.itemID} onClick={()=>
               {navigate(`/${item.department}`, { state: item.itemID })
               }}>
                 <ResultTitle>{item.title}</ResultTitle>
@@ -179,7 +179,9 @@ function Main() {
           <br></br>
           <ResultCategoryText>작가</ResultCategoryText>
           {artistResults[0] ? artistResults.map((item) => (
-              <ResultContainer>
+              <ResultContainer key={item.itemID} onClick={()=>
+              {navigate(`/${item.department}`, { state: item.itemID })
+              }}>
                 <ResultTitle>{item.title}</ResultTitle>
                 <ResultExp>
                   <span>{item.artist} | </span>
