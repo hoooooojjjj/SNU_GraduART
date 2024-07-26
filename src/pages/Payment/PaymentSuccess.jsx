@@ -4,7 +4,6 @@ import {
   Container,
   MainContainer,
   ContentContainer,
-  CheckIcon,
   MainText,
   ButtonContainer,
   GreyButton,
@@ -17,7 +16,7 @@ function PaymentSuccess() {
       <Header></Header>
       <MainContainer>
         <ContentContainer>
-          <img src="/assets/ooui_success.svg"></img>
+          <img src="/assets/paymentSuccessIcon.svg"></img>
           <MainText>결제가 완료되었습니다.</MainText>
           <ButtonContainer>
             <GreyButton>메인페이지로</GreyButton>

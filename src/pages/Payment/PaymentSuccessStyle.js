@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
 
 // 페이지 전체 컨테이너
 export const Container = styled.div({
@@ -29,17 +28,6 @@ export const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-// 체크 아이콘
-export const CheckIcon = styled(CheckCircleSharpIcon)`
-  display: flex;
-  align-items: center;
-  color: #73d378;
-  width: 143px;
-  height: 143px;
-  flex-shrink: 0;
-  filter: drop-shadow(gray 0px 0px 60px -12px);
 `;
 
 // "결제가 완료되었습니다." 텍스트
