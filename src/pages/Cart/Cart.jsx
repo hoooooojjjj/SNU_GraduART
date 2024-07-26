@@ -18,7 +18,6 @@ import {
   CheckAllContainer,
   CheckAllText,
   CartImgContainer,
-  LogoutButton,
   AlreadyPurchased,
 } from "./CartStyle.js";
 import Header from "../../components/Header/Header.jsx";

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {userContext} from "../../App.jsx";
 import {useNavigate} from "react-router-dom";
 import {
@@ -76,7 +76,7 @@ export const PaymentApprove = () => {
                     카카오페이 결제 후, <br></br>
                     <b>결제완료 </b>버튼을 눌러주세요.
                 </MainText>
-                <Button onClick={handleRequestApprove()}>결제완료</Button>
+                <Button onClick={handleRequestApprove}>결제완료</Button>
             </MainContainer>
         </Container>
     );
