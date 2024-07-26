@@ -44,6 +44,17 @@ import {
   WesternPaintingKorText,
 } from "../MainStyle.js";
 import { supabase } from "../ServerClient.js";
+import departmentInfos from "./DepartmentDetail/DepartmentInfo.json";
+
+// 이미지 프리로드 함수
+const preloadImage = (src) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = resolve;
+    img.onerror = reject;
+  });
+};
 
 function Main() {
   const [OrientalRef, isOrientalVisible] = useIntersectionObserver({
@@ -190,6 +201,15 @@ function Main() {
       handleSearch();
     }
   };
+
+  // 이미지 프리로드 useEffect
+  useEffect(() => {
+    departmentInfos.forEach((department) => {
+      preloadImage("/assets/" + department.imgPath).catch((error) => {
+        console.error("Failed to preload image:", department.imgPath, error);
+      });
+    });
+  });
 
   return (
     <ContentContainer>
