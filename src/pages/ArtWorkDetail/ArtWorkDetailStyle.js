@@ -91,6 +91,17 @@ export const MainContainer = styled.div`
     `}
 `;
 
+const shadowDrop2Br = keyframes`
+0% {
+      transform: translateZ(0) translateX(-15px) translateY(-15px);
+      filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0))
+  }
+  100% {
+      transform: translateZ(50px) translateX(0) translateY(0);
+      filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4))
+  }
+`;
+
 export const ImageWrap = styled.div`
   height: 100%;
   width: 50%;
@@ -123,6 +134,7 @@ export const Image = styled.picture`
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+    animation: ${shadowDrop2Br} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
   position: relative;
 `;
