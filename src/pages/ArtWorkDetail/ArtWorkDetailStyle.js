@@ -5,6 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import backgroundImage from "/assets/baa.jpg";
 import { keyframes, css } from "@emotion/react";
+import { CircularProgress } from "@mui/material";
 //import ClearIcon from "@mui/icons-material/Clear";
 //import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -107,7 +108,11 @@ export const ImageContainer = styled.div`
   align-items: center;
   position: relative;
 `;
-
+export const ImageCircularProgress = styled(CircularProgress)({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+});
 export const Image = styled.picture`
   position: absolute;
   inset: 0;
@@ -119,6 +124,7 @@ export const Image = styled.picture`
     object-fit: contain;
     filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
   }
+  position: relative;
 `;
 
 export const LeftContainer = styled.div`
