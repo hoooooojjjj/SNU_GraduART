@@ -43,7 +43,7 @@ import {
   WesternPaintingImg,
   WesternPaintingKorText,
 } from "../MainStyle.js";
-import { supabase } from "../../ServerClient.js";
+import { supabase } from "../ServerClient.js";
 
 function Main() {
   const [OrientalRef, isOrientalVisible] = useIntersectionObserver({
