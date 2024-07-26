@@ -40,6 +40,7 @@ import {
   WesternPaintingKorText,
 } from "../MainStyle.js";
 import {supabase} from "../ServerClient.js";
+import {useNavigate} from "react-router-dom";
 
 function Main() {
 
@@ -47,7 +48,7 @@ function Main() {
   const [titleResults, setTitleResults] = useState([]);
   const [artistResults, setArtistResults] = useState([]);
 
-
+  const navigate = useNavigate();
   const handleSearch = async () => {
     if(!query){ return }
     const titleSearchResults = await searchTitles(query.split(" "));
@@ -164,17 +165,20 @@ function Main() {
         <SearchBox placeholder={"작가, 작품, 작품 설명을 검색하세요."} onSubmit={handleSearch} onChange={(e) => setQuery(e.target.value)} onKeyDown={handleKeyDown}></SearchBox>
         <SearchResultContainer>
           <ResultCategoryText>작품명</ResultCategoryText>
-          {titleResults ? titleResults.map((item) => (
-              <ResultContainer>
+          {titleResults[0] ? titleResults.map((item) => (
+              <ResultContainer onClick={()=>
+              {navigate(`/${item.department}`, { state: item.itemID })
+              }}>
                 <ResultTitle>{item.title}</ResultTitle>
                 <ResultExp>
                   <span>{item.artist} | </span>
                   <span>{item.department} | </span>
                   <span>{item.descriptions} </span>
                 </ResultExp>
-              </ResultContainer>)):<><div>검색 결과가 없습니다.</div></>}
+              </ResultContainer>)):<ResultTitle>검색 결과가 없습니다.</ResultTitle>}
+          <br></br>
           <ResultCategoryText>작가</ResultCategoryText>
-          {artistResults ? artistResults.map((item) => (
+          {artistResults[0] ? artistResults.map((item) => (
               <ResultContainer>
                 <ResultTitle>{item.title}</ResultTitle>
                 <ResultExp>
@@ -183,7 +187,7 @@ function Main() {
                   <span>{item.descriptions} </span>
                 </ResultExp>
               </ResultContainer>
-          )):<><div>검색 결과가 없습니다.</div></>}
+          )):<ResultTitle>검색 결과가 없습니다.</ResultTitle>}
         </SearchResultContainer>
       </SearchContainer>
       <Footer></Footer>

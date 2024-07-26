@@ -408,7 +408,7 @@ export const ResultContainer = styled.li`
   background: white;
   width: 70dvw;
   margin-top: 40px;
-  margin-bottom: 10dvh;
+  margin-bottom: 40px;
 `;
 
 // 검색결과의 작품명 텍스트
