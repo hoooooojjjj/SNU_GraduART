@@ -19,13 +19,13 @@ export const MainPicture = styled.section`
 export const MainText = styled.div`
   color: #ffffff;
   font-family: "DM Serif Display";
-  font-size: 150px;
+  font-size: 114px;
   font-style: normal;
   font-weight: 400;
   line-height: 290%; /* 278.4px */
   position: absolute;
-  left: -295px;
-  top: 230px;
+  left: -190px;
+  top: 250px;
   transform: rotate(90deg);
 `;
 
