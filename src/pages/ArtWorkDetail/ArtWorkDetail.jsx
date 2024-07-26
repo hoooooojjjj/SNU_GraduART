@@ -177,6 +177,9 @@ function ArtWorkDetail() {
   const onInsertCart = async () => {
     setIsOnConflict(false);
     // 로그인 안했다면 로그인 페이지로 이동
+    if (!artWork.onSale) {
+      return null;
+    }
     if (!user) {
       nav("/login", {
         state: {
@@ -186,10 +189,6 @@ function ArtWorkDetail() {
       });
       return null;
     }
-    if (!artWork.onSale) {
-      return null;
-    }
-
     // 이미 유저가 담은 작품인지 여부
     let AlreadyInsert = false;
 
