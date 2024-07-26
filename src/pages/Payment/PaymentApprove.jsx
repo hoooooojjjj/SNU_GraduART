@@ -1,7 +1,14 @@
 import React, {useContext} from 'react';
-import {isMobile} from "react-device-detect";
 import {userContext} from "../../App.jsx";
 import {useNavigate} from "react-router-dom";
+import {
+    Container,
+    LeftTopContainer,
+    Close,
+    KakaoPayImg,
+    MainContainer,
+    MainText,
+    Button} from "./PaymentApproveStyle.js"
 
 export const PaymentApprove = () => {
 
@@ -59,31 +66,19 @@ export const PaymentApprove = () => {
     };
 
     return (
-        <div style={styles.container}>
-            <button style={styles.button} onClick={handleRequestApprove}>
-                결제 승인
-            </button>
-        </div>
+        <Container>
+            <LeftTopContainer>
+                <Close />
+                <KakaoPayImg src={`/assets/kakaopayImg.png`} alt="카카오페이 이미지" />
+            </LeftTopContainer>
+            <MainContainer>
+                <MainText>
+                    카카오페이 결제 후, <br></br>
+                    <b>결제완료 </b>버튼을 눌러주세요.
+                </MainText>
+                <Button onClick={handleRequestApprove()}>결제완료</Button>
+            </MainContainer>
+        </Container>
     );
 };
-
-const styles = {
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#f5f5f5',
-    },
-    button: {
-        fontSize: '2rem',
-        padding: '20px 40px',
-        backgroundColor: 'orange',
-        color: 'dimgrey',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-    },
-};
-
 export default PaymentApprove;
