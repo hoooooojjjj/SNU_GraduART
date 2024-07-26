@@ -75,19 +75,9 @@ export const MainBack = styled.div`
   height: 94dvh;
   background-color: black;
 `;
-const kenburnsTopRight = keyframes`
-  0% {
-    transform: scale(1) translate(0, 0);
-    transform-origin: 84% 16%;
-  }
-  100% {
-    transform: scale(1.25) translate(20px, -15px);
-    transform-origin: right top;
-  }
-`;
+
 // MainPicture
 export const MainPicture = styled.section`
-  animation: ${kenburnsTopRight};
   z-index: 10000;
   animation: fadeIn;
   animation-duration: 0.7s;
@@ -124,13 +114,13 @@ export const MainText = styled.div`
   animation: ${fadeInLeft} 1s ease-in-out both;
   color: #ffffff;
   font-family: "DM Serif Display";
-  font-size: 150px;
+  font-size: 100px;
   font-style: normal;
   font-weight: 400;
   line-height: 290%; /* 278.4px */
   position: absolute;
   left: -80px;
-  top: 70px;
+  top: 50px;
   transform: rotate(90deg);
   writing-mode: vertical-lr; /* 텍스트를 세로로 표시 */
   text-align: start; /* 텍스트 정렬 */
@@ -141,7 +131,7 @@ export const SubText = styled.div`
   animation: ${fadeInUp} 1s ease-in-out both;
   color: #ffffff;
   font-family: Pretendard;
-  font-size: 45px;
+  font-size: 35px;
   font-style: normal;
   font-weight: 600;
   line-height: 110%; /* 105.6px */
@@ -153,8 +143,8 @@ export const SubText = styled.div`
   position: absolute;
   right: 15px;
   bottom: 10px;
-  padding-bottom: 1%;
-  padding-right: 2%;
+  padding-bottom: 3%;
+  padding-right: 3%;
 `;
 
 // DepartmentBanner
