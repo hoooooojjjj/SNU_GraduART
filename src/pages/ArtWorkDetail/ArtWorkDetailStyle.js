@@ -5,6 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import backgroundImage from "/assets/baa.jpg";
 import { keyframes, css } from "@emotion/react";
+import { CircularProgress } from "@mui/material";
 //import ClearIcon from "@mui/icons-material/Clear";
 //import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -90,6 +91,17 @@ export const MainContainer = styled.div`
     `}
 `;
 
+const shadowDrop2Br = keyframes`
+0% {
+      transform: translateZ(0) translateX(-15px) translateY(-15px);
+      filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0))
+  }
+  100% {
+      transform: translateZ(50px) translateX(0) translateY(0);
+      filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4))
+  }
+`;
+
 export const ImageWrap = styled.div`
   height: 100%;
   width: 50%;
@@ -107,7 +119,11 @@ export const ImageContainer = styled.div`
   align-items: center;
   position: relative;
 `;
-
+export const ImageCircularProgress = styled(CircularProgress)({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+});
 export const Image = styled.picture`
   position: absolute;
   inset: 0;
@@ -118,7 +134,9 @@ export const Image = styled.picture`
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+    animation: ${shadowDrop2Br} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
+  position: relative;
 `;
 
 export const LeftContainer = styled.div`
@@ -228,7 +246,9 @@ export const PurchaseMiddle = styled.div`
 
 export const PurchaseBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: #928a8a;
   &:hover {
     color: #2c2c2c;

@@ -30,10 +30,12 @@ import {
   ModalButton,
   Button,
   PurchaseBox,
+  ImageCircularProgress,
 } from "./ArtWorkDetailStyle.js";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../ServerClient.js";
 import { userContext } from "../../App";
+import { CircularProgress } from "@mui/material";
 
 function ArtWorkDetail() {
   const nav = useNavigate();
@@ -254,10 +256,10 @@ function ArtWorkDetail() {
   return artWork ? (
     <Container
       isPurchased={isPurchased}
-      // animateOut={animateOut}
-      // animateIn={animateIn}
-      // animateDirection={animateDirection}
-      // onAnimationEnd={() => setAnimateIn(false)}
+      animateOut={animateOut}
+      animateIn={animateIn}
+      animateDirection={animateDirection}
+      onAnimationEnd={() => setAnimateIn(false)}
     >
       <IntroContainer>
         <BackIcon onClick={handleBackIconClick}></BackIcon>
@@ -275,6 +277,7 @@ function ArtWorkDetail() {
         <ImageWrap>
           <ImageContainer>
             <Image>
+              <ImageCircularProgress size={50} color="inherit" />
               <source type="image/webp" srcSet={`${artWork.imagePath}`} />
               <img src={artWork.imagePath} alt={`${artWork.artist}님의 작품`} />
             </Image>
@@ -301,8 +304,7 @@ function ArtWorkDetail() {
         <PurchaseMiddle onClick={HandlePurchaseClick}>
           {!isPurchased ? (
             <PurchaseBox>
-              <DownArrow />
-              <PurchaseInformation>구매 정보</PurchaseInformation>
+              <PurchaseInformation>구매 정보</PurchaseInformation> <DownArrow />
             </PurchaseBox>
           ) : (
             <AlternateText>

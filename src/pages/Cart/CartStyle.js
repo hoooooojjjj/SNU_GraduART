@@ -85,8 +85,8 @@ export const CheckAllIcon = styled.input`
   text-align: left;
   align-items: center;
   display: flex;
-  margin-right: 1%;
-  width: 10%;
+  margin-left: 2%;
+  width: 2%;
 `;
 
 // "전체 선택" 텍스트

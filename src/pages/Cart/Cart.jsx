@@ -72,6 +72,9 @@ function Cart() {
   // 전체 상품 선택 여부
   const [isCheckedAll, setIsCheckedAll] = useState(false);
 
+  // 선택 작품 주문 클릭 시 애니메이션
+  const [clickAnime, setClickAnime] = useState(false);
+
   // 해당 유저가 담은 장바구니 리스트 가져오기
   const { isPending, isError, data, error } = useQuery({
     queryKey: [`getUserCartItemList`, user],
@@ -153,6 +156,7 @@ function Cart() {
 
   //실제 주문 Handling
   const handleOrderSelectedItems = async () => {
+    setClickAnime(true);
     try {
       const itemIds = selectedItems.map((item) => item.item_id);
       console.log(itemIds);
@@ -168,6 +172,7 @@ function Cart() {
       setSelectedItems([]);
       setIsCheckedAll(false);
       setRenderKey(renderKey + 1);
+      setClickAnime(false);
       // Refresh cart items
     } catch (error) {
       console.error("Order failed:", error);
@@ -334,7 +339,11 @@ function Cart() {
             </PriceContainer>
             <OrderContainer>
               <OrderButton onClick={handleOrderSelectedItems}>
-                선택 작품 주문
+                {clickAnime ? (
+                  <CircularProgress size={20} color="inherit" />
+                ) : (
+                  "선택 작품 주문"
+                )}
               </OrderButton>
             </OrderContainer>
           </>
