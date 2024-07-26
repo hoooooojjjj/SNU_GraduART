@@ -8,7 +8,7 @@ import Login from "../pages/Login/Login";
 import Cart from "../pages/Cart/Cart";
 import Purchased from "../pages/Purchased/Purchased.jsx";
 import Refund from "../pages/Refund/Refund.jsx";
-import PaymentApprove from "../pages/Payment/PaymentApprove.jsx";
+import PaymentApprove from "../pages/PaymentApprove/PaymentApprove.jsx";
 import PaymentFail from "../pages/Payment/PaymentFail.jsx";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess.jsx";
 
