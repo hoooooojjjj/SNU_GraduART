@@ -124,7 +124,7 @@ export const MainText = styled.div`
   animation: ${fadeInLeft} 1s ease-in-out both;
   color: #ffffff;
   font-family: "DM Serif Display";
-  font-size: 96px;
+  font-size: 150px;
   font-style: normal;
   font-weight: 400;
   line-height: 290%; /* 278.4px */
@@ -141,7 +141,7 @@ export const SubText = styled.div`
   animation: ${fadeInUp} 1s ease-in-out both;
   color: #ffffff;
   font-family: Pretendard;
-  font-size: 35px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 600;
   line-height: 110%; /* 105.6px */
@@ -153,8 +153,8 @@ export const SubText = styled.div`
   position: absolute;
   right: 15px;
   bottom: 10px;
-  padding-bottom: 3%;
-  padding-right: 3%;
+  padding-bottom: 1%;
+  padding-right: 2%;
 `;
 
 // DepartmentBanner
