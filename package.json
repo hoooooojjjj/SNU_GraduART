@@ -25,7 +25,8 @@
     "react-error-overlay": "^6.0.9",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "tailwindcss": "^3.4.7"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
