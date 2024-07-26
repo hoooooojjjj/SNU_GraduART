@@ -64,13 +64,17 @@ function Purchased() {
     queryFn: () => getUserPurchaseItemList(user),
   });
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("ko-KR").format(price);
+  };
+
   if (isPending) {
     return (
       <Container>
         <Header></Header>
         <ContentContainer>
-          <CartText>구매내역</CartText>
-          <ListText>목록</ListText>
+          <CartText>마이페이지</CartText>
+          <ListText>구매목록</ListText>
           <CartItemList>
             <Box
               style={{
@@ -102,8 +106,8 @@ function Purchased() {
     <Container>
       <Header></Header>
       <ContentContainer>
-        <CartText>구매내역</CartText>
-        <ListText>목록</ListText>
+        <CartText>마이페이지</CartText>
+        <ListText>구매목록</ListText>
         <CartItemList>
           {data && data.length > 0 ? (
             data.map((item) => (
@@ -118,7 +122,7 @@ function Purchased() {
                   {item.title} | {item.artist}
                   <br></br>
                   <br></br>
-                  {item.price} 원
+                  {formatPrice(item.price)} 원
                 </CartItemText>
                 <PurchasedItemDelete onClick={() => handleRefund(item)}>
                   취소/환불 신청하기

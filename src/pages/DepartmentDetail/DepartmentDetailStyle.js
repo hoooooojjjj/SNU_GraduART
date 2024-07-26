@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Pagination from "@mui/material/Pagination";
+import { keyframes } from "@emotion/react";
 
 export const Container = styled.div({
   width: "100dvw",
@@ -23,16 +24,38 @@ export const Intro = styled.div`
   height: 100dvh;
 `;
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const TitleBackground = styled.div`
   background-color: ${(props) => `${props.color}`};
   width: 100%;
   height: 25dvh;
+  animation: ${fadeIn} 1s ease-out;
 `;
 
 export const Img = styled.img`
   width: 100%;
   height: 65dvh;
   object-fit: cover;
+  animation: ${fadeIn} 1s ease-out;
+`;
+
+const fadeInFromLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 `;
 
 export const TitleText = styled.div`
@@ -44,6 +67,7 @@ export const TitleText = styled.div`
   position: relative;
   top: 30%;
   left: 3%;
+  animation: ${fadeInFromLeft} 1s ease-out;
 `;
 
 export const DescriptionContainer = styled.div`
@@ -99,6 +123,7 @@ export const Insta = styled.div`
 export const InstaIcon = styled(InstagramIcon)`
   align-items: center;
   display: flex;
+  padding-right: 2%;
 `;
 
 export const Link = styled.a`
@@ -158,6 +183,16 @@ export const ArtWorkGridItem = styled.div`
   align-items: center; /* 자식 요소를 수평 중앙 정렬 */
 `;
 
+const zoomInWithShadow = keyframes`
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: scale(1.05); /* 약간의 확대 효과 */
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6);
+  }
+`;
 export const ArtWorkImgWrap = styled.div`
   width: 100%;
   height: 75%;
@@ -166,6 +201,11 @@ export const ArtWorkImgWrap = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 부드럽게 전환 */
+
+  &:hover {
+    animation: ${zoomInWithShadow} 0.3s forwards; /* 호버 시 애니메이션 적용 */
+  }
 `;
 
 // 이미지 로딩
