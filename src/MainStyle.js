@@ -637,8 +637,8 @@ export const SearchBox = styled.input((props) => ({
   border: "2px solid #818181",
   backgroundColor: "none",
   backgroundImage: `url("/assets/search.svg")`,
-  backgroundSize: "4%",
-  backgroundPosition: "10px",
+  backgroundSize: "3%",
+  backgroundPosition: "15px",
   backgroundRepeat: "no-repeat",
   fontFamily: "Pretendard",
   fontSize: "20px",
@@ -671,6 +671,7 @@ export const ResultContainer = styled.li`
   width: 70dvw;
   margin-top: 40px;
   margin-bottom: 40px;
+  list-style: none;
 `;
 
 // 검색결과의 작품명 텍스트
