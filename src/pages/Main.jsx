@@ -73,7 +73,7 @@ function Main() {
   const [query, setQuery] = useState("");
   const [titleResults, setTitleResults] = useState([]);
   const [artistResults, setArtistResults] = useState([]);
-
+  const [onLoad, setOnload] = useState(true);
   const navigate = useNavigate();
 
   const handleOrientalClick = (e) => {
@@ -188,6 +188,7 @@ function Main() {
     if (event.nativeEvent.isComposing) return;
     if (event.key === "Enter") {
       handleSearch();
+      setOnload(false);
     }
   };
 
@@ -339,8 +340,9 @@ function Main() {
           onKeyDown={handleKeyDown}
         ></SearchBox>
         <SearchResultContainer>
-          <ResultCategoryText>작품명</ResultCategoryText>
-          {titleResults[0] ? (
+          {titleResults[0] ||  !onLoad ? (<ResultCategoryText>작품명</ResultCategoryText>) : (<></>)}
+          {titleResults[0] ||  onLoad ? (<></>) : (<ResultTitle>검색 결과가 없습니다.</ResultTitle>)}
+          {titleResults[0] || !onLoad ? (
             titleResults.map((item) => (
               <ResultContainer
                 key={item.itemID}
@@ -356,11 +358,11 @@ function Main() {
                 </ResultExp>
               </ResultContainer>
             ))
-          ) : (
-            <ResultTitle>검색 결과가 없습니다.</ResultTitle>
+          ) : (<></>
           )}
           <br></br>
-          <ResultCategoryText>작가</ResultCategoryText>
+          {artistResults[0] ||  !onLoad ? (<ResultCategoryText>작가</ResultCategoryText>) : (<></>)}
+          {artistResults[0] ||  onLoad ? (<></>) : (<ResultTitle>검색 결과가 없습니다.</ResultTitle>)}
           {artistResults[0] ? (
             artistResults.map((item) => (
               <ResultContainer
@@ -378,7 +380,7 @@ function Main() {
               </ResultContainer>
             ))
           ) : (
-            <ResultTitle>검색 결과가 없습니다.</ResultTitle>
+            <></>
           )}
         </SearchResultContainer>
       </SearchContainer>
