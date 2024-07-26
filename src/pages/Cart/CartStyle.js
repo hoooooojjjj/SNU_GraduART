@@ -19,7 +19,6 @@ export const ContentContainer = styled.div({
 });
 
 export const LogoutButton = styled.div({
-  color: "black",
   margin: 30,
   marginBottom: 30,
   padding: "10px 20px",

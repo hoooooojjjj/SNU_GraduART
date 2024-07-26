@@ -1,53 +1,113 @@
 import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
-import React from "react";
+import React, {useState} from "react";
 import {
   ContentContainer,
-  MainPicture,
-  MainText,
-  SectionContainer,
-  OrientalPaintingEngText,
-  OrientalPaintingImg,
-  CraftImg,
-  ResultCategoryText,
-  CraftEngText,
-  SubText,
   CraftBlock,
+  CraftEngText,
+  CraftImg,
+  CraftKorText,
+  DesignBlock,
   DesignEngText,
   DesignImg,
   DesignKorText,
-  DesignBlock,
-  CraftKorText,
+  MainPicture,
+  MainText,
+  MediaArtsBlock,
   MediaArtsEngText,
   MediaArtsImg,
-  MediaArtsBlock,
-  OrientalPaintingBlock,
-  SculptureEngText,
-  SculptureKorText,
-  SculptureImg,
-  SculptureBlock,
   MediaArtsKorText,
+  OrientalPaintingBlock,
+  OrientalPaintingEngText,
+  OrientalPaintingImg,
   OrientalPaintingKorText,
-  WesternPaintingKorText,
-  WesternPaintingBlock,
-  WesternPaintingImg,
+  ResultCategoryText,
+  ResultContainer,
   ResultExp,
   ResultTitle,
-  SearchResultContainer,
+  SculptureBlock,
+  SculptureEngText,
+  SculptureImg,
+  SculptureKorText,
   SearchBox,
-  WesternPaintingEngText,
   SearchContainer,
-  CraftContainer,
-  OrientalContainer,
-  MediaArtsContainer,
-  WesternContainer,
-  SculptureContainer,
-  DesignContainer,
-  SearchPlaceHolder,
-  ResultContainer,
+  SearchResultContainer,
+  SectionContainer,
+  SubText,
+  WesternPaintingBlock,
+  WesternPaintingEngText,
+  WesternPaintingImg,
+  WesternPaintingKorText,
 } from "../MainStyle.js";
+import {supabase} from "../ServerClient.js";
+import {useNavigate} from "react-router-dom";
 
 function Main() {
+
+  const [query, setQuery] = useState('');
+  const [titleResults, setTitleResults] = useState([]);
+  const [artistResults, setArtistResults] = useState([]);
+
+  const navigate = useNavigate();
+  const handleSearch = async () => {
+    if(!query){ return }
+    const titleSearchResults = await searchTitles(query.split(" "));
+    const artistSearchResults = await searchArtists(query.split(" "));
+    setTitleResults(titleSearchResults);
+    console.log(`titleResults = ${titleResults.toString()}`);
+    setArtistResults(artistSearchResults);
+    console.log(artistResults);
+  };
+
+  async function searchTitles(chunks){
+    let titleTemp = [];
+    for (const chunk of chunks) {
+      console.log(chunk);
+      const {data, error} = await supabase
+          .from('items')
+          .select()
+          .like('title',`%${chunk}%`);
+
+      if(error){
+        console.log(`Error while querying: ${chunk}`);
+      }
+      console.log(`Done querying: ${JSON.stringify(data)}`);
+
+      for(const resultItem of data) {
+        titleTemp.push(resultItem);
+      }
+    }
+    return [...new Set(titleTemp)];
+  };
+
+  async function searchArtists(chunks){
+    let artistTemp = [];
+    for (const chunk of chunks) {
+      console.log(chunk);
+      const {data, error} = await supabase
+          .from('items')
+          .select()
+          .like('artist',`%${chunk}%`);
+
+      if(error){
+        console.log(`Error while querying: ${chunk}`);
+      }
+      console.log(`Done querying: ${JSON.stringify(data)}`);
+
+      for(const resultItem of data) {
+        artistTemp.push(resultItem);
+      }
+    }
+    return [...new Set(artistTemp)];
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.nativeEvent.isComposing) return;
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <ContentContainer>
       <Header></Header>
@@ -102,38 +162,34 @@ function Main() {
         </MediaArtsBlock>
       </SectionContainer>
       <SearchContainer>
-        <SearchBox>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M4.53375 11.0374C4.53375 7.3155 7.55098 4.29828 11.2729 4.29828C14.9948 4.29828 18.0121 7.3155 18.0121 11.0374C18.0121 12.8528 17.2943 14.5005 16.1271 15.7122C16.0939 15.7377 16.0619 15.7657 16.0315 15.796C16.0011 15.8264 15.9732 15.8584 15.9477 15.8916C14.736 17.0588 13.0883 17.7766 11.2729 17.7766C7.55098 17.7766 4.53375 14.7594 4.53375 11.0374ZM16.6813 17.8073C15.199 18.993 13.3187 19.7021 11.2729 19.7021C6.48757 19.7021 2.60828 15.8228 2.60828 11.0374C2.60828 6.25209 6.48757 2.3728 11.2729 2.3728C16.0583 2.3728 19.9375 6.25209 19.9375 11.0374C19.9375 13.0833 19.2285 14.9635 18.0428 16.4458L21.5809 19.984C21.9569 20.3599 21.9569 20.9695 21.5809 21.3455C21.205 21.7214 20.5954 21.7214 20.2194 21.3455L16.6813 17.8073Z"
-              fill="gray"
-            />
-          </svg>
-        </SearchBox>
-        <SearchPlaceHolder>
-          작가, 작품, 작품 설명을 검색하세요.
-        </SearchPlaceHolder>
+        <SearchBox placeholder={"작가, 작품, 작품 설명을 검색하세요."} onSubmit={handleSearch} onChange={(e) => setQuery(e.target.value)} onKeyDown={handleKeyDown}></SearchBox>
         <SearchResultContainer>
-          <ResultCategoryText>작가</ResultCategoryText>
-          <ResultContainer>
-            <ResultTitle>나의 행운과 불행 2</ResultTitle>
-            <ResultExp>이가현 | 2020 78×116cm</ResultExp>
-          </ResultContainer>
           <ResultCategoryText>작품명</ResultCategoryText>
-          <ResultContainer>
-            <ResultTitle>3월</ResultTitle>
-            <ResultExp>윤정연 | 2021 130.3×130.3cm</ResultExp>
-            <ResultTitle>풍경2</ResultTitle>
-            <ResultExp>오승현 | 2021 227.3×181.8cm</ResultExp>
-          </ResultContainer>
+          {titleResults[0] ? titleResults.map((item) => (
+              <ResultContainer key={item.itemID} onClick={()=>
+              {navigate(`/${item.department}`, { state: item.itemID })
+              }}>
+                <ResultTitle>{item.title}</ResultTitle>
+                <ResultExp>
+                  <span>{item.artist} | </span>
+                  <span>{item.department} | </span>
+                  <span>{item.descriptions} </span>
+                </ResultExp>
+              </ResultContainer>)):<ResultTitle>검색 결과가 없습니다.</ResultTitle>}
+          <br></br>
+          <ResultCategoryText>작가</ResultCategoryText>
+          {artistResults[0] ? artistResults.map((item) => (
+              <ResultContainer key={item.itemID} onClick={()=>
+              {navigate(`/${item.department}`, { state: item.itemID })
+              }}>
+                <ResultTitle>{item.title}</ResultTitle>
+                <ResultExp>
+                  <span>{item.artist} | </span>
+                  <span>{item.department} | </span>
+                  <span>{item.descriptions} </span>
+                </ResultExp>
+              </ResultContainer>
+          )):<ResultTitle>검색 결과가 없습니다.</ResultTitle>}
         </SearchResultContainer>
       </SearchContainer>
       <Footer></Footer>
