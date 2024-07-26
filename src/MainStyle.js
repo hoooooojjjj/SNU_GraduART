@@ -19,13 +19,13 @@ export const MainPicture = styled.section`
 export const MainText = styled.div`
   color: #ffffff;
   font-family: "DM Serif Display";
-  font-size: 96px;
+  font-size: 150px;
   font-style: normal;
   font-weight: 400;
   line-height: 290%; /* 278.4px */
   position: absolute;
-  left: -165px;
-  top: 150px;
+  left: -295px;
+  top: 230px;
   transform: rotate(90deg);
 `;
 
@@ -33,7 +33,7 @@ export const MainText = styled.div`
 export const SubText = styled.div`
   color: #ffffff;
   font-family: Pretendard;
-  font-size: 35px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 600;
   line-height: 110%; /* 105.6px */
@@ -45,8 +45,8 @@ export const SubText = styled.div`
   position: absolute;
   right: 15px;
   bottom: 10px;
-  padding-bottom: 3%;
-  padding-right: 3%;
+  padding-bottom: 1%;
+  padding-right: 2%;
 `;
 
 // DepartmentBanner
