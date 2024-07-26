@@ -28,17 +28,21 @@ export const RefundImgWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 // 취소/환불 신청 할 이미지 1장
 export const RefundImg = styled.div`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${(props) => props.path});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  }
 `;
 
 // 취소/환불신청 페이지의 작품명 및 작가명 텍스트

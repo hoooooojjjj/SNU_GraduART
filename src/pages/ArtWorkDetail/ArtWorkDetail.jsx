@@ -59,6 +59,11 @@ function ArtWorkDetail() {
   // 똑같은 상품을 담았을 때
   const [isOnConflict, setIsOnConflict] = useState(false);
 
+  // 애니메이션 정보
+  const [animateOut, setAnimateOut] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
+  const [animateDirection, setAnimateDirection] = useState("");
+
   // 모달을 표시하는 함수
   const showModal = () => {
     setIsModalVisible(true);
@@ -106,44 +111,56 @@ function ArtWorkDetail() {
 
   // 오른쪽 화살표를 누르면 다음 작품 상세 페이지로 이동
   const onRightArrowClick = () => {
-    // 현재 작품보다 오래된 작품 중 제일 첫번째 작품 필터링
-    const nextArtWork = artWorkList.filter(
-      (artworks) =>
-        new Date(artWork.created_at) > new Date(artworks.created_at) &&
-        artWork.itemID !== artworks.itemID
-    );
-    // 현재 작품보다 오랜된 작품이 없으면 가장 최신 작품으로 이동
-    if (nextArtWork.length === 0) {
-      nav(`/${artWorkList[0].department}/${artWorkList[0].itemID}`, {
-        state: artWorkList,
-      });
-      // 현재 작품보다 오래된 작품이 있으면 그 작품으로 이동
-    } else {
-      nav(`/${nextArtWork[0].department}/${nextArtWork[0].itemID}`, {
-        state: artWorkList,
-      });
-    }
+    setAnimateDirection("Left");
+    setAnimateOut(true);
+    setTimeout(() => {
+      // 현재 작품보다 오래된 작품 중 제일 첫번째 작품 필터링
+      const nextArtWork = artWorkList.filter(
+        (artworks) =>
+          new Date(artWork.created_at) > new Date(artworks.created_at) &&
+          artWork.itemID !== artworks.itemID
+      );
+      // 현재 작품보다 오랜된 작품이 없으면 가장 최신 작품으로 이동
+      if (nextArtWork.length === 0) {
+        nav(`/${artWorkList[0].department}/${artWorkList[0].itemID}`, {
+          state: artWorkList,
+        });
+        // 현재 작품보다 오래된 작품이 있으면 그 작품으로 이동
+      } else {
+        nav(`/${nextArtWork[0].department}/${nextArtWork[0].itemID}`, {
+          state: artWorkList,
+        });
+      }
+      setAnimateOut(false);
+      setAnimateIn(true);
+    }, 900);
   };
 
   // 왼쪽 화살표를 누르면 이전 작품 상세 페이지로 이동
   const onLeftArrowClick = () => {
-    // 현재 작품보다 최신인 작품 중 제일 마지막 작품 필터링
-    const prevArtWork = artWorkList.filter(
-      (artworks) =>
-        new Date(artWork.created_at) < new Date(artworks.created_at) &&
-        artWork.itemID !== artworks.itemID
-    );
-    // 현재 작품보다 최신인 작품이 없으면 가장 오래된 작품으로 이동
-    if (prevArtWork.length === 0) {
-      nav(`/${artWorkList.at(-1).department}/${artWorkList.at(-1).itemID}`, {
-        state: artWorkList,
-      });
-      // 현재 작품보다 최신인 작품이 있으면 그 작품으로 이동
-    } else {
-      nav(`/${prevArtWork.at(-1).department}/${prevArtWork.at(-1).itemID}`, {
-        state: artWorkList,
-      });
-    }
+    setAnimateDirection("Right");
+    setAnimateOut(true);
+    setTimeout(() => {
+      // 현재 작품보다 최신인 작품 중 제일 마지막 작품 필터링
+      const prevArtWork = artWorkList.filter(
+        (artworks) =>
+          new Date(artWork.created_at) < new Date(artworks.created_at) &&
+          artWork.itemID !== artworks.itemID
+      );
+      // 현재 작품보다 최신인 작품이 없으면 가장 오래된 작품으로 이동
+      if (prevArtWork.length === 0) {
+        nav(`/${artWorkList.at(-1).department}/${artWorkList.at(-1).itemID}`, {
+          state: artWorkList,
+        });
+        // 현재 작품보다 최신인 작품이 있으면 그 작품으로 이동
+      } else {
+        nav(`/${prevArtWork.at(-1).department}/${prevArtWork.at(-1).itemID}`, {
+          state: artWorkList,
+        });
+      }
+      setAnimateOut(false);
+      setAnimateIn(true);
+    }, 900);
   };
 
   const HandlePurchaseClick = () => {
@@ -161,17 +178,46 @@ function ArtWorkDetail() {
     setIsOnConflict(false);
     // 로그인 안했다면 로그인 페이지로 이동
     if (!user) {
-      nav("/login", { state: "로그인이 필요한 서비스입니다" });
+      nav("/login", {
+        state: {
+          redirectMessage: "로그인이 필요한 서비스입니다",
+          redirectPath: `/${artWork.department}/${artWork.itemID}`,
+        },
+      });
       return null;
     }
     if (!artWork.onSale) {
       return null;
     }
-    // cart_item 테이블에 데이터 추가
-    const { data, error } = await supabase
+
+    // 이미 유저가 담은 작품인지 여부
+    let AlreadyInsert = false;
+
+    // 유저가 이전에 담았던 작품들을 가져옴
+    let { data: cart_item, getError } = await supabase
       .from("cart_item")
-      .upsert(
-        [
+      .select("user_id, item_id")
+      .eq("user_id", user.id);
+
+    // 유저가 이전에 담았던 작품들 중에서 지금 담으려는 작품이 있는지 확인
+    cart_item?.forEach((item) => {
+      // 지금 담으려는 작품이 있다면
+      if (item.item_id === artWork.itemID) {
+        // isOnConflict를 true로
+        setIsOnConflict(true);
+        // 이미 유저가 담았음을 명시
+        AlreadyInsert = true;
+      }
+    });
+    if (getError) {
+      console.log(getError);
+    }
+    // 유저가 똑같은 걸 담지 않았다면
+    if (!AlreadyInsert) {
+      // cart_item 테이블에 데이터 추가
+      const { inserrError } = await supabase
+        .from("cart_item")
+        .upsert([
           {
             user_id: user.id,
             item_id: artWork.itemID,
@@ -186,22 +232,15 @@ function ArtWorkDetail() {
             made_at: artWork.made_at,
             num_code: artWork.num_code,
           },
-        ],
+        ])
+        .eq("onSale", true)
+        .select();
 
-        // 중복되는 item_id가 있을 경우 onConflict 옵션으로 안 담기게 하기
-        { onConflict: "item_id" }
-      )
-      .eq("onSale", true)
-      .select();
-
-    if (error) {
-      console.log(error);
-      // 중복되는 item_id가 있을 경우 이미 담겼다는 모달창 띄우기
-      if (error.code === "42501") {
-        setIsOnConflict(true);
+      if (inserrError) {
+        console.log(inserrError);
       }
     }
-
+    // 모달창 띄우기
     showModal();
   };
 
@@ -214,20 +253,32 @@ function ArtWorkDetail() {
   };
 
   return artWork ? (
-    <Container isPurchased={isPurchased}>
+    <Container
+      isPurchased={isPurchased}
+      // animateOut={animateOut}
+      // animateIn={animateIn}
+      // animateDirection={animateDirection}
+      // onAnimationEnd={() => setAnimateIn(false)}
+    >
       <IntroContainer>
         <BackIcon onClick={handleBackIconClick}></BackIcon>
       </IntroContainer>
-      <MainContainer onClick={handleMainContainerClick}>
+      <MainContainer
+        animateOut={animateOut}
+        animateIn={animateIn}
+        animateDirection={animateDirection}
+        onAnimationEnd={() => setAnimateIn(false)}
+        onClick={handleMainContainerClick}
+      >
         <LeftContainer>
           <LeftArrow onClick={onLeftArrowClick}></LeftArrow>
         </LeftContainer>
         <ImageWrap>
           <ImageContainer>
-            <Image
-              url={artWork.imagePath}
-              alt={`${artWork.artist}님의 작품`}
-            ></Image>
+            <Image>
+              <source type="image/webp" srcSet={`${artWork.imagePath}`} />
+              <img src={artWork.imagePath} alt={`${artWork.artist}님의 작품`} />
+            </Image>
           </ImageContainer>
         </ImageWrap>
         <RightContainer>

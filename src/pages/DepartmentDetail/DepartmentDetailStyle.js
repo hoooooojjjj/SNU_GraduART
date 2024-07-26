@@ -165,16 +165,78 @@ export const ArtWorkImgWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-export const ArtWorkImg = styled.div`
+// 이미지 로딩
+export const PendingArtWorkImg = styled.div`
+  z-index: 100;
+  opacity: ${(props) => (props.imageLoaded ? 0 : 1)};
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: ${(props) => `url(${props.ImgUrl})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+  }
+  & > span:nth-of-type(0) {
+    margin: 5px;
+    animation-delay: 0s;
+    background-color: red;
+  }
+  & > span:nth-of-type(1) {
+    margin: 5px;
+    animation-delay: 0.2s;
+    background-color: dodgerblue;
+  }
+  & > span:nth-of-type(2) {
+    margin: 5px;
+    animation-delay: 0.4s;
+    background-color: greenyellow;
+  }
+  transition: opacity 0.1s ease-in-out;
+  ${(props) =>
+    !props.imageLoaded &&
+    `
+    opacity: 1;
+  `}
+
+  @keyframes loading {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+`;
+
+export const ArtWorkImg = styled.picture`
+  opacity: ${(props) => (props.imageLoaded ? 1 : 0)};
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  }
 `;
 
 export const ArtWorkTitle = styled.div({
