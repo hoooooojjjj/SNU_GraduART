@@ -8,16 +8,7 @@ export const ContentContainer = styled.div`
   width: 100dvw;
 `;
 
-//maintext 애니메이션
-const FadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
+//스크롤했을때 과 배너 애니메이션
 const FadeInFromLeft = keyframes`
   from {
     opacity: 0;
@@ -29,6 +20,7 @@ const FadeInFromLeft = keyframes`
   }
 `;
 
+//스크롤했을때 과 배너 애니메이션
 const FadeInFromRight = keyframes`
   from {
     opacity: 0;
@@ -39,61 +31,6 @@ const FadeInFromRight = keyframes`
     transform: translateX(0);
   }
 `;
-
-// MainPicture
-export const MainPicture = styled.section`
-  animation: fadeIn;
-  animation-duration: 0.7s;
-  animation-timing-function: linear;
-  width: 100%;
-  height: 94dvh;
-  background-image: url(${(props) => props.path});
-  background-size: cover;
-  background-position-y: 50%;
-  position: relative; /* sticky 대신 relative 사용 */
-  top: 0;
-`;
-
-// GraduART Text
-export const MainText = styled.div`
-  animation: ${FadeIn};
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  color: #ffffff;
-  font-family: "DM Serif Display";
-  font-size: 96px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 290%; /* 278.4px */
-  position: absolute;
-  left: -165px;
-  top: 150px;
-  transform: rotate(90deg);
-`;
-
-// 서울대학교 미술대학 졸업전시 Text
-export const SubText = styled.div`
-  animation: fadeInUp;
-  animation-duration: 2s;
-  color: #ffffff;
-  font-family: Pretendard;
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 110%; /* 105.6px */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  text-align: right;
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
-  padding-bottom: 3%;
-  padding-right: 3%;
-`;
-
-// DepartmentBanner
 
 //과별페이지 이동할때 애니메이션 왼쪽->오른쪽
 const SlideInFromLeft = keyframes`
@@ -130,6 +67,71 @@ const SlideInFromRight = keyframes`
     left: 0;
   }
 `;
+
+//maintext animation
+const TextFocusIn = keyframes`
+  from {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0px);
+    opacity: 1;
+  }
+`;
+
+// MainPicture
+export const MainPicture = styled.section`
+  animation: fadeIn;
+  animation-duration: 0.7s;
+  animation-timing-function: linear;
+  width: 100%;
+  height: 94dvh;
+  background-image: url(${(props) => props.path});
+  background-size: cover;
+  background-position-y: 50%;
+  position: relative; /* sticky 대신 relative 사용 */
+  top: 0;
+`;
+
+// GraduART Text
+export const MainText = styled.div`
+  animation: ${TextFocusIn} 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  color: #ffffff;
+  font-family: "DM Serif Display";
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 290%; /* 278.4px */
+  position: absolute;
+  left: -165px;
+  top: 150px;
+  transform: rotate(90deg);
+`;
+
+// 서울대학교 미술대학 졸업전시 Text
+export const SubText = styled.div`
+  animation: fadeInUp;
+  animation-duration: 2s;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 105.6px */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  padding-bottom: 3%;
+  padding-right: 3%;
+`;
+
+// DepartmentBanner
 
 // OrientalContainer
 export const OrientalContainer = styled.div`

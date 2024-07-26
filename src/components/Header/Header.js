@@ -41,6 +41,10 @@ export const StyledNavLink = styled(NavLink)`
     color: black;
     font-weight: bold;
   }
+  &:hover {
+    color: black; // 호버 시 글씨 색상 변경
+    transform: scale(1.1); // 호버 시 약간 크게 만드는 효과
+  }
 `;
 
 export const HomeStyledNavLink = styled(NavLink)((props) => ({
