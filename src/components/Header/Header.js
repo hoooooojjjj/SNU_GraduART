@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
-import React from "react";
 export const Head = styled.header`
   padding: 1.5dvh 0;
   width: 100dvw;

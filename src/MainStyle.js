@@ -6,7 +6,6 @@ import "animate.css";
 // ContentContainer
 export const ContentContainer = styled.div`
   width: 100dvw;
-  background-attachment: scroll, local;
 `;
 
 //스크롤했을때 과 배너 애니메이션
@@ -638,34 +637,31 @@ export const SearchContainer = styled.div`
 `;
 
 // 검색창
-export const SearchBox = styled.div`
-  width: 60%;
-  margin: 10dvh auto;
-  margin-bottom: 7dvh;
-  height: 5%;
-  padding: 1% 1%;
-  border-radius: 50px;
-  border: 2px solid #818181;
-  background: #ffffff;
-`;
-
-// 검색창 Placeholder Text "작가, 작품, 작품 설명을 검색하세요."
-export const SearchPlaceHolder = styled.div`
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 100%;
-  color: #818181;
-  position: absolute;
-  margin-top: 12.4dvh;
-  left: 23dvw;
-`;
+export const SearchBox = styled.input((props) => ({
+  width: "60%",
+  margin: "10dvh auto",
+  marginBottom: "7dvh",
+  height: "5%",
+  padding: "1% 1%",
+  borderRadius: "50px",
+  border: "2px solid #818181",
+  backgroundColor: "none",
+  backgroundImage: `url("/assets/search.svg")`,
+  backgroundSize: "4%",
+  backgroundPosition: "10px",
+  backgroundRepeat: "no-repeat",
+  fontFamily: "Pretendard",
+  fontSize: "20px",
+  fontStyle: "normal",
+  fontWeight: "300",
+  paddingLeft: "60px",
+}));
 
 // 검색 결과 전체 컨테이너
-export const SearchResultContainer = styled.div`
+export const SearchResultContainer = styled.ul`
   width: 70%;
   margin-bottom: 5%;
+  cursor: pointer;
 `;
 
 // 검색 결과 카테고리: "작가", "작품명" 등
@@ -680,11 +676,11 @@ export const ResultCategoryText = styled.div`
 `;
 
 // 작가, 작품명 검색결과 컨테이너
-export const ResultContainer = styled.div`
+export const ResultContainer = styled.li`
   background: white;
   width: 70dvw;
   margin-top: 40px;
-  margin-bottom: 10dvh;
+  margin-bottom: 40px;
 `;
 
 // 검색결과의 작품명 텍스트

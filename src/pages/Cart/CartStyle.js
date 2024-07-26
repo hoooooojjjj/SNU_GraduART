@@ -19,9 +19,15 @@ export const ContentContainer = styled.div({
 });
 
 export const LogoutButton = styled.div({
-  color: 'darkred',
+  margin: 30,
+  marginBottom: 30,
+  padding: "10px 20px",
+  color: "white",
+  border: "none",
+  borderRadius: 5,
+  cursor: "pointer",
   fontSize: "20px",
-  textDecoration:'underline'
+  background: "#8c94a9",
 });
 
 // "장바구니" 텍스트
@@ -80,6 +86,7 @@ export const CheckAllIcon = styled.input`
   align-items: center;
   display: flex;
   margin-right: 1%;
+  width: 10%;
 `;
 
 // "전체 선택" 텍스트
@@ -92,21 +99,30 @@ export const CheckAllText = styled.div({
 });
 
 // 장바구니에 있는 항목 1개
-export const CartItem = styled.div({
+export const CartItem = styled.div((props) => ({
   width: "100%",
   height: "50%",
   marginBottom: "3%",
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-});
+  color: props.isOnSale ? "black" : "gray",
+}));
 
 // 장바구니 체크 아이콘
 export const CheckBoxIcon = styled.input`
   align-items: center;
   display: flex;
+  width: 10%;
   margin: 3%;
-  margin-right: 5%;
+`;
+
+export const AlreadyPurchased = styled.div`
+  align-items: center;
+  display: flex;
+  width: 10%;
+  margin: 3%;
+  color: gray;
 `;
 
 export const CartImgContainer = styled.div`
@@ -116,16 +132,20 @@ export const CartImgContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 1%;
+  position: relative;
 `;
 
 export const CartItemImg = styled.div`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${(props) => props.path});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+  }
 `;
 
 // 장바구니 항목 텍스트
