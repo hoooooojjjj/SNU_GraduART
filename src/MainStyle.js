@@ -88,7 +88,7 @@ const kenburnsTopRight = keyframes`
 `;
 // MainPicture
 export const MainPicture = styled.section`
-  animation:${kenburnsTopRight}
+  animation: ${kenburnsTopRight};
   z-index: 10000;
   animation: fadeIn;
   animation-duration: 0.7s;
