@@ -1,8 +1,10 @@
 import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import useIntersectionObserver from "../hooks/useIntersectionObserver.js";
+import classNames from "classnames";
 
 import {
   ContentContainer,
@@ -69,6 +71,68 @@ function Main() {
   const [MediaRef, isMediaVisible] = useIntersectionObserver({
     threshold: 0.1,
   });
+  const [isOrientalAnimating, setIsOrientalAnimating] = useState(false);
+  const [isWesternAnimating, setIsWesternAnimating] = useState(false);
+  const [isSculptureAnimating, setIsSculptureAnimating] = useState(false);
+  const [isCraftAnimating, setIsCraftAnimating] = useState(false);
+  const [isDesignAnimating, setIsDesignAnimating] = useState(false);
+  const [isMediaAnimating, setIsMediaAnimating] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleOrientalClick = (e) => {
+    e.preventDefault();
+    setIsOrientalAnimating(true);
+    setTimeout(() => {
+      navigate("/Oriental Painting");
+      setIsOrientalAnimating(false);
+    }, 1000);
+  };
+
+  const handleWesternClick = (e) => {
+    e.preventDefault();
+    setIsWesternAnimating(true);
+    setTimeout(() => {
+      navigate("/Western Painting");
+      setIsWesternAnimating(false);
+    }, 1000);
+  };
+
+  const handleSculptureClick = (e) => {
+    e.preventDefault();
+    setIsSculptureAnimating(true);
+    setTimeout(() => {
+      navigate("/Sculpture");
+      setIsSculptureAnimating(false);
+    }, 1000);
+  };
+
+  const handleCraftClick = (e) => {
+    e.preventDefault();
+    setIsCraftAnimating(true);
+    setTimeout(() => {
+      navigate("/Craft");
+      setIsCraftAnimating(false);
+    }, 1000);
+  };
+
+  const handleDesignClick = (e) => {
+    e.preventDefault();
+    setIsDesignAnimating(true);
+    setTimeout(() => {
+      navigate("/Design");
+      setIsCraftAnimating(false);
+    }, 1000);
+  };
+
+  const handleMediaClick = (e) => {
+    e.preventDefault();
+    setIsMediaAnimating(true);
+    setTimeout(() => {
+      navigate("/MediaArts");
+      setIsMediaAnimating(false);
+    }, 1000);
+  };
 
   return (
     <ContentContainer>
@@ -77,11 +141,18 @@ function Main() {
         <MainText>GraduART</MainText>
         <SubText>서울대학교 미술대학 졸업전시 展</SubText>
       </MainPicture>
-      <SectionContainer ref={OrientalRef} to={"/Oriental Painting"}>
+      <SectionContainer
+        ref={OrientalRef}
+        to={"/Oriental Painting"}
+        onClick={(e) => handleOrientalClick(e, "/Oriental Painting")}
+      >
         <OrientalPaintingImg img={`/assets/orientalImg.webp`} />
         <OrientalPaintingBlock
           color={"#FF983B"}
-          className={isOrientalVisible ? "animate" : ""}
+          className={classNames({
+            animate: isOrientalVisible,
+            animates: isOrientalAnimating,
+          })}
         >
           <OrientalPaintingEngText
             className={isOrientalVisible ? "animate" : ""}
@@ -95,13 +166,20 @@ function Main() {
           </OrientalPaintingKorText>
         </OrientalPaintingBlock>
       </SectionContainer>
-      <SectionContainer ref={WesternRef} to={"/Western Painting"}>
+      <SectionContainer
+        ref={WesternRef}
+        to={"/Western Painting"}
+        onClick={(e) => handleWesternClick(e, "/Western Painting")}
+      >
         <WesternPaintingImg
           img={`/assets/westernImg.jpeg`}
         ></WesternPaintingImg>
         <WesternPaintingBlock
           color={"#EE5397"}
-          className={isWesternVisible ? "animate" : ""}
+          className={classNames({
+            animate: isWesternVisible,
+            animates: isWesternAnimating,
+          })}
         >
           <WesternPaintingEngText className={isWesternVisible ? "animate" : ""}>
             Western Painting
@@ -111,10 +189,17 @@ function Main() {
           </WesternPaintingKorText>
         </WesternPaintingBlock>
       </SectionContainer>
-      <SectionContainer ref={SculptureRef} to={"/Sculpture"}>
+      <SectionContainer
+        ref={SculptureRef}
+        to={"/Sculpture"}
+        onClick={(e) => handleSculptureClick(e, "/Sculpture")}
+      >
         <SculptureBlock
-          className={isSculptureVisible ? "animate" : ""}
           color={"#FE4E4E"}
+          className={classNames({
+            animate: isSculptureVisible,
+            animates: isSculptureAnimating,
+          })}
         >
           <SculptureEngText className={isSculptureVisible ? "animate" : ""}>
             Sculpture
@@ -125,11 +210,18 @@ function Main() {
         </SculptureBlock>
         <SculptureImg img={`/assets/sculptureImg.jpeg`}></SculptureImg>
       </SectionContainer>
-      <SectionContainer ref={CraftRef} to={"/Craft"}>
+      <SectionContainer
+        ref={CraftRef}
+        to={"/Craft"}
+        onClick={(e) => handleCraftClick(e, "/Craft")}
+      >
         <CraftImg img={`/assets/craftImg.heic`}></CraftImg>
         <CraftBlock
-          className={isCraftVisible ? "animate" : ""}
           color={"#00C4D4"}
+          className={classNames({
+            animate: isCraftVisible,
+            animates: isCraftAnimating,
+          })}
         >
           <CraftEngText className={isCraftVisible ? "animate" : ""}>
             Craft
@@ -139,10 +231,17 @@ function Main() {
           </CraftKorText>
         </CraftBlock>
       </SectionContainer>
-      <SectionContainer ref={DesignRef} to={"/Design"}>
+      <SectionContainer
+        ref={DesignRef}
+        to={"/Design"}
+        onClick={(e) => handleDesignClick(e, "/Design")}
+      >
         <DesignBlock
           color={"#3466A5"}
-          className={isDesignVisible ? "animate" : ""}
+          className={classNames({
+            animate: isDesignVisible,
+            animates: isDesignAnimating,
+          })}
         >
           <DesignEngText className={isDesignVisible ? "animate" : ""}>
             Design
@@ -153,11 +252,18 @@ function Main() {
         </DesignBlock>
         <DesignImg img={`/assets/designImg.avif`}></DesignImg>
       </SectionContainer>
-      <SectionContainer ref={MediaRef} to={"/MediaArts"}>
+      <SectionContainer
+        ref={MediaRef}
+        to={"/MediaArts"}
+        onClick={(e) => handleMediaClick(e, "/MediaArts")}
+      >
         <MediaArtsImg img={`/assets/mediaartsImg.jpeg`}></MediaArtsImg>
         <MediaArtsBlock
-          className={isMediaVisible ? "animate" : ""}
           color={"#DBEB57"}
+          className={classNames({
+            animate: isMediaVisible,
+            animates: isMediaAnimating,
+          })}
         >
           <MediaArtsEngText className={isMediaVisible ? "animate" : ""}>
             MediaArts

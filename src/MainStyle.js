@@ -42,7 +42,7 @@ const FadeInFromRight = keyframes`
 
 // MainPicture
 export const MainPicture = styled.section`
-  animation: fadeInRight;
+  animation: fadeIn;
   animation-duration: 0.7s;
   animation-timing-function: linear;
   width: 100%;
@@ -50,9 +50,8 @@ export const MainPicture = styled.section`
   background-image: url(${(props) => props.path});
   background-size: cover;
   background-position-y: 50%;
-  &.fade-out {
-    animation: fadeOutUp;
-  }
+  position: relative; /* sticky 대신 relative 사용 */
+  top: 0;
 `;
 
 // GraduART Text
@@ -95,6 +94,43 @@ export const SubText = styled.div`
 `;
 
 // DepartmentBanner
+
+//과별페이지 이동할때 애니메이션 왼쪽->오른쪽
+const SlideInFromLeft = keyframes`
+  from {
+    opacity: 0;
+    z-index: 1;
+  }
+  to {
+    opacity: 1;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
+//과별페이지 이동할때 애니메이션 오른쪽->왼쪽
+const SlideInFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100%); /* 오른쪽 화면 밖에서 시작 */
+    z-index: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* 화면에 맞춰 위치 조정 */
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
 // OrientalContainer
 export const OrientalContainer = styled.div`
   width: 100%;
@@ -124,7 +160,10 @@ export const OrientalPaintingBlock = styled.div((props) => ({
     opacity: 1,
     transform: "translateX(0)",
     animation: `${FadeInFromLeft} 1s ease-in-out`,
-  },
+  }, //화면에 보일때 애니메이션
+  "&.animates": {
+    animation: `${SlideInFromLeft} 1s forwards`,
+  }, //과별페이지로 이동할때 애니메이션
 }));
 
 // OrientalPaintingEngText
@@ -209,6 +248,9 @@ export const WesternPaintingBlock = styled.div((props) => ({
     transform: "translateX(0)",
     animation: `${FadeInFromRight} 1s ease-in-out`,
   },
+  "&.animates": {
+    animation: `${SlideInFromRight} 1s forwards`,
+  },
 }));
 
 // WesternPaintingEngText
@@ -259,6 +301,7 @@ export const SculptureContainer = styled.div`
 
 // SculptureBlock
 export const SculptureBlock = styled.div((props) => ({
+  zIndex: 10,
   position: "relative",
   backgroundColor: props.color,
   width: "30%",
@@ -271,6 +314,9 @@ export const SculptureBlock = styled.div((props) => ({
     opacity: 1,
     transform: "translateX(0)",
     animation: `${FadeInFromLeft} 1s ease-in-out`,
+  },
+  "&.animates": {
+    animation: `${SlideInFromLeft} 1s forwards`,
   },
 }));
 
@@ -356,6 +402,9 @@ export const CraftBlock = styled.div((props) => ({
     transform: "translateX(0)",
     animation: `${FadeInFromRight} 1s ease-in-out`,
   },
+  "&.animates": {
+    animation: `${SlideInFromRight} 1s forwards`,
+  },
 }));
 
 // CraftEngText
@@ -406,6 +455,7 @@ export const DesignContainer = styled.div`
 
 // DesignBlock
 export const DesignBlock = styled.div((props) => ({
+  zIndex: 10,
   position: "relative",
   backgroundColor: props.color,
   width: "30%",
@@ -418,6 +468,9 @@ export const DesignBlock = styled.div((props) => ({
     opacity: 1,
     transform: "translateX(0)",
     animation: `${FadeInFromLeft} 1s ease-in-out`,
+  },
+  "&.animates": {
+    animation: `${SlideInFromLeft} 1s forwards`,
   },
 }));
 
@@ -502,6 +555,9 @@ export const MediaArtsBlock = styled.div((props) => ({
     opacity: 1,
     transform: "translateX(0)",
     animation: `${FadeInFromRight} 1s ease-in-out`,
+  },
+  "&.animates": {
+    animation: `${SlideInFromRight} 1s forwards`,
   },
 }));
 
