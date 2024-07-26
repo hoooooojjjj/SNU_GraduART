@@ -37,12 +37,6 @@ import {
   SearchBox,
   WesternPaintingEngText,
   SearchContainer,
-  CraftContainer,
-  OrientalContainer,
-  MediaArtsContainer,
-  WesternContainer,
-  SculptureContainer,
-  DesignContainer,
   SearchPlaceHolder,
   ResultContainer,
 } from "../MainStyle.js";
