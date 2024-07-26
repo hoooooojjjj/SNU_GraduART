@@ -246,7 +246,9 @@ export const PurchaseMiddle = styled.div`
 
 export const PurchaseBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: #928a8a;
   &:hover {
     color: #2c2c2c;

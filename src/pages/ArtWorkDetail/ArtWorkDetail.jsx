@@ -304,8 +304,7 @@ function ArtWorkDetail() {
         <PurchaseMiddle onClick={HandlePurchaseClick}>
           {!isPurchased ? (
             <PurchaseBox>
-              <DownArrow />
-              <PurchaseInformation>구매 정보</PurchaseInformation>
+              <PurchaseInformation>구매 정보</PurchaseInformation> <DownArrow />
             </PurchaseBox>
           ) : (
             <AlternateText>
