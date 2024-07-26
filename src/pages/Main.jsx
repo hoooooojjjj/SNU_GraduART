@@ -50,6 +50,7 @@ import {
   DesignContainer,
   SearchPlaceHolder,
   ResultContainer,
+  MainBack,
 } from "../MainStyle.js";
 
 function Main() {
@@ -137,6 +138,7 @@ function Main() {
   return (
     <ContentContainer>
       <Header></Header>
+      <MainBack></MainBack>
       <MainPicture path={`/assets/mainImg.png`}>
         <MainText>GraduART</MainText>
         <SubText>서울대학교 미술대학 졸업전시 展</SubText>

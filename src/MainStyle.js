@@ -6,6 +6,7 @@ import "animate.css";
 // ContentContainer
 export const ContentContainer = styled.div`
   width: 100dvw;
+  background-attachment: scroll, local;
 `;
 
 //스크롤했을때 과 배너 애니메이션
@@ -68,20 +69,27 @@ const SlideInFromRight = keyframes`
   }
 `;
 
-//maintext animation
-const TextFocusIn = keyframes`
-  from {
-    filter: blur(12px);
-    opacity: 0;
+export const MainBack = styled.div`
+  position: absolute;
+  top: 9.5dvh;
+  width: 100%;
+  height: 94dvh;
+  background-color: black;
+`;
+const kenburnsTopRight = keyframes`
+  0% {
+    transform: scale(1) translate(0, 0);
+    transform-origin: 84% 16%;
   }
-  to {
-    filter: blur(0px);
-    opacity: 1;
+  100% {
+    transform: scale(1.25) translate(20px, -15px);
+    transform-origin: right top;
   }
 `;
-
 // MainPicture
 export const MainPicture = styled.section`
+  animation:${kenburnsTopRight}
+  z-index: 10000;
   animation: fadeIn;
   animation-duration: 0.7s;
   animation-timing-function: linear;
@@ -94,9 +102,27 @@ export const MainPicture = styled.section`
   top: 0;
 `;
 
+//maintext animation
+const fadeInLeft = keyframes`
+  0% {
+    transform: translateX(-110px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
+const fadeInUp = keyframes`
+  0% {
+    transform: translateY(100px); /* 아래로 이동 */
+  }
+  100% {
+    transform: translateY(0); /* 원래 위치로 돌아옴 */
+  }
+`;
 // GraduART Text
 export const MainText = styled.div`
-  animation: ${TextFocusIn} 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: ${fadeInLeft} 1s ease-in-out both;
   color: #ffffff;
   font-family: "DM Serif Display";
   font-size: 96px;
@@ -104,15 +130,16 @@ export const MainText = styled.div`
   font-weight: 400;
   line-height: 290%; /* 278.4px */
   position: absolute;
-  left: -165px;
-  top: 150px;
+  left: -80px;
+  top: 70px;
   transform: rotate(90deg);
+  writing-mode: vertical-lr; /* 텍스트를 세로로 표시 */
+  text-align: start; /* 텍스트 정렬 */
 `;
 
 // 서울대학교 미술대학 졸업전시 Text
 export const SubText = styled.div`
-  animation: fadeInUp;
-  animation-duration: 2s;
+  animation: ${fadeInUp} 1s ease-in-out both;
   color: #ffffff;
   font-family: Pretendard;
   font-size: 35px;
