@@ -208,6 +208,90 @@
 
 ## 7. 페이지별 기능
 
+<b style='font-size:18px'>[메인페이지]</b>
+<br>
+
+<li>서비스 접속 초기화면으로 배경사진과 텍스트가 나타납니다.
+<video controls src='https://github.com/user-attachments/assets/66714aec-22de-49b4-b3ff-d964afa6bb6a'></video></li>
+<br>
+
+<li>메인페이지에서 아래로 스크롤 시 과별 배너의 텍스트 컨테이너가 나타납니다.
+<video controls src='https://github.com/user-attachments/assets/6ee0f8f1-0212-4c05-824b-5f15aa564a74'></video>
+</li>
+<br>
+<li>헤더의 검색 아이콘 클릭시 메인페이지 하단의 검색창으로 이동하고, 작가와 작품이름 검색이 가능합니다.</li>
+<video controls src='https://github.com/user-attachments/assets/c2faed87-fd09-48df-b4b7-d4880cb61710'></video>
+
+<br>
+<li>검색결과를 클릭시 해당 작품의 상세페이지로 이동합니다.</li>
+<br>
+<li>헤더의 장바구니 아이콘 선택시</li> 
+<ul>
+<li>로그인이 되어 있지 않은 경우: 로그인 페이지로 이동</li>
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 19 02" src="https://github.com/user-attachments/assets/7d5078aa-a1ea-4e2d-ae84-49aeb4b3edc0">
+<br>
+<li>로그인이 되어 있는 경우: 장바구니 페이지로 이동</li>
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 20 38" src="https://github.com/user-attachments/assets/bc965307-2491-4d37-8689-be0353760394">
+<br>
+<li>헤더의 마이페이지 아이콘 선택시 -로그인이 되어 있지 않은 경우: 로그인 페이지로 이동
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 19 02" src="https://github.com/user-attachments/assets/4cdeac35-95a2-4dfb-9df9-47d07b440646"></li>
+<br>
+<li>로그인이 되어 있는 경우: 마이페이지로 이동
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 22 43" src="https://github.com/user-attachments/assets/f9f4aafd-8cb4-4b15-a5a8-6630cb8e321b"></li> </ul>
+<br>
+<br>
+
+<b style='font-size:18px' >[과별페이지]</b>
+<br>
+
+<li>메인페이지에서 과별 배너 클릭시 해당 과의 과별페이지로 이동합니다.
+<video controls src='https://github.com/user-attachments/assets/88114b31-ec4f-48ff-ad0d-3ae1e87e98d5'></video></li>
+<br>
+<li>해당 과에 대한 설명과 관련 사이트의 링크가 있습니다.
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 27 12" src="https://github.com/user-attachments/assets/e56fa19f-88b8-43fb-8bd0-b7d675613e19"></li>
+<br>
+<li>과별페이지 하단에서 해당 과의 작품을 확인할 수 있고, 클릭시 해당 작품의 상세페이지로 이동합니다.
+<video controls src='https://github.com/user-attachments/assets/734697e5-fd41-4b1e-a2ab-a4e334022a6d'></video></li>
+
+<br>
+<br>
+<b style='font-size:18px'>[상세페이지]</b>
+
+<li>상세페이지에선 작품에 대한 간략한 설명과 함께 해당 작품에만 집중할 수 있도록 하였습니다.
+
+<video controls src='https://github.com/user-attachments/assets/8015b8b2-ae53-4243-ac9a-289f4ccd78db'></video>양옆의 화살표 클릭시 다른 작품(동일 과)에 대한 상세페이지로 넘어갑니다.</li>
+
+</li>
+
+ <br>
+<li>하단의 구매 정보 클릭시
+<ul>
+  <li>구매되지 않은 상품인 경우: 작품의 가격과 장바구니 담기 텍스트가 나타납니다.
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 33 24" src="https://github.com/user-attachments/assets/b5b485b2-b7d2-42ad-8047-f1a14ef57632">
+</li>
+<br>
+<li>이미 구매된 상품일 경우: 작품의 가격과 판매 완료 텍스트가 나타납니다.
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 42 12" src="https://github.com/user-attachments/assets/a39b6137-167b-4439-a64c-485fc4434d5b">
+</li></ul>
+
+<br>
+
+<li>장바구니 담기 선택시 
+<ul>
+<li>자신의 장바구니에 담겨있지 않은 상품인 경우: 해당 작품이 장바구니에 담기고, 계속 관람하기와 장바구니 보기 버튼이 포함된 모달창이 나타납니다.
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 37 44" src="https://github.com/user-attachments/assets/42775748-4ad1-43b2-8ed0-18266c30dd0f"></li>
+<br>
+<li>장바구니 보기 클릭 시: 장바구니 페이지로 이동합니다.
+<video controls src='https://github.com/user-attachments/assets/87f66cb1-b59e-4d6b-af8a-cf8e4e129c2a'></video>
+    
+</li>
+<br>
+<li>이미 자신의 장바구니에 담겨있는 상품인 경우: 이미 장바구니에 담긴 상품이라는 모달창이 나타납니다.
+<img width="1440" alt="스크린샷 2024-07-27 오전 11 40 09" src="https://github.com/user-attachments/assets/a32ddfd0-dbcf-49a7-a148-a81e0135ff44"> </li>
+</ul>
+<br>
+
+<b style='font-size:18px'>[장바구니]</b>
 <br>
 
 ## 8. 트러블 슈팅

@@ -29,6 +29,7 @@ import {
 } from "./RefundStyle.js";
 import { useLocation } from "react-router-dom";
 import emailjs from "emailjs-com";
+import { supabase } from "../../ServerClient.js";
 
 function Refund() {
   // 취소환불 클릭한 작품 정보 가져오기
@@ -123,9 +124,17 @@ function Refund() {
       )
       .then(
         // 성공 시
-        (response) => {
+        async (response) => {
           hideModal();
           showConfirmRefundModal();
+          const { data, error } = await supabase
+            .from("purchased")
+            .update({ refund: true })
+            .eq("item_id", refundItem.item_id)
+            .select();
+          if (error) {
+            console.log("Error updating refund status", error);
+          }
         },
         // 실패 시
         (error) => {

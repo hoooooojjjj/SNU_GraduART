@@ -111,7 +111,10 @@ function Purchased() {
         <CartItemList>
           {data && data.length > 0 ? (
             data.map((item) => (
-              <CartItem key={item.item_id}>
+              <CartItem
+                style={{ color: item.refund ? "gray" : "black" }}
+                key={item.item_id}
+              >
                 <PurchasedItemImgWrap>
                   <PurchasedItemImg>
                     <source type="image/webp" srcSet={`${item.imagePath}`} />
@@ -124,8 +127,11 @@ function Purchased() {
                   <br></br>
                   {formatPrice(item.price)} 원
                 </CartItemText>
-                <PurchasedItemDelete onClick={() => handleRefund(item)}>
-                  취소/환불 신청하기
+                <PurchasedItemDelete
+                  style={{ color: item.refund ? "gray" : "black" }}
+                  onClick={() => handleRefund(item)}
+                >
+                  {item.refund ? "취소/환불 신청 완료" : "취소/환불 신청하기"}
                 </PurchasedItemDelete>
               </CartItem>
             ))
