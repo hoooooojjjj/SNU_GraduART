@@ -584,7 +584,7 @@ export const MediaArtsEngText = styled.div`
   position: absolute;
   left: 10%;
   top: 15%;
-  color: #000000;
+  color: white;
   font-family: Pretendard;
   font-size: 200%;
   font-style: normal;
@@ -603,7 +603,7 @@ export const MediaArtsKorText = styled.div`
   position: absolute;
   left: 10%;
   top: 25%;
-  color: #000000;
+  color: white;
   font-family: Pretendard;
   font-size: 150%;
   font-style: normal;
