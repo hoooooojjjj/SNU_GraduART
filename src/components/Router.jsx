@@ -26,7 +26,7 @@ function Router() {
         <Route path="/refund/:refundItemID" element={<Refund />}></Route>
         <Route path="/purchaseApprove" element={<PaymentApprove />}></Route>
         <Route path="/paymentSuccess" element={<PaymentSuccess/>}></Route>
-        <Route path="/purchaseFail" element={<PaymentFail/>}></Route>
+        <Route path="/paymentFail" element={<PaymentFail/>}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -31,7 +31,7 @@ import departmentInfos from "./DepartmentInfo.json";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import { supabase } from "../../ServerClient.js";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 // 미술작품 가져오기
 const getArtWorksByDepartment = async (department) => {

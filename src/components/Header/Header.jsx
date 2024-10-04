@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Head,
   List,
@@ -11,7 +11,6 @@ import {
 } from "./Header.js";
 import styled from "@emotion/styled";
 import { userContext } from "../../App.jsx";
-import { supabase } from "../../ServerClient.js";
 import { isMobile } from "react-device-detect";
 
 const StyledScrollButton = styled.div((props) => ({
