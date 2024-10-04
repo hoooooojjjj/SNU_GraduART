@@ -35,7 +35,6 @@ import {
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../ServerClient.js";
 import { userContext } from "../../App";
-import { CircularProgress } from "@mui/material";
 
 function ArtWorkDetail() {
   const nav = useNavigate();

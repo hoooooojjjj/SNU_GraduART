@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../../components/Header/Header.jsx";
 import {
   Container,
@@ -9,12 +9,9 @@ import {
   GreyButton,
 } from "./PaymentSuccessStyle.js";
 import { RedButton } from "./PaymentFailStyle.js";
-import { userContext } from "../../App.jsx";
 import { useNavigate } from "react-router-dom";
 
 export const PaymentFail = () => {
-  const [user] = useContext(userContext);
-
   const navigate = useNavigate();
 
   const onClickToMain = () => {

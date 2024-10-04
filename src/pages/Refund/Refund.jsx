@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header/Header.jsx";
 import { Container, ContentContainer, CartText } from "../Cart/CartStyle.js";
 import {
